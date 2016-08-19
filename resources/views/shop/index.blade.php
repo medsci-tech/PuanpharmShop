@@ -209,16 +209,16 @@
     {{--<script type="text/javascript" src="/shop/js/main.js"></script>--}}
     <script>
         $(function () {
+            $('noticeBtn').on('click', function () {
+                $('.noticeBox').hide();
+                $('.noticeBg').hide();
+            });
+
             $('nav .menu').on('click', function (event) {
                 $(this).find('.sub-menu').toggle();
                 $(this).siblings().find('.sub-menu').fadeOut();
 
                 event.stopPropagation();
-            });
-
-            $('noticeBtn').on('click', function () {
-                $('.noticeBox').hide();
-                $('.noticeBg').hide();
             });
 
             $(document.body).on('click', function () {
