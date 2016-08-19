@@ -59,9 +59,11 @@
             </div>
         </div>
 
-        <div class="trade-reward">
-            <span class="trade-reward-info">此商品由普安药房实际运营并负责发货</span>
-        </div>
+        @if($product->supplier_id == 2)
+            <div class="trade-reward">
+                <span class="trade-reward-info">此商品由普安药房实际运营并负责发货</span>
+            </div>
+        @endif
 
     </div>
         {{--<div class="store-info">--}}
