@@ -2322,38 +2322,35 @@ word-break: break-all;
 }
 
 .noticeBox {
-  height: 100%;
-  width: 100%;
-  z-index: 9999;
-  position: fixed;
-  top: 0;
-  left: 0;
+	height: 100%;
+    width: 100%;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
 
 }
-
-.noticeBox img {
-  width: 80%;
-  margin: 1.5rem auto;
-  display: block;
+.noticeBox  img{
+    width: 45%;
+    margin: 3.5rem auto;
+    display: block;
 }
-
-.noticeBox a {
-  width: 100%;
-  display: block;
-  height: 25%;
-  position: absolute;
-  top: 52%;
+.noticeBox a{
+	width: 100%;
+    display: block;
+    height: 25%;
+    position: absolute;
+    top: 40%;
 
 }
-
-.noticeBg {
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  opacity: 0.5;
-  z-index: 2000;
-  position: fixed;
-  top: 0;
-  left: 0;
+.noticeBg{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 2000;
+    position: fixed;
+    top: 0;
+    left: 0;
 
 }
