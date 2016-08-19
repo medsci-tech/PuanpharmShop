@@ -209,7 +209,7 @@
     {{--<script type="text/javascript" src="/shop/js/main.js"></script>--}}
     <script>
         $(function () {
-            $('noticeBtn').on('click', function () {
+            $('.noticeBtn').on('click', function () {
                 $('.noticeBox').hide();
                 $('.noticeBg').hide();
             });
