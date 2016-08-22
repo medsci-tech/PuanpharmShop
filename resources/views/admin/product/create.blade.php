@@ -32,6 +32,14 @@
                             <small>权重越大,排序越靠前</small>
                         </div>
                     </div>
+
+
+                    <div class="am-form-group">
+                        <label for="weight" class="am-u-sm-3 am-form-label">Puan ID</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" id="weight" placeholder="puan id" name="puan_id">
+                        </div>
+                    </div>
                     <div class="am-form-group am-form-select">
                         <label for="doc-select-1" class="am-u-sm-3 am-form-label">所属分类</label>
                         <div class="am-u-sm-9">
