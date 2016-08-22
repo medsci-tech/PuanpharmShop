@@ -39,6 +39,7 @@ class ProductController extends Controller
             'is_on_sale' => $request->input('is_on_sale'),
             'default_spec' => $request->input('default_spec'),
             'weight' => $request->input('weight'),
+            'puan_id' => $request->input('puan_id')
         ];
 
         if ($request->has('activity_id') && $request->input('activity_id')) {
@@ -78,6 +79,7 @@ class ProductController extends Controller
             'is_on_sale' => $request->input('is_on_sale'),
             'default_spec' => $request->input('default_spec'),
             'weight' => $request->input('weight'),
+            'puan_id' => $request->input('puan_id')
         ];
 
         if (!$request->input('activity_id')) {
