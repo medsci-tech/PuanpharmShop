@@ -1,8 +1,3 @@
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 8649def4aab15512b793b83ffe88acd62eb78a13
 input {
   -webkit-appearance: none;
 }
@@ -2070,9 +2065,9 @@ word-break: break-all;
 .beans .shop-list .bean-date {
     width: 2rem;
 }
-.beans .shop-list .bean-detail {
-    width: 7rem;
-}
+/*.beans .shop-list .bean-detail {*/
+    /*width: 7rem;*/
+/*}*/
 .beans .shop-list .bean-date p,
 .beans .shop-list .bean-detail p {
     width: 100%;
@@ -2368,7 +2363,4 @@ word-break: break-all;
   position: fixed;
   top: 0;
   left: 0;
-
-=======
->>>>>>> 8649def4aab15512b793b83ffe88acd62eb78a13
 }
