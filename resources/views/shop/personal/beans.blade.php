@@ -20,7 +20,7 @@
                         <a href="#" class="beans"><strong>本月</strong></a>
                     </div>
                     @foreach($logs as $log)
-                        @if(date ('Y-m',$log->created_at) == $month)
+                        @if(date ('Y-m', strtotime($log->created_at)) == $month)
                             <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;">
                                 <div class="cart-item">
                                     <div class="bean-date">
@@ -43,21 +43,21 @@
                         {{--<a href="#" class="monthly">查看月账单<i class="icon-arrow-right"></i></a>--}}
                     </div>
                     @foreach($logs as $log)
-                        @if(date ('Y-m',$log->created_at) == $month)
-                        <div class="cart-list" style="display: none;">
-                            <div class="cart-item">
-                                <div class="bean-date">
-                                    <p class="date">{{$log->created_at->format('Y-m')}}</p>
+                        @if(date ('Y-m', strtotime($log->created_at)) == $month)
+                            <div class="cart-list" style="display: none;">
+                                <div class="cart-item">
+                                    <div class="bean-date">
+                                        <p class="date">{{$log->created_at->format('Y-m')}}</p>
 
-                                    <p class="time">{{$log->created_at->format('hh:mm')}}</p>
-                                </div>
-                                <div class="bean-detail">
-                                    <p class="count">{{$log->result}}</p>
+                                        <p class="time">{{$log->created_at->format('hh:mm')}}</p>
+                                    </div>
+                                    <div class="bean-detail">
+                                        <p class="count">{{$log->result}}</p>
 
-                                    <p class="location">{{$log->rate->action_ch}}</p>
+                                        <p class="location">{{$log->rate->action_ch}}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endif
                     @endforeach
                 @endif
