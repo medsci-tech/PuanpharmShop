@@ -51,12 +51,14 @@ class PersonalController extends Controller
         $customer = Customer::find($this->customerID);
         if ($customer->unionid) {
             $logs = \Helper::getBeansLogByUnionid($customer->unionid);
+            $begin = new \DateTime(current($logs)->created_at->format('Y-m'));
         } else {
+            $begin = new \DateTime($customer->created_at->format('Y-m'));
             $logs = false;
         }
 
         $end = new \DateTime(Carbon::now()->format('Y-m'));
-        $begin = new \DateTime($customer->created_at->format('Y-m'));
+
         return view('shop.personal.beans', [
             'logs' => $logs,
             'now' => Carbon::now()->format('Y-m'),
