@@ -57,7 +57,7 @@ class PersonalController extends Controller
 
         $end = new \DateTime(Carbon::now()->format('Y-m'));
         $begin = new \DateTime($customer->created_at->format('Y-m'));
-
+        dd($logs);
         return view('shop.personal.beans', [
             'logs' => $logs,
             'now' => Carbon::now()->format('Y-m'),
