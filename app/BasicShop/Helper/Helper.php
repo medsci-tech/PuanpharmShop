@@ -142,7 +142,7 @@ class Helper
 
     /**
      * @param $unionid
-     * @return bool
+     * @return array
      */
     public function getBeansLogByUnionid($unionid)
     {
