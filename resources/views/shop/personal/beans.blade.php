@@ -20,7 +20,7 @@
                         <a href="#" class="beans"><strong>本月</strong></a>
                     </div>
                     @foreach($logs as $log)
-                        @if($customer->created_at->format('Y-m') == $month)
+                        @if(date ('Y-m',$log->created_at) == $month)
                             <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;">
                                 <div class="cart-item">
                                     <div class="bean-date">
@@ -43,7 +43,7 @@
                         {{--<a href="#" class="monthly">查看月账单<i class="icon-arrow-right"></i></a>--}}
                     </div>
                     @foreach($logs as $log)
-                        @if($log->created_at->format('Y-m') == $month)
+                        @if(date ('Y-m',$log->created_at) == $month)
                         <div class="cart-list" style="display: none;">
                             <div class="cart-item">
                                 <div class="bean-date">
