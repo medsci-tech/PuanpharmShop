@@ -70,8 +70,8 @@
     <script type="text/javascript" src="/shop/js/main.js"></script>
     <script type="text/javascript">
         function showList(month) {
-            $("#list-"+month).css({display: 'block'});
             $('[id^=list-]').css({display: 'none'});
+            $("#list-"+month).css({display: 'block'});
         }
     </script>
     </body>
