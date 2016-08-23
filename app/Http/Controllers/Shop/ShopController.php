@@ -44,7 +44,7 @@ class ShopController extends Controller
         $fromUrl = Input::get('fromUrl');
         $categories = array_chunk(Category::where('is_banner', 1)->get()->toArray(), 8);
         return view('shop.index', [
-            'products' => Product::where('supplier_id', 1)->orderBy('weight', 'desc')->get(),
+            'products' => Product::where('supplier_id', 1)->orderBy('beans', 'asc')->get(),
             'catArrays' => $categories,
             'activities' => Activity::all(),
             'cartCount' => sizeof(\Redis::command('HKEYS', ['user_id:' . $this->customerID])),
