@@ -43,6 +43,9 @@
                             </div>
                         </div>
                     @endif
+                        <div class="loading">
+                            <a class="more">没有更多积分记录了。</a>
+                        </div>
                 @endforeach
             @endforeach
         </div>
