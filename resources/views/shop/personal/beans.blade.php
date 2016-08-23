@@ -16,7 +16,7 @@
         <div class="shop-list">
             @foreach($months as $month)
                 @if($month == $now)
-                    <div class="header" style="background-color: #e5e5e5;width: 100%" onclick="showList('{{$month}}');">
+                    <div class="header" style="background-color: #3bb4f2;color: #fff;width: 100%" onclick="showList('{{$month}}');">
                         <a href="#" class="beans"><strong>本月</strong></a>
                     </div>
                     @foreach($logs as $log)
@@ -38,7 +38,7 @@
                         @endif
                     @endforeach
                 @else
-                    <div class="header" style="background-color: #e5e5e5;" onclick="showList('{{$month}}');">
+                    <div class="header" style="background-color: #3bb4f2;color: #fff;" onclick="showList('{{$month}}');">
                         <a href="#" class="beans"><strong>{{$month}}</strong></a>
                     </div>
 
