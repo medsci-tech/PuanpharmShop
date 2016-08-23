@@ -142,6 +142,29 @@ class Helper
 
     /**
      * @param $unionid
+     * @return bool
+     */
+    public function getBeansLogByUnionid($unionid)
+    {
+        $curl = new Curl();
+        $curl->get('http://www.ohmate.cn/puan/beans-log-for-union-id', array(
+            'unionid' => $unionid
+        ));
+
+        if ($curl->error) {
+            $curl->close();
+            return false;
+        } else {
+            $data = json_decode($curl->response);
+            if ($data->success) {
+                return $data->data->beans_log;
+            }
+            return false;
+        }
+    }
+
+    /**
+     * @param $unionid
      * @param $beans
      * @return bool
      */

@@ -49,16 +49,19 @@ class PersonalController extends Controller
     public function beans()
     {
         $customer = Customer::find($this->customerID);
+        if ($customer->unionid) {
+            $logs = \Helper::getBeansLogByUnionid($customer->unionid);
+        } else {
+            $logs = false;
+        }
+
         $end = new \DateTime(Carbon::now()->format('Y-m'));
         $begin = new \DateTime($customer->created_at->format('Y-m'));
-        $months = $this->getMonthPeriod($begin, $end);
-        $monthsBeans = [];
-        foreach ($months as $month) {
-            $monthsBeans[$month] = $customer->monthBeans($month);
-        }
+
         return view('shop.personal.beans', [
-            'monthsBeans' => $monthsBeans,
-            'now' => Carbon::now()->format('Y-m')
+            'logs' => $logs,
+            'now' => Carbon::now()->format('Y-m'),
+            'months' => $this->getMonthPeriod($begin, $end),
         ]);
     }
 

@@ -68,12 +68,10 @@ class Customer extends Model
      */
     public function consumeBackBeans($beans)
     {
-        // 更新beans
         $this->total_beans += $beans;
         $this->balance_beans += $beans;
         $this->puan_beans += $beans;
         $this->save();
-        // 日志
         $array = [
             'action' => 'consume_back',
             'beans' => $beans
@@ -86,10 +84,9 @@ class Customer extends Model
      */
     public function consumeBeans($beans)
     {
-        // 更新beans
         $this->balance_beans -= $beans;
         $this->save();
-        // 日志
+
         $array = [
             'action' => 'consume',
             'beans' => $beans

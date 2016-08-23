@@ -32,7 +32,6 @@ class PaymentController extends Controller
             $customer = Customer::where('openid', $input['openid'])->first();
             $customer->wxPaymentDetails()->create($input);
             $order = Order::find($idArray[0]);
-            // Í¬²½Âõ¶¹
             if ($customer->unionid) {
                 \Helper::updateBeansByUnionid($customer->unionid, $order->beans_fee * 100);
             }

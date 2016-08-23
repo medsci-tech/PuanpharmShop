@@ -14,83 +14,57 @@
     <body class="beans">
     <main class="content">
         <div class="shop-list">
-            @foreach($monthsBeans as $month => $beans)
+            @foreach($months as $month)
                 @if($month == $now)
                     <div class="header" style="background-color: #e5e5e5;">
                         <a href="#" class="beans"><strong>本月</strong></a>
-                        {{--<a href="#" class="monthly">查看月账单<i class="icon-arrow-right"></i></a>--}}
                     </div>
-                    @foreach($beans as $bean)
-                        <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;">
-                            <div class="cart-item">
-                                <div class="bean-date">
-                                    <p class="date">{{$bean->created_at->format('m-d')}}</p>
+                    @foreach($logs as $log)
+                        @if($customer->created_at->format('Y-m') == $month)
+                            <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;">
+                                <div class="cart-item">
+                                    <div class="bean-date">
+                                        <p class="date">{{$log->created_at->format('m-d')}}</p>
 
-                                    <p class="time">{{$bean->created_at->format('h:m')}}</p>
-                                </div>
-                                <div class="bean-detail" style="padding-left: 1.2rem">
-                                    <p class="count">{{$bean->beans}}</p>
+                                        <p class="time">{{$log->created_at->format('h:m')}}</p>
+                                    </div>
+                                    <div class="bean-detail" style="padding-left: 1.2rem">
+                                        <p class="count">{{$log->result}}</p>
 
-                                    <p class="location">消费返现</p>
+                                        <p class="location">{{$log->rate->action_ch}}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     @endforeach
                 @else
                     <div class="header" style="background-color: #e5e5e5;">
                         <a href="#" class="beans"><strong>{{$month}}</strong></a>
                         {{--<a href="#" class="monthly">查看月账单<i class="icon-arrow-right"></i></a>--}}
                     </div>
-                    @foreach($beans as $bean)
+                    @foreach($logs as $log)
+                        @if($customer->created_at->format('Y-m') == $month)
                         <div class="cart-list" style="display: none;">
                             <div class="cart-item">
                                 <div class="bean-date">
-                                    <p class="date">{{$bean->created_at->format('Y-m')}}</p>
+                                    <p class="date">{{$log->created_at->format('Y-m')}}</p>
 
-                                    <p class="time">{{$bean->created_at->format('hh:mm')}}</p>
+                                    <p class="time">{{$log->created_at->format('hh:mm')}}</p>
                                 </div>
                                 <div class="bean-detail">
-                                    <p class="count">-239.90</p>
+                                    <p class="count">{{$log->result}}</p>
 
-                                    <p class="location">沃尔玛</p>
+                                    <p class="location">{{$log->rate->action_ch}}</p>
                                 </div>
                             </div>
                         </div>
+                        @endif
                     @endforeach
                 @endif
             @endforeach
         </div>
         </div>
     </main>
-    <nav class="footer">
-        <a href="/shop/index" class="home fa fa-home" aria-hidden="true"></a>
-
-        <div class="menus">
-            <div class="menu">
-                <a href="/shop/category" class="menu-name fa fa-pause-circle">商品分类</a>
-            </div>
-            <div class="menu">
-                <span class="menu-name fa fa-pause-circle">特惠专区</span>
-
-                <div class="sub-menu">
-                    <ul>
-                        <li class="sub-menu-item">
-                            <a href="">活动一</a>
-                        </li>
-                        <li class="sub-menu-item">
-                            <a href="">活动二</a>
-                        </li>
-                        <li class="sub-menu-item">
-                            <a href="">活动三</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="menu">
-                <a href="/shop/personal" class="menu-name fa fa-pause-circle">个人中心</a>
-            </div>
-        </div>
-    </nav>
     <script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
     <script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
     <script type="text/javascript" src="/shop/js/components.js"></script>
@@ -111,35 +85,6 @@
             </div>
         </div>
     </main>
-    <nav class="footer">
-        <a href="/shop/index" class="home fa fa-home" aria-hidden="true"></a>
-
-        <div class="menus">
-            <div class="menu">
-                <a href="/shop/category" class="menu-name fa fa-pause-circle">商品分类</a>
-            </div>
-            <div class="menu">
-                <span class="menu-name fa fa-pause-circle">特惠专区</span>
-
-                <div class="sub-menu">
-                    <ul>
-                        <li class="sub-menu-item">
-                            <a href="">活动一</a>
-                        </li>
-                        <li class="sub-menu-item">
-                            <a href="">活动二</a>
-                        </li>
-                        <li class="sub-menu-item">
-                            <a href="">活动三</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="menu">
-                <a href="/shop/personal" class="menu-name fa fa-pause-circle">个人中心</a>
-            </div>
-        </div>
-    </nav>
     <script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
     <script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
     <script type="text/javascript" src="/shop/js/components.js"></script>
