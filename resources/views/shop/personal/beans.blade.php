@@ -31,9 +31,9 @@
                         <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;">
                             <div class="cart-item">
                                 <div class="bean-date">
-                                    <p class="date">{{$log->created_at->format('m-d')}}</p>
+                                    <p class="date">{{date ('m-d', strtotime($log->created_at))}}</p>
 
-                                    <p class="time">{{$log->created_at->format('h:m')}}</p>
+                                    <p class="time">{{date ('h:m', strtotime($log->created_at))}}</p>
                                 </div>
                                 <div class="bean-detail" style="padding-left: 1.2rem">
                                     <p class="count">{{$log->result}}</p>
