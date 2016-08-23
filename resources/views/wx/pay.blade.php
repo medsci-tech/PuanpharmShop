@@ -73,7 +73,7 @@
                             </div>
                             <div class="count">
                                 <p class="price">
-                                    <span class="unit">&yen;</span>
+                                    <span class="unit"><!--&yen;--></span>
                                     <span class="value"><!--{{sizeof($product->specification) ?$product->specification->specification_price :$product->price}}--></span>
                                 </p>
 
