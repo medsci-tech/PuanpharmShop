@@ -17,7 +17,7 @@
             @foreach($months as $month)
                 @if($month == $now)
                     <div class="header" style="background-color: #3bb4f2;color: #fff;width: 100%" onclick="showList('{{$month}}');">
-                        <a href="#" class="beans"><strong>本月</strong></a>
+                        <a href="#" class="beans" style="background-color: #3bb4f2;color: #fff;"><strong>本月</strong></a>
                     </div>
                     @foreach($logs as $log)
                         @if(date ('Y-m', strtotime($log->created_at)) == $month)
@@ -38,8 +38,8 @@
                         @endif
                     @endforeach
                 @else
-                    <div class="header" style="background-color: #3bb4f2;color: #fff;" onclick="showList('{{$month}}');">
-                        <a href="#" class="beans"><strong>{{$month}}</strong></a>
+                    <div class="header" style="background-color: #3bb4f2;" onclick="showList('{{$month}}');">
+                        <a href="#" class="beans"  style="background-color: #3bb4f2;color: #fff;"><strong>{{$month}}</strong></a>
                     </div>
 
                     @foreach($logs as $log)
