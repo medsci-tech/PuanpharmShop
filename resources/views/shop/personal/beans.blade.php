@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
 </head>
-@if($monthsBeans)
+@if($logs)
     <body class="beans">
     <main class="content">
         <div class="shop-list">
