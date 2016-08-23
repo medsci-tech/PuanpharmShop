@@ -16,34 +16,51 @@
         <div class="shop-list">
             @foreach($months as $month)
                 @if($month == $now)
-                    <div class="header" style="background-color: #e5e5e5;width: 100%">
+                    <div class="header" style="background-color: #e5e5e5;width: 100%" onclick="showList({{$month}})">
                         <a href="#" class="beans"><strong>本月</strong></a>
                     </div>
-                @else
-                    <div class="header" style="background-color: #e5e5e5;">
-                        <a href="#" class="beans"><strong>{{$month}}</strong></a>
-                        {{--<a href="#" class="monthly">查看月账单<i class="icon-arrow-right"></i></a>--}}
-                    </div>
-                @endif
+                    @foreach($logs as $log)
+                        @if(date ('Y-m', strtotime($log->created_at)) == $month)
+                            <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;width: 100%;" id="list-{{$month}}">
+                                <div class="cart-item">
+                                    <div class="bean-date">
+                                        <p class="date">{{date ('m-d', strtotime($log->created_at))}}</p>
 
-                @foreach($logs as $log)
-                    @if(date ('Y-m', strtotime($log->created_at)) == $month)
-                        <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;width: 100%">
-                            <div class="cart-item">
-                                <div class="bean-date">
-                                    <p class="date">{{date ('m-d', strtotime($log->created_at))}}</p>
+                                        <p class="time">{{date ('h:m', strtotime($log->created_at))}}</p>
+                                    </div>
+                                    <div class="bean-detail" style="padding-left: 1.2rem">
+                                        <p class="count">{{$log->result}}</p>
 
-                                    <p class="time">{{date ('h:m', strtotime($log->created_at))}}</p>
-                                </div>
-                                <div class="bean-detail" style="padding-left: 1.2rem">
-                                    <p class="count">{{$log->result}}</p>
-
-                                    <p class="location">{{$log->rate->action_ch}}</p>
+                                        <p class="location">{{$log->rate->action_ch}}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
-                @endforeach
+                        @endif
+                    @endforeach
+                @else
+                    <div class="header" style="background-color: #e5e5e5;" onclick="showList({{$month}})">
+                        <a href="#" class="beans"><strong>{{$month}}</strong></a>
+                    </div>
+
+                    @foreach($logs as $log)
+                        @if(date ('Y-m', strtotime($log->created_at)) == $month)
+                            <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;width: 100%;display: none;" id="list-{{$month}}">
+                                <div class="cart-item">
+                                    <div class="bean-date">
+                                        <p class="date">{{date ('m-d', strtotime($log->created_at))}}</p>
+
+                                        <p class="time">{{date ('h:m', strtotime($log->created_at))}}</p>
+                                    </div>
+                                    <div class="bean-detail" style="padding-left: 1.2rem">
+                                        <p class="count">{{$log->result}}</p>
+
+                                        <p class="location">{{$log->rate->action_ch}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                @endif
             @endforeach
         </div>
     </main>
@@ -51,6 +68,12 @@
     <script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
     <script type="text/javascript" src="/shop/js/components.js"></script>
     <script type="text/javascript" src="/shop/js/main.js"></script>
+    <script type="text/javascript">
+        function showList(month) {
+            $("#"+month).css({display: 'block'});
+            $('[id^=list-]').css({display: 'none'});
+        }
+    </script>
     </body>
 @else
     <body class="empty">

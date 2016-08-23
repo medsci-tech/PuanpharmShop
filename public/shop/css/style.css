@@ -2343,17 +2343,17 @@ word-break: break-all;
     top: 40%;
 
 }
-.noticeBg{
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 0.5;
-    z-index: 2000;
-    position: fixed;
-    top: 0;
-    left: 0;
+.noticeBg {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 2000;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 
-<<<<<<< HEAD
 .noticeBg {
   width: 100%;
   height: 100%;
