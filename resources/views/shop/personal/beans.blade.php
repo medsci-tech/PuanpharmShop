@@ -16,7 +16,7 @@
         <div class="shop-list">
             @foreach($months as $month)
                 @if($month == $now)
-                    <div class="header" style="background-color: #e5e5e5;">
+                    <div class="header" style="background-color: #e5e5e5;width: 100%">
                         <a href="#" class="beans"><strong>本月</strong></a>
                     </div>
                 @else
@@ -28,7 +28,7 @@
 
                 @foreach($logs as $log)
                     @if(date ('Y-m', strtotime($log->created_at)) == $month)
-                        <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;">
+                        <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;width: 100%">
                             <div class="cart-item">
                                 <div class="bean-date">
                                     <p class="date">{{date ('m-d', strtotime($log->created_at))}}</p>
