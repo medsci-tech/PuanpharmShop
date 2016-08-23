@@ -19,50 +19,32 @@
                     <div class="header" style="background-color: #e5e5e5;">
                         <a href="#" class="beans"><strong>本月</strong></a>
                     </div>
-                    @foreach($logs as $log)
-                        @if(date ('Y-m', strtotime($log->created_at)) == $month)
-                            <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;">
-                                <div class="cart-item">
-                                    <div class="bean-date">
-                                        <p class="date">{{$log->created_at->format('m-d')}}</p>
-
-                                        <p class="time">{{$log->created_at->format('h:m')}}</p>
-                                    </div>
-                                    <div class="bean-detail" style="padding-left: 1.2rem">
-                                        <p class="count">{{$log->result}}</p>
-
-                                        <p class="location">{{$log->rate->action_ch}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
                 @else
                     <div class="header" style="background-color: #e5e5e5;">
                         <a href="#" class="beans"><strong>{{$month}}</strong></a>
                         {{--<a href="#" class="monthly">查看月账单<i class="icon-arrow-right"></i></a>--}}
                     </div>
-                    @foreach($logs as $log)
-                        @if(date ('Y-m', strtotime($log->created_at)) == $month)
-                            <div class="cart-list" style="display: none;">
-                                <div class="cart-item">
-                                    <div class="bean-date">
-                                        <p class="date">{{$log->created_at->format('Y-m')}}</p>
+                @endif
 
-                                        <p class="time">{{$log->created_at->format('hh:mm')}}</p>
-                                    </div>
-                                    <div class="bean-detail">
-                                        <p class="count">{{$log->result}}</p>
+                @foreach($logs as $log)
+                    @if(date ('Y-m', strtotime($log->created_at)) == $month)
+                        <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;">
+                            <div class="cart-item">
+                                <div class="bean-date">
+                                    <p class="date">{{$log->created_at->format('m-d')}}</p>
 
-                                        <p class="location">{{$log->rate->action_ch}}</p>
-                                    </div>
+                                    <p class="time">{{$log->created_at->format('h:m')}}</p>
+                                </div>
+                                <div class="bean-detail" style="padding-left: 1.2rem">
+                                    <p class="count">{{$log->result}}</p>
+
+                                    <p class="location">{{$log->rate->action_ch}}</p>
                                 </div>
                             </div>
-                        @endif
-                    @endforeach
-                @endif
+                        </div>
+                    @endif
+                @endforeach
             @endforeach
-        </div>
         </div>
     </main>
     <script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
