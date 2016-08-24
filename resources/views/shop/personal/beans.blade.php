@@ -44,7 +44,7 @@
 
                     @foreach($logs as $log)
                         @if(date ('Y-m', strtotime($log->created_at)) == $month)
-                            <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;width: 100%;display: none;" id="list-{{$month}}">
+                            <div class="cart-list" style="border-bottom: 0.03125rem solid #e5e5e5;width: 100%;display: none;" id="list-{{$month}}-{{$log->id}}">
                                 <div class="cart-item">
                                     <div class="bean-date">
                                         <p class="date">{{date ('m-d', strtotime($log->created_at))}}</p>
@@ -71,7 +71,7 @@
     <script type="text/javascript">
         function showList(month) {
             $('[id^=list-]').css({display: 'none'});
-            $("#list-"+month).css({display: 'block'});
+            $('[id^=list-'+month+']').css({display: 'block'});
         }
     </script>
     </body>
