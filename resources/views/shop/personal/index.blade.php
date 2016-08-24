@@ -33,8 +33,8 @@
         <div class="block block-list">
             <a class="block-item link" href="/shop/personal/beans" target="_blank">
             <i class="fa fa-btc" aria-hidden="true"></i>
-
             <p class="title">&nbsp;&nbsp;我的迈豆</p>
+                @if($beans)<span style="    color: #3bb4f2;font-weight: bolder;margin-left: 10px;">{{$beans}}&nbsp;迈豆</span>@endif
             <i class="fa fa-angle-right right" aria-hidden="true"></i>
             </a>
             <a class="block-item link" href="/shop/address" target="_blank">
@@ -48,7 +48,6 @@
             <a class="block-item link" href="/shop/personal/rule" target="_blank">
                 <i class="fa fa-code" aria-hidden="true"></i>
                 <p class="title">迈豆规则</p>
-                @if($beans)<span>{{$beans}}</span>@endif
                 <i class="fa fa-angle-right right" aria-hidden="true"></i>
             </a>
             <a class="block-item link" href="/shop/personal/about-us" target="_blank">
