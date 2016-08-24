@@ -51,7 +51,12 @@ class PersonalController extends Controller
         $customer = Customer::find($this->customerID);
         if ($customer->unionid) {
             $logs = \Helper::getBeansLogByUnionid($customer->unionid);
-            $begin = new \DateTime(date ('Y-m', strtotime(current($logs)->created_at)));
+            if($logs) {
+                $begin = new \DateTime(date ('Y-m', strtotime(current($logs)->created_at)));
+            } else {
+                $begin = new \DateTime($customer->created_at->format('Y-m'));
+            }
+
         } else {
             $begin = new \DateTime($customer->created_at->format('Y-m'));
             $logs = false;
