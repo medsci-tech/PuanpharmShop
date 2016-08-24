@@ -147,6 +147,7 @@ class Helper
     public function getBeansLogByUnionid($unionid)
     {
         $curl = new Curl();
+        //http://www.ohmate.cn/puan/beans-log-for-union-id?unionid=oCrLzv0GsJJ08V3Dh614AckIahu4
         $curl->get('http://www.ohmate.cn/puan/beans-log-for-union-id', array(
             'unionid' => $unionid
         ));
