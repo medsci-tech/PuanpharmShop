@@ -29,9 +29,11 @@ class PersonalController extends Controller
      */
     public function index()
     {
+        $customer =  Customer::find($this->customerID);
         return view('shop.personal.index', [
-            'customer' => Customer::find($this->customerID),
-            'activities' => Activity::all()
+            'customer' => $customer,
+            'activities' => Activity::all(),
+            'beans' => \Helper::getBeansByUnionid($customer->unionid),
         ]);
     }
 

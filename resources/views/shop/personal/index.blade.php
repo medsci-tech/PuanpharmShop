@@ -47,8 +47,8 @@
         <div class="block block-list">
             <a class="block-item link" href="/shop/personal/rule" target="_blank">
                 <i class="fa fa-code" aria-hidden="true"></i>
-
                 <p class="title">迈豆规则</p>
+                @if($beans)<span>{{$beans}}</span>@endif
                 <i class="fa fa-angle-right right" aria-hidden="true"></i>
             </a>
             <a class="block-item link" href="/shop/personal/about-us" target="_blank">
