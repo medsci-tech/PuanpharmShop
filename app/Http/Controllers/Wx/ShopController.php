@@ -40,7 +40,7 @@ class ShopController extends WxController
     {
         $categories = array_chunk(Category::where('is_banner', 1)->get()->toArray(), 8);
         return view('wx.index', [
-            'products' => Product::where('category_id', 106)->orderBy('weight', 'desc')->get(),
+            'products' => Product::where('category_id', 106)->orderBy('beans', 'asc')->get(),
             'catArrays' => $categories,
             'activities' => Activity::all(),
             'cartCount' => sizeof(\Redis::command('HKEYS', ['wx_id:' . $this->wxMember->id])),
