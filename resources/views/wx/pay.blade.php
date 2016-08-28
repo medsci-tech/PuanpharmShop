@@ -115,7 +115,7 @@
 <script type="text/javascript" src="/member/js/libs/jquery.min.js"></script>
 <script type="text/javascript" src="/member/js/libs/flexible.js"></script>
 <script type="text/javascript" src="/member/js/components.js"></script>
-
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
     var $maskLayer = $('.mask-layer');
     function showMaskLayer(show) {
@@ -161,7 +161,37 @@
         } else {
             return false;
         }
+		
     })
+	
+	 $(function () {
+
+			
+	//微信jssdk	
+	
+	wx.config({
+		debug: false,
+		appId:'<?php echo $signPackage["appId"];?>',
+		timestamp: <?php echo $signPackage["timestamp"];?>,
+		nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+		signature: '<?php echo $signPackage["signature"];?>',
+		jsApiList: [
+			'checkJsApi',
+			'hideOptionMenu',
+			
+		]
+	});
+
+	wx.ready(function () {
+		wx.hideOptionMenu();
+		
+	});
+	wx.error(function (res) {
+	   alert(res.errMsg);
+	});
+
+		
+    });
 </script>
 <script type="text/javascript" src="/wx/js/main.js"></script>
 </body>

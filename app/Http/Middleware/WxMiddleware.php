@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Wx\WxMember;
+use App\Models\Aes;
 use Closure;
 
 class WxMiddleware
@@ -16,14 +17,17 @@ class WxMiddleware
      */
     public function handle($request, Closure $next)
     {
+		
         if (\Session::has('wx_member')) {
             return $next($request);
         } else {
             $validator = \Validator::make($request->all(), ['phone' => 'required|digits:11']);
 
             if ($validator->fails()) {
+				
                 return redirect('/member/notice');
             } else {
+				
                 $wechatUser = \Wechat::authorizeUser($request->fullUrl());
                 $wxMember = WxMember::where('phone', $request->input('phone'))->where('openid', $wechatUser['openid'])->first();
                 if ($wxMember) {
