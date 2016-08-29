@@ -17,7 +17,7 @@
         @foreach($category->products as $product)
             <a class="product" id="product-{{$product->id}}" href="/shop/detail?id={{$product->id}}">
                 <div class="product-pic">
-                    <img src="{{$product->logo}}" alt="" style="height: 320px;">
+                    <img src="{{$product->logo}}" alt="" style="height: 130px;">
                 </div>
                 <div class="product-info">
                     <p class="product-name">{{$product->name}}</p>
