@@ -20,7 +20,7 @@
                     <img src="{{$product->logo}}" alt="" style="height: 130px;">
                 </div>
                 <div class="product-info">
-                    <p class="product-name">{{$product->name}}</p>
+                    <p class="product-name" style="height: 32px;">{{$product->name}}</p>
 
                     <p class="product-price">
                         <span class="price">&yen;{{$product->price}}</span>

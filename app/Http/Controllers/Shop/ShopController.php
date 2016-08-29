@@ -106,7 +106,7 @@ class ShopController extends Controller
     public function hotCategory()
     {
         return view('shop.hot-category', [
-            'catArrays' => array_chunk(Category::all()->toArray(), 3),
+            'catArrays' => array_chunk(Category::where('status', 1)->get()->toArray(), 3),
             'activities' => Activity::all()
         ]);
     }
