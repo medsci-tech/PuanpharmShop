@@ -12,6 +12,7 @@ use App\Models\ProductSpecification;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Symfony\Component\Console\Helper\Helper;
+use App\Models\Wx\jssdk;
 
 /**
  * Class ShopController
@@ -39,13 +40,17 @@ class ShopController extends MemberController
      */
     public function index()
     {
+		
+		$jssdk = new JSSDK(env('WX_APPID'), env('WX_SECRET'));
+	    $signPackage = $jssdk->getSignPackage();
         $categories = array_chunk(Category::where('is_banner', 1)->get()->toArray(), 8);
         return view('member.index', [
             'products' => Product::where('category_id', 106)->orderBy('weight', 'desc')->get(),
             'catArrays' => $categories,
             'activities' => Activity::all(),
             'cartCount' => sizeof(\Redis::command('HKEYS', ['phone:' . $this->phone])),
-            'banners' => Banner::orderBy('weight', 'desc')->get()
+            'banners' => Banner::orderBy('weight', 'desc')->get(),
+			'signPackage' => $signPackage,
         ]);
     }
 
@@ -125,9 +130,13 @@ class ShopController extends MemberController
      */
     public function detail(Request $request)
     {
+		
+		$jssdk = new JSSDK(env('WX_APPID'), env('WX_SECRET'));
+	    $signPackage = $jssdk->getSignPackage();
         return view('member.detail', [
             'product' => Product::find($request->input('id')),
-            'cartCount' => sizeof(\Redis::command('HKEYS', ['phone:' . $this->phone]))
+            'cartCount' => sizeof(\Redis::command('HKEYS', ['phone:' . $this->phone])),
+			'signPackage' => $signPackage,
         ]);
     }
 
@@ -173,11 +182,15 @@ class ShopController extends MemberController
             array_push($products, $product);
         }
 
+		
+		$jssdk = new JSSDK(env('WX_APPID'), env('WX_SECRET'));
+	    $signPackage = $jssdk->getSignPackage();
         return view('member.pay', [
             'products' => $products,
             'address' => $address,
             'productFee' => $productFee,
-            'beans' => \Helper::getBeansByPhone($this->phone)
+            'beans' => \Helper::getBeansByPhone($this->phone),
+			'signPackage' => $signPackage,
         ]);
     }
 

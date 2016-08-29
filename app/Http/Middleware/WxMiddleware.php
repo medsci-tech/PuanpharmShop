@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Wx\WxMember;
 use App\Models\Aes;
 use Closure;
+use Illuminate\Support\Facades\Input;
 
 class WxMiddleware
 {
@@ -16,7 +17,39 @@ class WxMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
+    {   
+		
+		// $aes = new Aes();
+		
+		
+        // if (\Session::has('wx_member')) {
+            // return $next($request);
+        // } else {
+			// $enphone = $aes->Decode(urldecode(Input::get('phone')),'n0u0norDi5k_maTe');
+			// $rules = ['phone'=>'required|digits:11'];
+			// $input = ['phone'=>$enphone];
+            // $validator = \Validator::make($input, $rules);
+
+            // if ($validator->fails()) {
+				
+                // return redirect('/member/notice');
+            // } else {
+				
+                // $wechatUser = \Wechat::authorizeUser($request->fullUrl());
+                // $wxMember = WxMember::where('phone', $enphone)->where('openid', $wechatUser['openid'])->first();
+                // if ($wxMember) {
+                    // \Session::set('wx_member', $wxMember->id);
+                    // return $next($request);
+                // } else {
+                    // $wxMember = new WxMember();
+                    // $wxMember->phone = $enphone;
+                    // $wxMember->openid = $wechatUser['openid'];
+                    // $wxMember->save();
+                    // \Session::set('wx_member', $wxMember->id);
+                    // return $next($request);
+                // }
+            // }
+        // }
 		
         if (\Session::has('wx_member')) {
             return $next($request);
@@ -43,6 +76,8 @@ class WxMiddleware
                 }
             }
         }
+		
+		
     }
 }
 

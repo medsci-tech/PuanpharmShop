@@ -12,6 +12,7 @@ use App\Models\Wx\WxMember;
 use App\Models\Wx\WxMemberAddress;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Input;
 use App\Models\Aes;
 
 /**
@@ -62,6 +63,8 @@ class ShopController extends WxController
     public function testshare()
     {
 		$a = new Aes();
+		$phone = Input::get('phone');
+		echo $phone;die;
         $phone = '4G2Y7UtANk6w6x2hsE6meSponEWglFGjITCsUZrhig4%3D';
 		$c = $a->Decode(urldecode($phone),'n0u0norDi5k_maTe');
 		

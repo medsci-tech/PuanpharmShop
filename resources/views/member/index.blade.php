@@ -31,4 +31,40 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
+<script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
+<script type="text/javascript" src="/shop/js/libs/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="/shop/js/components.js"></script>
+<script type="text/javascript" src="/shop/js/libs/jquery.pep.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    $(function () {
+
+			
+	//微信jssdk	
+	
+	wx.config({
+		debug: false,
+		appId:'<?php echo $signPackage["appId"];?>',
+		timestamp: <?php echo $signPackage["timestamp"];?>,
+		nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+		signature: '<?php echo $signPackage["signature"];?>',
+		jsApiList: [
+			'checkJsApi',
+			'hideOptionMenu',
+			
+		]
+	});
+
+	wx.ready(function () {
+		wx.hideOptionMenu();
+		
+	});
+	wx.error(function (res) {
+	   alert(res.errMsg);
+	});
+
+		
+    });
+</script>
 </html>
