@@ -88,10 +88,13 @@ class ProductController extends Controller
             $data['activity_id'] = $request->input('activity_id');
         }
 
-        $logoUrl = $this->upload($request);
-        if ($logoUrl) {
-            $data['logo'] = $logoUrl;
+        if ($request->hasFile('logo')) {
+            $logoUrl = \Helper::qiniuUpload($request->file('logo'));
+            if ($logoUrl) {
+                $data['logo'] = $logoUrl;
+            }
         }
+
         return $data;
     }
 
