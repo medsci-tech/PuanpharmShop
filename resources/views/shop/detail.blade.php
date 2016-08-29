@@ -23,7 +23,7 @@
                 <div class="swiper-wrapper">
                     @foreach($product->banners as $banner)
                         <a class="swiper-slide" href="">
-                            <img src="{{$banner->image_url}}" alt="">
+                            <img src="{{$banner->image_url}}" alt="" style="height: 320px;">
                         </a>
                     @endforeach
                 </div>
@@ -61,7 +61,7 @@
 
         @if($product->supplier_id == 2)
             <div class="trade-reward">
-                <span class="trade-reward-info">此商品由普安药房实际运营并负责发货</span>
+                <span class="trade-reward-info" style="font-size: 16px;color: red;font-weight: bold;">此商品由普安药房实际运营并负责发货</span>
             </div>
         @endif
 
