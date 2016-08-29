@@ -6,11 +6,13 @@ use App\Http\Controllers\WxController;
 use App\Models\Activity;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\Wx\jssdk;
 use App\Models\ProductSpecification;
 use App\Models\Wx\WxMember;
 use App\Models\Wx\WxMemberAddress;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Aes;
 
 /**
  * Class ShopController
@@ -38,13 +40,38 @@ class ShopController extends WxController
      */
     public function index()
     {
+		
+		$jssdk = new JSSDK(env('WX_APPID'), env('WX_SECRET'));
+	    $signPackage = $jssdk->getSignPackage();
         $categories = array_chunk(Category::where('is_banner', 1)->get()->toArray(), 8);
         return view('wx.index', [
             'products' => Product::where('category_id', 106)->orderBy('beans', 'asc')->get(),
             'catArrays' => $categories,
             'activities' => Activity::all(),
             'cartCount' => sizeof(\Redis::command('HKEYS', ['wx_id:' . $this->wxMember->id])),
-            'banners' => Banner::orderBy('weight', 'desc')->get()
+            'banners' => Banner::orderBy('weight', 'desc')->get(),
+			'signPackage' => $signPackage,
+        ]); 
+    }
+	
+	    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function testshare()
+    {
+		$a = new Aes();
+        $phone = '4G2Y7UtANk6w6x2hsE6meSponEWglFGjITCsUZrhig4%3D';
+		$c = $a->Decode(urldecode($phone),'n0u0norDi5k_maTe');
+		
+	echo $c;die;
+		 
+	   $jssdk = new JSSDK(env('WX_APPID'), env('WX_SECRET'));
+	   $signPackage = $jssdk->getSignPackage();
+       return view('wx.testshare',[
+            'signPackage' => $signPackage,
+           
         ]);
     }
 
@@ -66,9 +93,13 @@ class ShopController extends WxController
      */
     public function detail(Request $request)
     {
+		
+		$jssdk = new JSSDK(env('WX_APPID'), env('WX_SECRET'));
+	    $signPackage = $jssdk->getSignPackage();
         return view('wx.detail', [
             'product' => Product::find($request->input('id')),
-            'cartCount' => sizeof(\Redis::command('HKEYS', ['wx_id:' . $this->wxMember->id]))
+            'cartCount' => sizeof(\Redis::command('HKEYS', ['wx_id:' . $this->wxMember->id])),
+			'signPackage' => $signPackage,
         ]);
     }
 
@@ -84,6 +115,7 @@ class ShopController extends WxController
             $address = WxMemberAddress::where('wx_member_id', $this->wxMember->id)->first();
         }
 
+		
         // products
         if ($request->has('product_id')) {
             $productID = $request->input('product_id');
@@ -113,12 +145,15 @@ class ShopController extends WxController
             }
             array_push($products, $product);
         }
-
+		
+		$jssdk = new JSSDK(env('WX_APPID'), env('WX_SECRET'));
+	    $signPackage = $jssdk->getSignPackage();
         return view('wx.pay', [
             'products' => $products,
             'address' => $address,
             'productFee' => $productFee,
-            'beans' => \Helper::getBeansByPhone($this->wxMember->phone)
+            'beans' => \Helper::getBeansByPhone($this->wxMember->phone),
+			'signPackage' => $signPackage,
         ]);
     }
 

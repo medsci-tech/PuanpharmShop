@@ -202,6 +202,8 @@ Route::group(['prefix' => 'wx', 'namespace' => 'Wx', 'middleware' => 'wx'], func
     Route::any('/order', 'OrderController@index');
     Route::any('/product-list', 'ShopController@productList');
     Route::any('/product-specifications', 'ShopController@productSpecifications');
+	Route::any('/testshare', 'ShopController@testshare');
+	
 
     Route::group(['prefix' => 'cart'], function () {
         Route::any('add', 'CartController@add');
@@ -210,7 +212,7 @@ Route::group(['prefix' => 'wx', 'namespace' => 'Wx', 'middleware' => 'wx'], func
         Route::any('get', 'CartController@get');
         Route::any('clear', 'CartController@clear');
         Route::any('clear-all', 'CartController@clearAll');
-        Route::any('count', 'CartController@count');
+        Route::any('count', 'CartController@count'); 
     });
 
     Route::any('/address', 'AddressController@index');
