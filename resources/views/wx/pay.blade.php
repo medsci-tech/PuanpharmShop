@@ -96,7 +96,7 @@
         <div class="confirm">
             <input type="hidden" name="address_id" class="selected_address"
                    value="">
-            @if($beans > $productFee * 100)
+            @if($beans > $productFee * 10)
                 <button type="button" class="next" id="pay-weixin">确认支付</button>
             @else
                 <button type="button" class="next" disabled
