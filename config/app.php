@@ -170,7 +170,9 @@ return [
         App\Providers\WechatServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Vinelab\Http\HttpServiceProvider::class,
+        App\Providers\ErpServiceProvider::class,
     ],
 
     /*
@@ -224,7 +226,9 @@ return [
 //         'Post'   => App\Providers\PostServiceProvider::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Qiniu' => zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'HttpClient' => Vinelab\Http\Facades\Client::class,
+        'Erp' => App\BasicShop\Erp\Facades\Erp::class
     ],
 
 ];
