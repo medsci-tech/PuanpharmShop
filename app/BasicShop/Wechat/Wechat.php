@@ -147,12 +147,15 @@ class Wechat
         $secret = $this->_secret;
         $auth = new Auth($appId, $secret);
 
-        if (!\Session::has('wx_access_token') || !\Session::has('openid')) {
+        if (!\Session::has('wx_access_token') || !\Session::has('openid') || !\Session::get('openid') || !\Session::get('wx_access_token')) {
             $result = $auth->authorize(url($jump_url), 'snsapi_base,snsapi_userinfo');
             \Session::put('wx_access_token', $result->get('access_token'));
             \Session::put('wx_openid', $result->get('openid'));
+            return $auth->getUser( $result->get('openid'), $result->get('access_token'));
+        } else {
+            return $auth->getUser(\Session::get('wx_openid'), \Session::get('wx_access_token'));
         }
-        return $auth->getUser(\Session::get('wx_openid'), \Session::get('wx_access_token'));
+
     }
 
     /**
