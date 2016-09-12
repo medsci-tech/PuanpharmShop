@@ -147,15 +147,14 @@ class Wechat
         $secret = $this->_secret;
         $auth = new Auth($appId, $secret);
 
-        if (!\Session::has('wx_access_token') || !\Session::has('openid') || !\Session::get('openid') || !\Session::get('wx_access_token')) {
-            $result = $auth->authorize(url($jump_url), 'snsapi_base,snsapi_userinfo');
-            \Session::put('wx_access_token', $result->get('access_token'));
-            \Session::put('wx_openid', $result->get('openid'));
-            return $auth->getUser( $result->get('openid'), $result->get('access_token'));
+        if (\Session::has('web_token') && \Session::has('wx_openid') & \Session::get('wx_openid') && \Session::get('web_token')) {
+            return $auth->getUser(\Session::get('wx_openid'), \Session::get('web_token'));
         } else {
-            return $auth->getUser(\Session::get('wx_openid'), \Session::get('wx_access_token'));
+            $result = $auth->authorize(url($jump_url), 'snsapi_base,snsapi_userinfo');
+            \Session::put('web_token', $result->get('access_token'));
+            \Session::put('wx_openid', $result->get('openid'));
+            return $auth->getUser($result->get('openid'), $result->get('access_token'));
         }
-
     }
 
     /**
@@ -256,5 +255,33 @@ class Wechat
     protected function generatePaymentBody(Order $order)
     {
         return '' . $order->commodities()->first()->name . '等' . $order->commodities()->get()->count() . '件商品';
+    }
+
+    /**
+     * @param $url
+     * @return bool
+     */
+    public function urlHasAuthParameters($url)
+    {
+        if (!strstr($url, 'code=')) {
+            return false;
+        }
+
+        $back = substr($url, strpos($url, 'code=') + 5);
+        $code = substr($back, 0, strpos($back, '&'));
+
+        if (strlen($code) == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @param $url
+     * @return string
+     */
+    public function urlRemoveAuthParameters($url)
+    {
+        return preg_replace('/code=.*(&|\s)/U', '', $url);
     }
 }
