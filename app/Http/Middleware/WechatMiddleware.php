@@ -17,13 +17,12 @@ class WechatMiddleware
     public function handle($request, Closure $next)
     {
         if (\Session::has(\Config::get('constants.SESSION_USER_KEY'))) {
-            if (\Wechat::urlHasAuthParameters($request->fullUrl())) {
-                return redirect(\Wechat::urlRemoveAuthParameters($request->fullUrl()));
-            }
             return $next($request);
         }
 
-
+        if (\Wechat::urlHasAuthParameters($request->fullUrl())) {
+            return redirect(\Wechat::urlRemoveAuthParameters($request->fullUrl()));
+        }
         // auth
         $wechatUser = \Wechat::authorizeUser($request->fullUrl());
         \Log::debug('wechatUser', ['wechatUser' => serialize($wechatUser)]);;
