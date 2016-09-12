@@ -150,10 +150,11 @@ class Wechat
         if (\Session::has('web_token') && \Session::has('wx_openid') & \Session::get('wx_openid') && \Session::get('web_token')) {
             return $auth->getUser(\Session::get('wx_openid'), \Session::get('web_token'));
         } else {
-            $result = $auth->authorize(url($jump_url), 'snsapi_userinfo');
+            $result = $auth->authorize(url($jump_url), 'snsapi_base,snsapi_userinfo');
+            \Log::debug('result', ['result' => serialize($result)]);;
             \Session::put('web_token', $result->get('access_token'));
             \Session::put('wx_openid', $result->get('openid'));
-            return $auth->getUser($result->get('openid'), $result->get('access_token'));
+            return $result;
         }
     }
 
