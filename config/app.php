@@ -227,7 +227,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Qiniu' => zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-        'HttpClient' => Vinelab\Http\Facades\Client::class,
+        //'HttpClient' => Vinelab\Http\Facades\Client::class,
         'Erp' => App\BasicShop\Erp\Facades\Erp::class
     ],
 
