@@ -171,7 +171,7 @@ return [
         App\Providers\HelperServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-        Vinelab\Http\HttpServiceProvider::class,
+        //Vinelab\Http\HttpServiceProvider::class,
         App\Providers\ErpServiceProvider::class,
     ],
 
