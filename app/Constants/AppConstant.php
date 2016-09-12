@@ -13,7 +13,7 @@ class AppConstant
 {
 
     /* session key */
-    const SESSION_USER_KEY = 'logged_user';
+    const SESSION_USER_KEY = 'puan_logged_user';
 
     /* wechat expire interval */
     const WECHAT_EXPIRE_INTERVAL = 30;
