@@ -20,9 +20,6 @@ class WechatMiddleware
             return $next($request);
         }
 
-        if (\Wechat::urlHasAuthParameters($request->fullUrl())) {
-            return redirect(\Wechat::urlRemoveAuthParameters($request->fullUrl()));
-        }
         // auth
         $wechatUser = \Wechat::authorizeUser($request->fullUrl());
         \Log::debug('wechatUser', ['wechatUser' => serialize($wechatUser)]);;
