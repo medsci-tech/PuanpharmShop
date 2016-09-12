@@ -146,7 +146,10 @@ class Wechat
         $appId = $this->_appId;
         $secret = $this->_secret;
         $auth = new Auth($appId, $secret);
-
+        //　过滤code
+        if (\Wechat::urlHasAuthParameters($jump_url)) {
+            $jump_url = Wechat::urlRemoveAuthParameters($jump_url);
+        }
         if (\Session::has('web_token') && \Session::has('wx_openid') & \Session::get('wx_openid') && \Session::get('web_token')) {
             return $auth->getUser(\Session::get('wx_openid'), \Session::get('web_token'));
         } else {
