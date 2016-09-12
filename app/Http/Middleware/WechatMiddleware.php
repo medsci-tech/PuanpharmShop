@@ -21,7 +21,7 @@ class WechatMiddleware
         }
 
         // auth
-        $wechatUser = \Wechat::authorizeUser($request->url());
+        $wechatUser = \Wechat::authorizeUser($request->fullUrl());
         \Log::debug('wechatUser', ['wechatUser' => serialize($wechatUser)]);;
         // register
         if (!$customer = Customer::where('openid', $wechatUser['openid'])->first()) {
