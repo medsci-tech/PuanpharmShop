@@ -33,7 +33,7 @@ class WxMiddleware
 				$wxMember = WxMember::where('phone', $enphone)->where('openid', $wechatUser['openid'])->first();
 				\Log::info('wx_member---' .$wxMember); 
 				  if ($wxMember) {
-					if($request->session()->get('wx_memb er') != $wxMember->id ) {
+					if($request->session()->get('wx_member') != $wxMember->id ) {
 						\Session::set('wx_member', $wxMember->id);
 					} 
                 } else {
