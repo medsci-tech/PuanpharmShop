@@ -55,7 +55,6 @@ class WxMiddleware
 			\Log::info('locationtest---' .'3333'); 
 			\Log::info('from get ---' . Input::get('phone'));  
 			
-			
 			// $enphone = $aes->Decode(urldecode(Input::get('phone')),'n0u0norDi5k_maTe');
 			$enphone = $aes->Decode(Input::get('phone'),'n0u0norDi5k_maTe');
 			$rules = ['phone'=>'required|digits:11'];

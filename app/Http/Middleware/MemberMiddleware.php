@@ -36,7 +36,7 @@ class MemberMiddleware
                     $Member = new Member();
                     $Member->phone = $enphone;
                     $Member->save();
-                    \Session::set('phone', $member->phone); 
+                    \Session::set('phone', $Member->phone); 
                   
                 }
 			}
