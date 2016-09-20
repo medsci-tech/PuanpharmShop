@@ -24,7 +24,8 @@ class MemberMiddleware
 			 
 			 
 			$_phone = Input::get('phone');
-			if($_phone){
+			$validator = \Validator::make($request->all(), ['phone' => 'required|digits:11']);
+			if($_phone && !$validator){
 			    $enphone = $aes->Decode($_phone,'n0u0norDi5k_maTe');
 				$Member = Member::where('phone', $enphone)->first();
 				\Log::info('wx_phone---' .$enphone); 

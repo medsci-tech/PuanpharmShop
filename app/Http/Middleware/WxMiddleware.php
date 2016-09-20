@@ -27,7 +27,8 @@ class WxMiddleware
 		
 			//切换
 			$_phone = Input::get('phone');
-			if($_phone){
+			$validator = \Validator::make($request->all(), ['phone' => 'required|digits:11']);
+			if($_phone && !$validator){
 				$enphone = $aes->Decode(Input::get('phone'),'n0u0norDi5k_maTe');
 				$wechatUser = \Wechat::authorizeUser($request->fullUrl());
 				$wxMember = WxMember::where('phone', $enphone)->where('openid', $wechatUser['openid'])->first();
