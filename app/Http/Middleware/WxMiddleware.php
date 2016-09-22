@@ -18,7 +18,7 @@ class WxMiddleware
      */
     public function handle($request, Closure $next)
     {   
-	\Log::info('locationtest---' .'1111'); 
+	
 		
 		$aes = new Aes();
 		
