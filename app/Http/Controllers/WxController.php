@@ -16,5 +16,6 @@ class WxController extends Controller
     public function __construct()
     {
         $this->wxMember = WxMember::find(\Session::get('wx_member'));
-    }
+		\Log::info('locationtest444---' .$this->wxMember);   
+	}
 }

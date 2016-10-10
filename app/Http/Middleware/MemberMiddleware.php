@@ -21,10 +21,31 @@ class MemberMiddleware
 		
 		$aes = new Aes();
 		 if (\Session::has('phone')) {
+			 
+			 
+			$_phone = Input::get('phone');
+			$validator = \Validator::make($request->all(), ['phone' => 'required|digits:11']);
+			if($_phone && !$validator){
+			    $enphone = $aes->Decode($_phone,'n0u0norDi5k_maTe');
+				$Member = Member::where('phone', $enphone)->first();
+				\Log::info('wx_phone---' .$enphone); 
+				if ($Member) {
+					if($request->session()->get('phone') != $enphone ) {
+						\Session::set('phone', $enphone);
+					} 
+                } else {
+                    $Member = new Member();
+                    $Member->phone = $enphone;
+                    $Member->save();
+                    \Session::set('phone', $Member->phone); 
+                  
+                }
+			}
+			 \Log::info('locationtest-member--' . Input::get('phone')); 
             return $next($request);
         } else {
 			
-			$enphone = $aes->Decode(urldecode(Input::get('phone')),'n0u0norDi5k_maTe');
+			$enphone = $aes->Decode(Input::get('phone'),'n0u0norDi5k_maTe');
 			$rules = ['phone'=>'required|digits:11'];
 			$input = ['phone'=>$enphone];
             $validator = \Validator::make($input, $rules);

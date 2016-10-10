@@ -26,6 +26,7 @@ class ShopController extends WxController
     {
 
         parent::__construct();
+		\Log::info('locationtest2---' . $this->wxMember->phone); 
         $this->member = WxMember::where('phone', $this->wxMember->phone)->first();
     }
 
@@ -62,10 +63,13 @@ class ShopController extends WxController
      */
     public function testshare()
     {
+		// phpinfo();die;
 		$a = new Aes();
 		$phone = Input::get('phone');
-		echo $phone;die;
-        $phone = '4G2Y7UtANk6w6x2hsE6meSponEWglFGjITCsUZrhig4%3D';
+		// echo $phone;
+		echo 11111111111111111111111111111111;
+		echo '<br/>';
+        $phone = 'KF1poDLVzsU6kl2wiJPqOByIqm%2BpmaYdEE%2BsGY8vhWw%3D';
 		$c = $a->Decode(urldecode($phone),'n0u0norDi5k_maTe');
 		
 	echo $c;die;
