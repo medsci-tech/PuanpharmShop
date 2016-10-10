@@ -75,7 +75,7 @@
                                 src="http://o93nlp231.bkt.clouddn.com/%E7%B3%96%E5%B0%BF%E7%97%85%E4%B8%93%E5%8C%BA.jpg"
                                 alt=""/></a></dt>
                 <dd><a href="/shop/activity?activity_id=3"><img
-                                src="http://o8r5bg2z1.bkt.clouddn.com/%E7%89%B9%E9%85%8D%E5%A5%B6%E7%B2%89.jpg"
+                                src="http://o93nlp231.bkt.clouddn.com/%E6%B5%B7%E5%A4%96%E7%9B%B4%E9%82%AE.jpg"
                                 alt=""/></a></dd>
                 <dd style="margin-top: -0.05rem;"><a href="/shop/activity?activity_id=1"><img
                                 src="http://o93nlp231.bkt.clouddn.com/%E5%8D%81%E5%85%83%E4%B8%93%E5%8C%BA.jpg"
