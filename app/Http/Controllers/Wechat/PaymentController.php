@@ -35,7 +35,8 @@ class PaymentController extends Controller
             if ($customer->unionid) {
                 \Helper::updateBeansByUnionid($customer->unionid, $order->beans_fee * 100);
             }
-
+            $order = Order::find($result[0]);
+            \Message::createMessage($order->address_phone, '您好,感谢您在普安易康购物! 我们很高兴地通知您, 您的商品订单已经收到。请保持手机畅通，以便送货人员能及时联系到您。');
             $result = \Wechat::paymentNotify();
             return $result;
         }

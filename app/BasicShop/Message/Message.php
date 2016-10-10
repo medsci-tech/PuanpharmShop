@@ -6,10 +6,10 @@ namespace App\BasicShop\Message;
 use App\Models\MessageVerify;
 
 /**
- * Class LuosimaoMessageSender
- * @package App\Werashop\Message
+ * Class Message
+ * @package App\BasicShop\Message
  */
-class LuosimaoMessageSender implements MessageSenderInterface
+class Message
 {
     /**
      * @param int $start
@@ -44,6 +44,24 @@ class LuosimaoMessageSender implements MessageSenderInterface
 
     }
 
+    /**
+     * @param string $phone
+     * @param string $message
+     * @return boolean
+     */
+    public function createMessage($phone, $message)
+    {
+        $res = $this->sendMessageVerify($phone, $message . '【易康商城】');
+        //$res = '{"error":0,"msg":"ok"}';
+        $res = json_decode($res);
+        dd($res);
+        if ($res->error == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     /**
      * @param $phone
@@ -73,7 +91,7 @@ class LuosimaoMessageSender implements MessageSenderInterface
 
     /**
      * @param $phone int
-     * @param $verify int
+     * @param $code int
      * @return boolean
      */
     public function checkVerify($phone, $code)

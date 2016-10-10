@@ -173,6 +173,7 @@ return [
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         //Vinelab\Http\HttpServiceProvider::class,
         App\Providers\ErpServiceProvider::class,
+        App\Providers\MessageServiceProvider::class
     ],
 
     /*
@@ -228,7 +229,8 @@ return [
         'Qiniu' => zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         //'HttpClient' => Vinelab\Http\Facades\Client::class,
-        'Erp' => App\BasicShop\Erp\Facades\Erp::class
+        'Erp' => App\BasicShop\Erp\Facades\Erp::class,
+        'Message' => App\BasicShop\Message\Facades\Message::class,
     ],
 
 ];
