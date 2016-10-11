@@ -173,7 +173,8 @@ return [
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         //Vinelab\Http\HttpServiceProvider::class,
         App\Providers\ErpServiceProvider::class,
-        App\Providers\MessageServiceProvider::class
+        App\Providers\MessageServiceProvider::class,
+        App\Providers\EMSServiceProvider::class
     ],
 
     /*
@@ -231,6 +232,7 @@ return [
         //'HttpClient' => Vinelab\Http\Facades\Client::class,
         'Erp' => App\BasicShop\Erp\Facades\Erp::class,
         'Message' => App\BasicShop\Message\Facades\Message::class,
+        'EMS' => App\BasicShop\EMS\Facades\EMS::class
     ],
 
 ];
