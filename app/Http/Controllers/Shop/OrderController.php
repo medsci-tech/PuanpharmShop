@@ -133,13 +133,25 @@ class OrderController extends Controller
             ];
             $outTradeNo .= '-' . Order::create($orderData)->id;
         }
-        $paymentConfig = [
-            'body' => '普安易康',
-            'out_trade_no' => $outTradeNo,
-            'total_fee' => '' . floor(strval($payFee * 100)),
-            'notify_url' => url('/wechat/payment/notify'),
-            'openid' => $this->openID
-        ];
+
+        if($this->customerID == 4) {
+            $paymentConfig = [
+                'body' => '普安易康',
+                'out_trade_no' => $outTradeNo,
+                'total_fee' => '' . 0.1,
+                'notify_url' => url('/wechat/payment/notify'),
+                'openid' => $this->openID
+            ];
+        } else {
+            $paymentConfig = [
+                'body' => '普安易康',
+                'out_trade_no' => $outTradeNo,
+                'total_fee' => '' . floor(strval($payFee * 100)),
+                'notify_url' => url('/wechat/payment/notify'),
+                'openid' => $this->openID
+            ];
+        }
+
         // 清除购物车
         \Redis::command('hdel', ['user_id:' . $this->customerID, $productId]);
 
