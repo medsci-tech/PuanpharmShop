@@ -138,7 +138,7 @@ class OrderController extends Controller
             $paymentConfig = [
                 'body' => '普安易康',
                 'out_trade_no' => $outTradeNo,
-                'total_fee' => '' . 0.1,
+                'total_fee' => '' . 1,
                 'notify_url' => url('/wechat/payment/notify'),
                 'openid' => $this->openID
             ];
