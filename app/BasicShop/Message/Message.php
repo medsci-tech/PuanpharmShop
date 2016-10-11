@@ -54,7 +54,6 @@ class Message
         $res = $this->sendMessageVerify($phone, $message . '【易康商城】');
         //$res = '{"error":0,"msg":"ok"}';
         $res = json_decode($res);
-        dd($res);
         if ($res->error == 0) {
             return true;
         } else {
