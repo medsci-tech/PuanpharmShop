@@ -171,7 +171,7 @@ return [
         App\Providers\HelperServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-        //Vinelab\Http\HttpServiceProvider::class,
+        Vinelab\Http\HttpServiceProvider::class,
         App\Providers\ErpServiceProvider::class,
         App\Providers\MessageServiceProvider::class,
         App\Providers\EMSServiceProvider::class
@@ -229,7 +229,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Qiniu' => zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-        //'HttpClient' => Vinelab\Http\Facades\Client::class,
+        'HttpClient' => Vinelab\Http\Facades\Client::class,
         'Erp' => App\BasicShop\Erp\Facades\Erp::class,
         'Message' => App\BasicShop\Message\Facades\Message::class,
         'EMS' => App\BasicShop\EMS\Facades\EMS::class

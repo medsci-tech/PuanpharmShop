@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\BasicShop\EMS\Facades\EMS;
+use App\BasicShop\EMS\EMS;
 use Illuminate\Support\ServiceProvider;
 
 class EMSServiceProvider extends ServiceProvider

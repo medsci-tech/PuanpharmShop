@@ -8,13 +8,52 @@ namespace App\BasicShop\EMS;
  */
 class EMS
 {
-    private $url = 'http://os.ems.com.cn:8081/zkweb/bigaccount/getBigAccountDataAction.do?method=updatePrintDatas&xml=""';
+    /**
+     * @var string
+     */
+    protected $sysAccount = 'A1234567890Z';
+    /**
+     * @var string
+     */
+    protected $passWord = 'e10adc3949ba59abbe56e057f20f883e';
+
+    /**
+     * @throws \Exception
+     */
+    public function test() {
+        $url = 'http://os.ems.com.cn:8081/zkweb/bigaccount/getBigAccountDataAction.do';
+
+        $data = [
+            'sysAccount' => $this->sysAccount,
+            'passWord' => $this->passWord,
+            'businessType' => 1,
+            'billNoAmount' => 10
+        ];
+        $xml = base64_encode($this->arrayToXml($data));
+
+        $request = [
+            'url' =>  $url,
+            'params' => [
+                'method' => 'getBillNumBySys',
+                'xml' => $xml
+            ]
+        ];
+
+        $response = \HttpClient::get($request);
+        $result = $this->xmlToArray(base64_decode($response->content()));
+        if($result['result'] == 1) {
+            return $result['assignIds'];
+        } else {
+            throw new \Exception($result['errorDesc']);
+        }
+    }
 
 
-
-
-
-
+    /**
+     * @param $array
+     * @return string
+     * @throws \Exception
+     */
     function arrayToXml($array)
     {
         if (!is_array($array)
@@ -23,18 +62,23 @@ class EMS
             throw new \Exception("数组数据异常！");
         }
 
-        $xml = "<xml>";
+        $xml = '<?xml version="1.0" encoding="UTF-8"?><XMLInfo>';
         foreach ($array as $key => $val) {
             if (is_numeric($val)) {
                 $xml .= "<" . $key . ">" . $val . "</" . $key . ">";
             } else {
-                $xml .= "<" . $key . "><![CDATA[" . $val . "]]></" . $key . ">";
+                $xml .= "<" . $key . ">" . $val . "</" . $key . ">";
             }
         }
-        $xml .= "</xml>";
+        $xml .= '</XMLInfo>';
         return $xml;
     }
 
+    /**
+     * @param $xml
+     * @return mixed
+     * @throws \Exception
+     */
     function xmlToArray($xml)
     {
         if (!$xml) {

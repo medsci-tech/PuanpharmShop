@@ -236,4 +236,6 @@ Route::group(['prefix' => 'wx', 'namespace' => 'Wx', 'middleware' => 'wx'], func
         Route::any('delete', 'OrderController@delete');
     });
 });
+Route::any('ems', 'TestController@ems');
+
 
