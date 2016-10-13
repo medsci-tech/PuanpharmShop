@@ -185,7 +185,7 @@ Route::group(['prefix' => 'member', 'namespace' => 'Member', 'middleware' => 'me
         Route::any('detail', 'OrderController@detail');
         Route::any('store', 'OrderController@store');
         Route::any('delete', 'OrderController@delete');
-        Route::any('set-ems-num', 'OrderController@set-ems-num');
+        Route::any('set-ems-num', 'OrderController@setEMSNum');
     });
 });
 
