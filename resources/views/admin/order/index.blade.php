@@ -100,7 +100,7 @@
                                                     分配单号</a>
                                             </div>
                                         </div>
-                                    @endif
+                                @endif
                                 <td>
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
@@ -155,9 +155,12 @@
                     relatedTarget: this,
                     onConfirm: function (options) {
                         $.ajax({
-                            url: '/admin/order/set-ems-num?order_id=' + id,
+                            url: '/admin/order/set-ems-num',
                             type: 'get',
                             dataType: 'text',
+                            data: {
+                                order_id: id
+                            },
                             contentType: 'application/json',
                             async: true,
                             success: function (data) {
