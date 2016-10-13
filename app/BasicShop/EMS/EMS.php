@@ -2,6 +2,8 @@
 
 namespace App\BasicShop\EMS;
 
+use App\Models\Order;
+
 /**
  * Class EMS
  * @package App\BasicShop\EMS
@@ -17,22 +19,25 @@ class EMS
      */
     protected $passWord = 'e10adc3949ba59abbe56e057f20f883e';
 
+
     /**
+     * @return mixed
      * @throws \Exception
      */
-    public function test() {
+    public function getBillNum()
+    {
         $url = 'http://os.ems.com.cn:8081/zkweb/bigaccount/getBigAccountDataAction.do';
 
         $data = [
             'sysAccount' => $this->sysAccount,
             'passWord' => $this->passWord,
-            'businessType' => 1,
-            'billNoAmount' => 10
+            'businessType' => 1,// 业务类型， 1为标准快递，4为经济快递
+            'billNoAmount' => 1
         ];
-        $xml = base64_encode($this->arrayToXml($data));
+        $xml = base64_encode($this->buildXml($data));
 
         $request = [
-            'url' =>  $url,
+            'url' => $url,
             'params' => [
                 'method' => 'getBillNumBySys',
                 'xml' => $xml
@@ -41,36 +46,99 @@ class EMS
 
         $response = \HttpClient::get($request);
         $result = $this->xmlToArray(base64_decode($response->content()));
-        if($result['result'] == 1) {
-            return $result['assignIds'];
+        if ($result['result'] == 1) {
+            return $result['assignIds']['assignId']['billno'];
         } else {
             throw new \Exception($result['errorDesc']);
         }
     }
 
-
     /**
-     * @param $array
-     * @return string
+     * @param $orderID
+     * @return bool
      * @throws \Exception
      */
-    function arrayToXml($array)
+    function updatePrintData($orderID)
     {
-        if (!is_array($array)
-            || count($array) <= 0
-        ) {
-            throw new \Exception("数组数据异常！");
-        }
+        $billNum = $this->getBillNum();
+        echo $billNum;
+        $order = Order::find($orderID);
+        $url = 'http://os.ems.com.cn:8081/zkweb/bigaccount/getBigAccountDataAction.do';
 
-        $xml = '<?xml version="1.0" encoding="UTF-8"?><XMLInfo>';
+        $data = [
+            'sysAccount' => $this->sysAccount,
+            'passWord' => $this->passWord,
+            'printKind' => 2,// 打印类型，1为五联单打印，2为热敏打印
+            'printDatas' => [
+                'printData' => [
+                    'bigAccountDataId' => $order->order_sn . '-' . $order->id,
+                    'billno' => $billNum,
+                    'scontactor' => '寄件人姓名',
+                    'scustMobile' => '寄件人联系方式',
+                    'scustPost' => '寄件人邮编',
+                    'scustAddr' => '寄件人地址',
+                    'scustComp' => '寄件人公司',
+                    'tcontactor' => $order->address_name,
+                    'tcustMobile' => $order->address_phone,
+                    'tcustAddr' => $order->address_detail,
+                    'tcustProvince' => $order->address_province,
+                    'tcustCity' => $order->address_city,
+                    'tcustCounty' => $order->address_detail,
+                    'cargoType' => '物品',
+//                    'tcustPost' => '收件人邮编',
+//                    'weight' => '',
+//                    'length' => '',
+//                    'insure' => '',
+//                    'tcustComp' => '',
+//                    'remark' => '测试'
+                ]
+            ]
+        ];
+
+        $xml = base64_encode($this->buildXml($data));
+
+        $request = [
+            'url' => $url,
+            'params' => [
+                'method' => 'updatePrintDatas',
+                'xml' => $xml
+            ]
+        ];
+
+        $response = \HttpClient::get($request);
+        $result = $this->xmlToArray(base64_decode($response->content()));
+        if ($result['result'] == 1) {
+            dd($result);
+            return true;
+        } else {
+            throw new \Exception($result['errorDesc']);
+        }
+    }
+
+    /**
+     * @param array $array
+     * @return string
+     */
+    function buildXml($array)
+    {
+        $xml = $this->arrayToXml($array);
+        return '<?xml version="1.0" encoding="UTF-8"?><XMLInfo>' . $xml . '</XMLInfo>';
+    }
+
+    /**
+     * @param string $xml
+     * @param array $array
+     * @return string
+     */
+    function arrayToXml($array, $xml = '')
+    {
         foreach ($array as $key => $val) {
-            if (is_numeric($val)) {
-                $xml .= "<" . $key . ">" . $val . "</" . $key . ">";
+            if (is_array($val)) {
+                $xml .= "<" . $key . ">" . $this->arrayToXml($val, $xml) . "</" . $key . ">";
             } else {
                 $xml .= "<" . $key . ">" . $val . "</" . $key . ">";
             }
         }
-        $xml .= '</XMLInfo>';
         return $xml;
     }
 
