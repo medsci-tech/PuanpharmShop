@@ -20,11 +20,11 @@
                     </div>
                 </div>
             </div>
-            <form class="am-form am-form-horizontal" method="post" action="/admin/update-puan-id"
-                  enctype="multipart/form-data">
-                <input type="file" name="excel" required>
-                <button type="submit">提交</button>
-            </form>
+            {{--<form class="am-form am-form-horizontal" method="post" action="/admin/update-puan-id"--}}
+                  {{--enctype="multipart/form-data">--}}
+                {{--<input type="file" name="excel" required>--}}
+                {{--<button type="submit">提交</button>--}}
+            {{--</form>--}}
 
             <div class="am-u-sm-12 am-u-md-3">
 

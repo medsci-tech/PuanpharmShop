@@ -59,6 +59,8 @@
                             <th>迈豆抵扣</th>
                             <th>收获地址</th>
                             <th>下单时间</th>
+                            <th>EMS订单号</th>
+                            <th class="table-set">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -87,6 +89,27 @@
                                     收货地址：{{$order->address_province.$order->address_city.$order->address_district.$order->address_detail}}
                                     姓名：{{$order->address_name}}电话：{{$order->address_phone}}</td>
                                 <td>{{$order->created_at}}</td>
+                                <td>
+                                    @if($order->ems_num)
+                                        {{$order->ems_num}}
+                                    @else
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <a type="button" class="am-btn am-btn-danger"
+                                                   id="set-num{{ $order->id }}"><span class="am-icon-remove"></span>
+                                                    分配单号</a>
+                                            </div>
+                                        </div>
+                                    @endif
+                                <td>
+                                    <div class="am-btn-toolbar">
+                                        <div class="am-btn-group am-btn-group-xs">
+                                            <a href="#" class="am-btn am-btn-xs am-btn-primary">
+                                                <span class="am-icon-pencil"></span>打印
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -123,5 +146,32 @@
             paginations = document.getElementsByClassName('active');
             paginations[0].className = 'am-active';
         }
+
+        $(function () {
+            $('[id^=set-num]').on('click', function () {
+                $('.am-modal-bd').text('您确定分配EMS订单号?');
+                id = this.id.slice(7);
+                $('#my-confirm').modal({
+                    relatedTarget: this,
+                    onConfirm: function (options) {
+                        $.ajax({
+                            url: '/admin/order/set-ems-num?order_id' + id,
+                            type: 'get',
+                            dataType: 'text',
+                            contentType: 'application/json',
+                            async: true,
+                            success: function (data) {
+                                location.reload();
+                            },
+                            error: function (XMLResponse) {
+                                alert(XMLResponse.responseText);
+                            }
+                        });
+                    },
+                    onCancel: function () {
+                    }
+                });
+            });
+        });
     </script>
 @stop

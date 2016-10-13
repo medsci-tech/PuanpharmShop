@@ -9,6 +9,10 @@ use App\Models\Product;
 use App\Models\ProductSpecification;
 use Illuminate\Http\Request;
 
+/**
+ * Class OrderController
+ * @package App\Http\Controllers\Shop
+ */
 class OrderController extends Controller
 {
     /**
@@ -214,6 +218,17 @@ class OrderController extends Controller
         $order = Order::find($request->input('order_id'));
         return view('shop.order.detail', [
             'order' => $order
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function setEMSNum(Request $request) {
+        $EMSNum = \EMS::getBillNum();
+        return response()->json([
+            'success' => Order::find($request->input('order_id'))->update('ems_num', $EMSNum)
         ]);
     }
 }

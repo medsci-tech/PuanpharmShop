@@ -22,8 +22,8 @@ class PaymentController extends Controller
             \Log::info('order_result', ['result' => $result]);
             if ($result) {
                 // 迈豆返现
-                //$beansResult = $customer->consumeBackBeans($input['total_fee'] / 100 * config('bean.bean_consume_rate'));
-                //\Log::debug('consume_back_beans', ['result' => $beansResult]);
+                // $beansResult = $customer->consumeBackBeans($input['total_fee'] / 100 * config('bean.bean_consume_rate'));
+                // \Log::debug('consume_back_beans', ['result' => $beansResult]);
 
                 // 支付回调
                 $customer = Customer::where('openid', $input['openid'])->first();
