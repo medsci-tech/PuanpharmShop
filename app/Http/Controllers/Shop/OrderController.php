@@ -93,18 +93,19 @@ class OrderController extends Controller
 
         $customer = Customer::find($this->customerID);
         if ($customer->unionid) {
-            $data = \Helper::getBeansByUnionid($customer->unionid);
-            if ($data) {
-                if (($data / 100) > $productsFee) {
+            $customerBeans = \Helper::getBeansByUnionid($customer->unionid);
+            if ($customerBeans) {
+                if (($customerBeans / 100) > $productsFee) {
                     $beansFee = $productsFee;
                 } else {
-                    $beansFee = $data / 100;
+                    $beansFee = $customerBeans / 100;
                     $beansFee = sprintf("%.2f", substr(sprintf("%.3f", $beansFee), 0, -2));
                 }
             }
         }
         $totalFee = $productsFee + $shippingFee;
         $payFee = $totalFee - $beansFee;
+//        包邮
 //        if ($productsFee >= 99.0) {
 //            $totalFee = $productsFee;
 //            $payFee = $totalFee - $beansFee;
