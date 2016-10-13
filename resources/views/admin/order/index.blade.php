@@ -155,7 +155,7 @@
                     relatedTarget: this,
                     onConfirm: function (options) {
                         $.ajax({
-                            url: '/admin/order/set-ems-num?order_id' + id,
+                            url: '/admin/order/set-ems-num?order_id=' + id,
                             type: 'get',
                             dataType: 'text',
                             contentType: 'application/json',
