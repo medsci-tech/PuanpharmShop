@@ -112,6 +112,11 @@ Route::group(['prefix' => 'admin'], function () {
             return Redirect::to('/admin/login');
         });
 
+        Route::group(['prefix' => 'order'], function () {
+            Route::any('set-ems-num', 'OrderController@setEMSNum');
+        });
+
+
         Route::group(['namespace' => 'Member', 'prefix' => 'member'], function () {
             Route::get('wx-down-order-excel', 'OrderController@WxDownOrderExcel');
             Route::get('member-down-order-excel', 'OrderController@MemberDownOrderExcel');
@@ -124,6 +129,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::resource('product', 'ProductController');
             Route::any('product/search', 'ProductController@search');
         });
+
     });
 
     Route::group(['namespace' => 'Auth'], function () {
@@ -185,7 +191,6 @@ Route::group(['prefix' => 'member', 'namespace' => 'Member', 'middleware' => 'me
         Route::any('detail', 'OrderController@detail');
         Route::any('store', 'OrderController@store');
         Route::any('delete', 'OrderController@delete');
-        Route::any('set-ems-num', 'OrderController@setEMSNum');
     });
 });
 
