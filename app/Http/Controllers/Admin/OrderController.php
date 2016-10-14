@@ -49,7 +49,7 @@ class OrderController extends Controller
             $suppliers = Supplier::all();
             foreach ($suppliers as $supplier) {
                 $excel->sheet($supplier->supplier_name, function ($sheet) use ($supplier, $date) {
-                    $order = Order::where('supplier_id', $supplier->id)->where('created_at', '>', $date)->get();
+                    $order = Order::where('supplier_id', $supplier->id)->where('created_at', '>', $date)->where('payment_status', 1)->get();
                     $sheet->fromArray(
                         $this->formatForExcel($order)
                     );
@@ -66,7 +66,7 @@ class OrderController extends Controller
             $suppliers = Supplier::all();
             foreach ($suppliers as $supplier) {
                 $excel->sheet($supplier->supplier_name, function ($sheet) use ($supplier) {
-                    $order = Order::where('supplier_id', $supplier->id)->get();
+                    $order = Order::where('supplier_id', $supplier->id)->where('payment_status', 1)->get();
                     $sheet->fromArray(
                         $this->formatForExcel($order)
                     );
