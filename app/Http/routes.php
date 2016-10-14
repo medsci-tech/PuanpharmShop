@@ -91,7 +91,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('product', 'ProductController');
         Route::resource('supplier', 'SupplierController');
         Route::resource('activity', 'ActivityController');
-        Route::resource('order', 'OrderController');
         Route::resource('user', 'UserController');
         Route::resource('specification', 'SpecificationController');
         Route::resource('banner', 'BannerController');
@@ -104,6 +103,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::any('/category/search', 'CategoryController@search');
         Route::any('/order/search', 'OrderController@search');
         Route::get('/order/set-ems-num', 'OrderController@setEMSNum');
+        Route::resource('order', 'OrderController');
 
         Route::get('/', function () {
             return view('admin.index');
