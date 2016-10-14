@@ -95,9 +95,8 @@
                                     @else
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
-                                                <a type="button" class="am-btn am-btn-danger"
-                                                   id="set-num{{ $order->id }}"><span class="am-icon-remove"></span>
-                                                    分配单号</a>
+                                                <a type="button" class="am-btn am-btn-success"
+                                                   id="set-num{{ $order->id }}">分配单号</a>
                                             </div>
                                         </div>
                                 @endif
