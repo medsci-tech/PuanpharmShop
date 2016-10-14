@@ -85,7 +85,10 @@ class OrderController extends Controller
         $order = Order::find($request->input('order_id'));
         if($order->ems_num) {
             return response()->json([
-                'success' => false
+                'success' => false,
+                'data' => [
+                    'error_message' => '已分配订单号'
+                ]
             ]);
         } else {
             $EMSNum = \EMS::getBillNum();
