@@ -38,7 +38,8 @@ class Order extends Model
         'address_city',
         'address_district',
         'address_detail',
-        'order_sn'
+        'order_sn',
+        'ems_num'
     ];
 
     public function customer()
