@@ -100,6 +100,7 @@
                                             </div>
                                         </div>
                                     @endif
+                                </td>
                                 <td>
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
