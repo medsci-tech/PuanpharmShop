@@ -103,7 +103,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::any('/product/search', 'ProductController@search');
         Route::any('/category/search', 'CategoryController@search');
         Route::any('/order/search', 'OrderController@search');
-        Route::any('/order/set-ems-num', 'OrderController@setEMSNum');
+        Route::get('/order/set-ems-num', 'OrderController@setEMSNum');
 
         Route::get('/', function () {
             return view('admin.index');
