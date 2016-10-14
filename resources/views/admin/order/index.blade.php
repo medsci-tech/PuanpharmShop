@@ -13,6 +13,7 @@
 
         <div class="am-g">
             <div class="am-u-sm-12 am-u-md-12">
+                <a href="/admin/order-2-excel" type="button" class="am-btn am-btn-default">全部订单</a>
                 <a href="/admin/down-order-excel?date=today" type="button" class="am-btn am-btn-default">今日订单</a>
                 <a href="/admin/down-order-excel?date=yesterday" type="button" class="am-btn am-btn-primary">昨日订单</a>
                 <a href="/admin/down-order-excel?date=week" type="button" class="am-btn am-btn-secondary">最近7天订单</a>

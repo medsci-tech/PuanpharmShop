@@ -96,6 +96,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('banner', 'BannerController');
         Route::resource('product-banner', 'ProductBannerController');
         Route::get('down-order-excel', 'OrderController@downOrderExcel');
+        Route::get('order-2-excel', 'OrderController@order2Excel');
         Route::any('/excel', 'ProductController@excel');
         Route::any('/update-puan-id', 'ProductController@updatePuanId');
 

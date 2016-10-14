@@ -61,6 +61,23 @@ class OrderController extends Controller
         return redirect()->back();
     }
 
+    public function order2Excel() {
+        \Excel::create('全部订单', function ($excel) {
+            $suppliers = Supplier::all();
+            foreach ($suppliers as $supplier) {
+                $excel->sheet($supplier->supplier_name, function ($sheet) use ($supplier) {
+                    $order = Order::where('supplier_id', $supplier->id)->get();
+                    $sheet->fromArray(
+                        $this->formatForExcel($order)
+                    );
+                });
+            }
+
+        })->download('xls');
+
+        return redirect()->back();
+    }
+
     public function formatForExcel($orders)
     {
         foreach ($orders as &$order) {
