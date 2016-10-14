@@ -99,7 +99,7 @@
                                                    id="set-num{{ $order->id }}">分配单号</a>
                                             </div>
                                         </div>
-                                @endif
+                                    @endif
                                 <td>
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
