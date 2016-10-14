@@ -82,9 +82,16 @@ class OrderController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function setEMSNum(Request $request) {
-        $EMSNum = \EMS::getBillNum();
-        return response()->json([
-            'success' => Order::find($request->input('order_id'))->update(['ems_num' => $EMSNum])
-        ]);
+        $order = Order::find($request->input('order_id'));
+        if($order->ems_num) {
+            return response()->json([
+                'success' => false
+            ]);
+        } else {
+            $EMSNum = \EMS::getBillNum();
+            return response()->json([
+                'success' => $order->update(['ems_num' => $EMSNum])
+            ]);
+        }
     }
 }
