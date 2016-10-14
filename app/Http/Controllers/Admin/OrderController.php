@@ -15,7 +15,7 @@ class OrderController extends Controller
 
     public function index()
     {
-        return view('admin.order.index', ['orders' => Order::where('payment_status', 1)->paginate('20')]);
+        return view('admin.order.index', ['orders' => Order::where('payment_status', 1)->orderBy('updated_at', 'desc')->paginate('20')]);
     }
 
 
