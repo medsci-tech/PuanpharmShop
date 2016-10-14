@@ -93,7 +93,7 @@ class OrderController extends Controller
         } else {
             $EMSNum = \EMS::getBillNum();
             return response()->json([
-                'success' => $order->update(['ems_num' => $EMSNum])
+                'success' => Order::find($request->input('order_id'))->update(['ems_num' => $EMSNum])
             ]);
         }
     }
