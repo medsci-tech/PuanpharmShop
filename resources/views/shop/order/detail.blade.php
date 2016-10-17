@@ -111,8 +111,8 @@
             <div class="header">
                 <span class="shop">快递单号<p style="float: right">EMS:{{$order->ems_num}}</p></span>
             </div>
-            <div class="confirm">
-                <a class="next" style="padding-bottom: 8px;" href="http://m.kuaidi100.com/index_all.html?type=ems&postid={{$order->ems_num}}&callbackurl=http://puanpharm.ohmate.cn/shop/order">【查看物流】</a>
+            <div class="confirm" style="padding-bottom: 8px;" >
+                <a class="next" href="http://m.kuaidi100.com/index_all.html?type=ems&postid={{$order->ems_num}}&callbackurl=http://puanpharm.ohmate.cn/shop/order">【查看物流】</a>
             </div>
         </div>
     @endif
