@@ -10,6 +10,26 @@
           content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
+    <style>
+        .shop-kuaidi100{
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+            font-size: 0.375rem;
+            cursor: pointer;
+            line-height: 1.5;
+            -webkit-appearance: none;
+            border-radius: 0.09375rem;
+            border: 0.03125rem solid #e5e5e5;
+            float: right;
+            color: #fff;
+            background-color: #3bb4f2;
+            padding: 0.125rem 0.34rem;
+            margin-top: .16rem;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body class="pay" style="background-color: #FAFAFA;font-size: 0.375rem;">
 <main class="content">
@@ -89,7 +109,7 @@
     @if($order->ems_num)
         <div class="goods-list" style="border-top: 0.03125rem solid #e5e5e5;border-bottom: 0.03125rem solid #e5e5e5;">
             <div class="header">
-                <span class="shop">EMS <p style="float: right"><a href="http://m.kuaidi100.com/index_all.html?type=ems&postid={{$order->ems_num}}&callbackurl=http://puanpharm.ohmate.cn/shop/order">订单号:{{$order->ems_num}}</a></p></span>
+                <span class="shop">快递单号<p style="float: right">EMS:{{$order->ems_num}}<a class="shop-kuaidi100" href="http://m.kuaidi100.com/index_all.html?type=ems&postid={{$order->ems_num}}&callbackurl=http://puanpharm.ohmate.cn/shop/order">【查看物流】</a></p></span>
             </div>
         </div>
     @endif
