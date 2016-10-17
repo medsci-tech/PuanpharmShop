@@ -50,9 +50,7 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            {{--<th>用户openid</th>--}}
                             <th>微信订单号</th>
-                            {{--<th>订单号</th>--}}
                             <th class="table-title">供应商</th>
                             <th>商品</th>
                             <th>是否支付</th>
@@ -68,9 +66,7 @@
                         @foreach($orders as $order)
                             <tr>
                                 <td>{{$order->id}}</td>
-                                {{--<td>{{$order->customer->openid}}</td>--}}
                                 <td><a href="#">{{$order->out_trade_no}}</a></td>
-                                {{--<td><a href="#">{{$order->order_sn}}</a></td>--}}
                                 <td>{{$order->supplier->supplier_name}}</td>
                                 <td>
                                     @foreach($order->products as $product)
@@ -103,13 +99,15 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <a href="#" class="am-btn am-btn-xs am-btn-primary">
-                                                <span class="am-icon-pencil"></span>打印
-                                            </a>
+                                    @if(!$order->ems_num)
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <a href="/admin/order/ems-print?order_id={{$order->id}}" class="am-btn am-btn-xs am-btn-primary">
+                                                    <span class="am-icon-pencil"></span>打印
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

@@ -104,6 +104,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::any('/category/search', 'CategoryController@search');
         Route::any('/order/search', 'OrderController@search');
         Route::get('/order/set-ems-num', 'OrderController@setEMSNum');
+        Route::get('/order/ems-print', 'OrderController@printEMSOrder');
         Route::resource('order', 'OrderController');
 
         Route::get('/', function () {
