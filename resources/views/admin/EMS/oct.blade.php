@@ -80,4 +80,3 @@
     document.getElementById("info").innerHTML = _info;
 
 </script>
-</script>
