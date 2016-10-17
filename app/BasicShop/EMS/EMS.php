@@ -60,8 +60,6 @@ class EMS
      */
     function updatePrintData($orderID)
     {
-        $billNum = $this->getBillNum();
-        echo $billNum;
         $order = Order::find($orderID);
         $url = 'http://os.ems.com.cn:8081/zkweb/bigaccount/getBigAccountDataAction.do';
 
@@ -72,7 +70,7 @@ class EMS
             'printDatas' => [
                 'printData' => [
                     'bigAccountDataId' => $order->order_sn . '-' . $order->id,
-                    'billno' => $billNum,
+                    'billno' => $order->ems_num,
                     'scontactor' => '寄件人姓名',
                     'scustMobile' => '寄件人联系方式',
                     'scustPost' => '寄件人邮编',
@@ -110,6 +108,39 @@ class EMS
         if ($result['result'] == 1) {
             dd($result);
             return true;
+        } else {
+            throw new \Exception($result['errorDesc']);
+        }
+    }
+
+    public function queryPrintDatas()
+    {
+        $url = 'http://os.ems.com.cn:8081/zkweb/bigaccount/getBigAccountDataAction.do';
+
+        $data = [
+            'sysAccount' => $this->sysAccount,
+            'passWord' => $this->passWord,
+            'page' => 1,
+            'row' => 20,
+            'startPrintTime' => 'yyyy-MM-dd HH:mm:ss',
+            'endPrintTime' => 'yyyy-MM-dd HH:mm:ss',
+            'startInsertTime' => 'yyyy-MM-dd HH:mm:ss',
+            'endInsertTime' => 'yyyy-MM-dd HH:mm:ss',
+        ];
+        $xml = base64_encode($this->buildXml($data));
+
+        $request = [
+            'url' => $url,
+            'params' => [
+                'method' => 'queryPrintDatasByCon',
+                'xml' => $xml
+            ]
+        ];
+
+        $response = \HttpClient::get($request);
+        $result = $this->xmlToArray(base64_decode($response->content()));
+        if ($result['result'] == 1) {
+            return $result['assignIds']['assignId']['billno'];
         } else {
             throw new \Exception($result['errorDesc']);
         }
