@@ -86,15 +86,13 @@
         </div>
     </div>
 
-    {{--<div class="goods-list" style="border-top: 0.03125rem solid #e5e5e5;border-bottom: 0.03125rem solid #e5e5e5;">--}}
-    {{--<div class="header">--}}
-    {{--<span class="shop">顺风快递 <p style="float: right">订单号:{{$order->shipping_no}}</p></span>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-
-    {{--<div class="confirm" style="margin-top: 0.3rem;">--}}
-    {{--<button type="button" class="next" id="pay-weixin">提交</button>--}}
-    {{--</div>--}}
+    @if($order->ems_num)
+        <div class="goods-list" style="border-top: 0.03125rem solid #e5e5e5;border-bottom: 0.03125rem solid #e5e5e5;">
+            <div class="header">
+                <span class="shop">EMS <p style="float: right"><a href="http://m.kuaidi100.com/index_all.html?type=ems&postid={{$order->ems_num}}&callbackurl=http://puanpharm.ohmate.cn/shop/order">订单号:{{$order->ems_num}}</a></p></span>
+            </div>
+        </div>
+    @endif
 </main>
 
 <script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
