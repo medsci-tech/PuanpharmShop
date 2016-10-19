@@ -102,7 +102,7 @@
                                     @if($order->ems_num)
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
-                                                <a href="/admin/order/ems-print?order_id={{$order->id}}" class="am-btn am-btn-xs am-btn-primary">
+                                                <a target="_blank" href="/admin/order/ems-print?order_id={{$order->id}}" class="am-btn am-btn-xs am-btn-primary">
                                                     <span class="am-icon-pencil"></span>打印
                                                 </a>
                                             </div>
