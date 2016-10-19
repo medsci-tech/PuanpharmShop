@@ -1,6 +1,6 @@
 <OBJECT ID='x' name='x' CLASSID='CLSID:53C732B2-2BEA-4BCD-9C69-9EA44B828C7F' align=center hspace=0 vspace=0></OBJECT>
 
-<hr />
+<hr/>
 <input type='button' value='显示Msg属性的值' onclick='ShowMsg()'/>
 <input type='button' value='本地打印' onclick='localPrt()'/>
 <input type='button' value='详情单补打(原单号)' onclick='rePrintOldNo()'/>
@@ -13,57 +13,54 @@
 <input type='button' value='验证' onclick='checkid()'/>
 <script type='text/JavaScript'>
     var x = document.getElementById("x");
-    var ShowMsg = function(){
+    var ShowMsg = function () {
+        alert(x.PrtMsg);
+    };
+
+
+    //账号验证
+    var checkid = function () {
+        alert(x.CheckID('42010670114000#%595600830807d207332c36fcd7a5c3e5'));
         alert(x.PrtMsg);
     }
 
     //本地打印
-    var localPrt = function(){
-        //x.prtData.billno = '123456';
-        alert(x.localPrt('head|4|2|5142577941500|2|2013-10-21 14:32|吴国雨|联系方式:0594-7659295||362009|乐麦海滨仓库|康亚飞|15103961193||742300|甘肃省陇南市徽县城关小学|甘肃省|陇南市|徽县|1040||||GR1310513,白色/乔丹红-41×1 合计：1|DD2013101700007|DD2013101700007||联系方式:0594-7659295|分销|end'));
-
-//'head|4|2|5142577941500|2|2013-10-21 14:32|吴国雨|联系方式:0594-7659295||362009|乐麦海滨仓库|康亚飞|15103961193||742300|甘肃省陇南市徽县城关小学|甘肃省|陇南市|徽县|1040||||GR1310513,白色/乔丹红-41×1 合计：1|DD2013101700007|DD2013101700007||联系方式:0594-7659295|分销|end'));
-//'head|4|2|5129667685500|2|2013-08-06 16:44:38|邮乐网|18258575464||214213|江苏省宜兴市经济开发区凯旋路18号(坤坤公司)|马锦涛|18258575464|18258575464|312000|浙江 绍兴市 越城区 敦煌新村14栋406室(312000)|浙江省|绍兴市|越城区|0.1360|0|0||物品|11383265202302|||经济快递|留白2|end'));
-    }
+    var localPrt = function () {
+        //head|businessType|billnoType|Billno|dateType|procdate|scontactor|scustMobile|scustTelplus|scustPost|scustAddr|tcontactor|tcustMobile|tcustTelplus|tcustPost|tcustAddr|tcustProvince|tcustCity|tcustCounty|weight|insure|fee|feeUppercase|cargoDesc|bigAccountDataId|customerDn|mainBillNo|blank1|blank2|end
+        alert(x.localPrt('head|4|2|{{$order->ems_num}}|2|{{date('YYYY-MM-DD hh:mi:ss')}}|易康伴侣|联系方式:4001199802|4001199502|430000|湖北省武汉市东湖新技术开发区高新大道666号光谷生物城C2-4|{{$order->address_name}}|{{$order->address_phone}}||邮编|{{$order->address_detail}}|{{$order->address_province}}|{{$order->address_city}}|{{$order->address_district}}|1||||@foreach($order->products as $product){{'【'.$product->name.'('}}@if($product->pivot->specification_id) {{\App\Models\ProductSpecification::find($product->pivot->specification_id)->specification_name}}@else {{$product->default_spec}}@endif{{ '.)×' . $product->pivot->quantity .'】'}}@endforeach|{{$order->order_sn}}|{{$order->order_sn}}||||end'));
+    };
 
     //补打获取新单号
-    var rePrintNewNo = function(){
-        alert(x.RePrtHotBillNewNO('A1234567890Z','SO121212001'));
-    }
+    var rePrintNewNo = function () {
+        alert(x.RePrtHotBillNewNO('A1234567890Z', 'SO121212001'));
+    };
     //传入重量打印
-    var PrintBillWeight = function(){
-        alert(x.PrtHotBillWithInWeight('A1234567890Z','SO121212001','0.235'));
-    }
+    var PrintBillWeight = function () {
+        alert(x.PrtHotBillWithInWeight('A1234567890Z', 'SO121212001', '0.235'));
+    };
     //补打使用原单号
-    var rePrintOldNo = function(){
+    var rePrintOldNo = function () {
         alert(x.RePrtHotBill('A1234567890Z#%SO121212001'));
-    }
+    };
     //批量打印
-    var PrtBillBatch = function(){
+    var PrtBillBatch = function () {
         alert(x.PrtHotBillBatching('A1234567890Z#%SO121212001'));
 //#%P3758017#%1234#%EY318313459CN#%P5256573#%P4758018#%P4758019#%P4758020#%EH0990
-    }
+    };
     //打印详情单
-    var PrintBill = function(){
+    var PrintBill = function () {
         alert(x.PrtHotBillAndGetBillNo('A1234567890Z#%SO121212001'));
-    }
+    };
     //打印测试
-    var TestShowMsg = function(){
+    var TestShowMsg = function () {
         alert(x.Test_PrtHotBillAndGetBillNo('A1234567890Z#%SO121212001'));
-    }
+    };
     //查询可用单号余量
-    var GetRemaindBillNO = function(){
+    var GetRemaindBillNO = function () {
         alert(x.CountNotUsedBillNo('A1234567890Z#%01'));
-    }
-    //账号验证
-    // var checkid = function(){
-    // alert(x.CheckID('A1234567890Z#%e10adc3949ba59abbe56e057f20f883e'));
-    // 35020306770001
-    //}
-    var checkid = function(){
-        alert(x.CheckID('42010670114000#%595600830807d207332c36fcd7a5c3e5'));
+    };
 
-    }
+
 </script>
 
 
@@ -71,9 +68,9 @@
 
 <script type="text/javascript">
 
-    var _info="";
+    var _info = "";
 
-    for(var p in x){
+    for (var p in x) {
         _info += p + "：" + x[p] + "<br/>";
     }
 
