@@ -30,9 +30,9 @@ class EMS
      */
     public function __construct()
     {
-        $this->_sysAccount = env('EMS_SYS_ACCOUNT');
-        $this->_password = env('EMS_PASSWORD');
-        $this->_appKey = env('EMS_APPKEY');
+        $this->sysAccount = env('EMS_SYS_ACCOUNT');
+        $this->password = env('EMS_PASSWORD');
+        $this->appKey = env('EMS_APPKEY');
     }
 
     /**
