@@ -46,7 +46,7 @@ class EMS
         $data = [
             'sysAccount' => $this->sysAccount,
             'passWord' => $this->passWord,
-            'businessType' => 1,// 业务类型， 1为标准快递，4为经济快递
+            'businessType' => 4,// 业务类型， 1为标准快递，4为经济快递
             'billNoAmount' => 1
         ];
         $xml = base64_encode($this->buildXml($data));
