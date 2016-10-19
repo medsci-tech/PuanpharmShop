@@ -1,4 +1,3 @@
-<OBJECT ID='x' name='x' CLASSID='CLSID:53C732B2-2BEA-4BCD-9C69-9EA44B828C7F' align=center hspace=0 vspace=0></OBJECT>
 @extends('.admin._layouts.common')
 @section('title')
     订单列表
@@ -185,37 +184,5 @@
                 });
             });
         });
-
-        $(function () {
-            $('[id^=print-]').on('click', function () {
-                $('.am-modal-bd').text('您确定打印EMS订单?');
-                id = this.id.slice(6);
-                $('#my-confirm').modal({
-                    relatedTarget: this,
-                    onConfirm: function (options) {
-                        $.ajax({
-                            url: '/admin/order/print-data',
-                            type: 'get',
-                            dataType: 'text',
-                            data: {
-                                order_id: id
-                            },
-                            contentType: 'application/json',
-                            async: true,
-                            success: function (data) {
-                                //$('.am-modal-bd').text(x.localPrt(data.data.prtData));
-                                alert(x.localPrt(data.data.prtData));
-                            },
-                            error: function (XMLResponse) {
-                                alert(XMLResponse.responseText);
-                            }
-                        });
-                    },
-                    onCancel: function () {
-                    }
-                });
-            });
-        });
-
     </script>
 @stop
