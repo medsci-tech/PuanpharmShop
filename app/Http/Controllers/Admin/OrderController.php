@@ -61,7 +61,8 @@ class OrderController extends Controller
         return redirect()->back();
     }
 
-    public function order2Excel() {
+    public function order2Excel()
+    {
         \Excel::create('全部订单', function ($excel) {
             $suppliers = Supplier::all();
             foreach ($suppliers as $supplier) {
@@ -98,9 +99,10 @@ class OrderController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function setEMSNum(Request $request) {
+    public function setEMSNum(Request $request)
+    {
         $order = Order::find($request->input('order_id'));
-        if($order->ems_num) {
+        if ($order->ems_num) {
             return response()->json([
                 'success' => false,
                 'data' => [
@@ -115,9 +117,35 @@ class OrderController extends Controller
         }
     }
 
-    public function printEMSOrder(Request $request) {
+    public function printEMSOrder(Request $request)
+    {
         return view('admin.EMS.oct', [
-            'order' =>  Order::find($request->input('order_id'))
+            'order' => Order::find($request->input('order_id'))
+        ]);
+    }
+
+    public function printData(Request $request)
+    {
+        $order = Order::find($request->input('order_id'));
+        //head|businessType|billnoType|Billno|dateType|procdate|scontactor|scustMobile|scustTelplus|scustPost|scustAddr|tcontactor|tcustMobile|tcustTelplus|tcustPost|tcustAddr|tcustProvince|tcustCity|tcustCounty|weight|insure|fee|feeUppercase|cargoDesc|bigAccountDataId|customerDn|mainBillNo|blank1|blank2|end
+        $prtData = 'head|4|2|{{$order->ems_num}}|2|' . date('Y-m-d H:i:s') . '|易康伴侣|联系方式:4001199802|4001199502|430000|湖北省武汉市高新大道666号光谷生物城C2-4|' . $order->address_name . '|' . $order->address_phone . '||邮编|' . $order->address_detail . '|' . $order->address_province . '|' . $order->address_city . '|' . $order->address_district . '|1||||';
+        foreach ($order->products as $product) {
+            $prtData .= '【' . $product->name . '(';
+            if ($product->pivot->specification_id) {
+                $prtData .= ProductSpecification::find($product->pivot->specification_id)->specification_name;
+            } else {
+                $prtData .= $product->default_spec;
+            }
+            $prtData .= ')x' . $product->pivot->quantity . '】';
+        }
+        $prtData .= '|' . $order->order_sn . '|' . $order->order_sn . '||||end';
+
+        return response()->json([
+            'success' => false,
+            'data' => [
+                'prtData' => $prtData
+
+            ]
         ]);
     }
 }

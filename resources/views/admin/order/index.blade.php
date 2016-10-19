@@ -1,3 +1,4 @@
+<OBJECT ID='x' name='x' CLASSID='CLSID:53C732B2-2BEA-4BCD-9C69-9EA44B828C7F' align=center hspace=0 vspace=0></OBJECT>
 @extends('.admin._layouts.common')
 @section('title')
     订单列表
@@ -109,6 +110,15 @@
                                         </div>
                                     @endif
                                 </td>
+                                <td>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <button class="am-btn am-btn-xs am-btn-primary" id="print-{{ $order->id }}">
+                                                    <span class="am-icon-pencil"></span>打印
+                                                </button>
+                                            </div>
+                                        </div>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -144,7 +154,7 @@
             }
             paginations = document.getElementsByClassName('active');
             paginations[0].className = 'am-active';
-        }
+        };
 
         $(function () {
             $('[id^=set-num]').on('click', function () {
@@ -175,5 +185,37 @@
                 });
             });
         });
+
+        $(function () {
+            $('[id^=set-num]').on('click', function () {
+                $('.am-modal-bd').text('您确定分配打印EMS订单?');
+                id = this.id.slice(6);
+                $('#my-confirm').modal({
+                    relatedTarget: this,
+                    onConfirm: function (options) {
+                        $.ajax({
+                            url: '/admin/order/print-data',
+                            type: 'get',
+                            dataType: 'text',
+                            data: {
+                                order_id: id
+                            },
+                            contentType: 'application/json',
+                            async: true,
+                            success: function (data) {
+                                //$('.am-modal-bd').text(x.localPrt(data.data.prtData));
+                                alert(x.localPrt(data.data.prtData));
+                            },
+                            error: function (XMLResponse) {
+                                alert(XMLResponse.responseText);
+                            }
+                        });
+                    },
+                    onCancel: function () {
+                    }
+                });
+            });
+        });
+
     </script>
 @stop
