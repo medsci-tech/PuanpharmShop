@@ -117,7 +117,7 @@ class OrderController extends Controller
 
     public function printEMSOrder(Request $request) {
         return view('admin.EMS.oct', [
-            'orders' =>  Order::find($request->input('order_id'))
+            'order' =>  Order::find($request->input('order_id'))
         ]);
     }
 }
