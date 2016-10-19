@@ -187,8 +187,8 @@
         });
 
         $(function () {
-            $('[id^=set-num]').on('click', function () {
-                $('.am-modal-bd').text('您确定分配打印EMS订单?');
+            $('[id^=print-]').on('click', function () {
+                $('.am-modal-bd').text('您确定打印EMS订单?');
                 id = this.id.slice(6);
                 $('#my-confirm').modal({
                     relatedTarget: this,
