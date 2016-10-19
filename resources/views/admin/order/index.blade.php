@@ -109,15 +109,6 @@
                                         </div>
                                     @endif
                                 </td>
-                                <td>
-                                        <div class="am-btn-toolbar">
-                                            <div class="am-btn-group am-btn-group-xs">
-                                                <button class="am-btn am-btn-xs am-btn-primary" id="print-{{ $order->id }}">
-                                                    <span class="am-icon-pencil"></span>打印
-                                                </button>
-                                            </div>
-                                        </div>
-                                </td>
                             </tr>
                         @endforeach
                         </tbody>
