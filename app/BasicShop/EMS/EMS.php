@@ -13,12 +13,27 @@ class EMS
     /**
      * @var string
      */
-    protected $sysAccount = 'A1234567890Z';
+    private $sysAccount;
+
     /**
      * @var string
      */
-    protected $passWord = 'e10adc3949ba59abbe56e057f20f883e';
+    private $passWord;
 
+    /**
+     * @var string
+     */
+    private $appKey;
+
+    /**
+     * EmsPost constructor.
+     */
+    public function __construct()
+    {
+        $this->_sysAccount = env('EMS_SYS_ACCOUNT');
+        $this->_password = env('EMS_PASSWORD');
+        $this->_appKey = env('EMS_APPKEY');
+    }
 
     /**
      * @return mixed
