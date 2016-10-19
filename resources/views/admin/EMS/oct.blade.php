@@ -27,7 +27,7 @@
     //本地打印
     var localPrt = function () {
         //head|businessType|billnoType|Billno|dateType|procdate|scontactor|scustMobile|scustTelplus|scustPost|scustAddr|tcontactor|tcustMobile|tcustTelplus|tcustPost|tcustAddr|tcustProvince|tcustCity|tcustCounty|weight|insure|fee|feeUppercase|cargoDesc|bigAccountDataId|customerDn|mainBillNo|blank1|blank2|end
-        alert(x.localPrt('head|4|2|{{$order->ems_num}}|2|{{date('Y-m-d H:i:s')}}|易康伴侣|联系方式:4001199802|4001199502|430000|湖北省武汉市高新大道666号光谷生物城C2-4|{{$order->address_name}}|{{$order->address_phone}}||邮编|{{$order->address_detail}}|{{$order->address_province}}|{{$order->address_city}}|{{$order->address_district}}|1||||@foreach($order->products as $product){{'【'.$product->name.'('}}@if($product->pivot->specification_id) {{\App\Models\ProductSpecification::find($product->pivot->specification_id)->specification_name}}@else {{$product->default_spec}}@endif{{ ')x' . $product->pivot->quantity .'】'}}@endforeach|{{$order->order_sn}}|{{$order->order_sn}}||||end'));
+        alert(x.localPrt('head|4|2|{{$order->ems_num}}|2|{{date('Y-m-d H:i:s')}}|易康伴侣|联系方式:4001199802|4001199502|430000|湖北省武汉市高新大道666号光谷生物城C2-4|{{$order->address_name}}|{{$order->address_phone}}||邮编|{{$order->address_province.$order->address_city.$order->address_district.$order->address_detail}}|{{$order->address_province}}|{{$order->address_city}}|{{$order->address_district}}|1||||@foreach($order->products as $product){{'【'.$product->name.'('}}@if($product->pivot->specification_id) {{\App\Models\ProductSpecification::find($product->pivot->specification_id)->specification_name}}@else {{$product->default_spec}}@endif{{ ')x' . $product->pivot->quantity .'】'}}@endforeach|{{$order->order_sn}}|{{$order->order_sn}}||||end'));
     };
 
     //补打获取新单号
