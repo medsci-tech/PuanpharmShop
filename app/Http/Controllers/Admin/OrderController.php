@@ -119,9 +119,15 @@ class OrderController extends Controller
 
     public function printEMSOrder(Request $request)
     {
-        return view('admin.EMS.oct', [
-            'order' => Order::find($request->input('order_id'))
-        ]);
+        $order = Order::find($request->input('order_id'));
+        if($order->supplier_id == 1) {
+            \Message::createMessage($order->address_phone, '顾客您好！您在易康商城的订单['.$order->order_sn.'-'.$order->id.']已经为您发货，EMS发货单号为'.$order->ems_num.'，感谢您的惠顾！');
+            return view('admin.EMS.oct', [
+                'order' => $order
+            ]);
+        } else {
+            dd('非易康自营，不可打印');
+        }
     }
 
     public function printData(Request $request)

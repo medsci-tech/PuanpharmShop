@@ -121,7 +121,7 @@ class EMS
         $response = \HttpClient::get($request);
         $result = $this->xmlToArray(base64_decode($response->content()));
         if ($result['result'] == 1) {
-            dd($result);
+            //dd($result);
             return true;
         } else {
             throw new \Exception($result['errorDesc']);

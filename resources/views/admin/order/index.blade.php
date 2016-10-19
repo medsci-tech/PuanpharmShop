@@ -89,17 +89,19 @@
                                 <td>
                                     @if($order->ems_num)
                                         {{$order->ems_num}}
-                                    @else
+                                    @elseif($order->supplier_id == 1)
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
                                                 <a type="button" class="am-btn am-btn-success"
                                                    id="set-num{{ $order->id }}">分配单号</a>
                                             </div>
                                         </div>
+                                    @else
+                                        ERP
                                     @endif
                                 </td>
                                 <td>
-                                    @if($order->ems_num)
+                                    @if($order->ems_num && $order->supplier_id == 1)
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
                                                 <a target="_blank" href="/admin/order/ems-print?order_id={{$order->id}}" class="am-btn am-btn-xs am-btn-primary">
