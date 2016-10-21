@@ -152,9 +152,9 @@
             $('[id^=set-num]').on('click', function () {
                 $('.am-modal-bd').text('您确定分配EMS订单号?');
                 id = this.id.slice(7);
-                $('#my-confirm').modal({
-                    relatedTarget: this,
-                    onConfirm: function (options) {
+//                $('#my-confirm').modal({
+//                    relatedTarget: this,
+//                    onConfirm: function (options) {
                         $.ajax({
                             url: '/admin/order/set-ems-num',
                             type: 'get',
@@ -171,10 +171,10 @@
                                 alert(XMLResponse.responseText);
                             }
                         });
-                    },
-                    onCancel: function () {
-                    }
-                });
+//                    },
+//                    onCancel: function () {
+//                    }
+//                });
             });
         });
     </script>
