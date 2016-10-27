@@ -193,7 +193,9 @@ class Helper
      */
     public function getBeansByPhone($phone)
     {
+        //$mobile = '13151070001';
         $mobile = $phone;
+        echo $mobile;
         $time = time();
         $tmpArr = array($mobile, $time, 'ohmate');
         $tmpStr = implode($tmpArr);
