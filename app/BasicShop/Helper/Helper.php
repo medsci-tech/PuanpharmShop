@@ -208,6 +208,7 @@ class Helper
             return false;
         } else {
             $data = json_decode($curl->response);
+            dd($data);
             if ($data->result == 'ok') {
                 return $data->money;
             }
