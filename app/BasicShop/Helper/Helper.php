@@ -214,6 +214,8 @@ class Helper
             if($data) {
                 if ($data->result == 'ok') {
                     return $data->money;
+                } else {
+                    throw new \Exception('糖豆维护ing');
                 }
             }
             return false;
