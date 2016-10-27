@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </a>
-            </div> 
+            </div>
         @endforeach
     </div>
 </div>
@@ -36,28 +36,27 @@
     $(function () {
 
 
-	//微信jssdk
+        //微信jssdk
 
-	wx.config({
-		debug: false,
-		appId:'<?php echo $signPackage["appId"];?>',
-		timestamp: <?php echo $signPackage["timestamp"];?>,
-		nonceStr: '<?php echo $signPackage["nonceStr"];?>',
-		signature: '<?php echo $signPackage["signature"];?>',
-		jsApiList: [
-			'checkJsApi',
-			'hideOptionMenu',
+        wx.config({
+            debug: false,
+            appId: '{{$signPackage["appId"]}}',
+            timestamp: {{ $signPackage["timestamp"]}},
+            nonceStr: '{{$signPackage["nonceStr"];}}',
+            signature: '{{$signPackage["signature"];}}'
+            jsApiList: [
+                'checkJsApi',
+                'hideOptionMenu'
+            ]
+        });
 
-		]
-	});
+        wx.ready(function () {
+            wx.hideOptionMenu();
 
-	wx.ready(function () {
-		wx.hideOptionMenu();
-
-	});
-	wx.error(function (res) {
-	   alert(res.errMsg);
-	});
+        });
+        wx.error(function (res) {
+            alert(res.errMsg);
+        });
 
 
     });
