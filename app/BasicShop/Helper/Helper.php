@@ -193,8 +193,8 @@ class Helper
      */
     public function getBeansByPhone($phone)
     {
-        //$mobile = '13151070001';
-        $mobile = $phone;
+        $mobile = '13151070001';
+        //$mobile = $phone;
         echo $mobile;
         $time = time();
         $tmpArr = array($mobile, $time, 'ohmate');
@@ -210,7 +210,6 @@ class Helper
             return false;
         } else {
             $data = json_decode($curl->response);
-            dd($data);
             if ($data->result == 'ok') {
                 return $data->money;
             }
