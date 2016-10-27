@@ -43,7 +43,7 @@
             appId: '{{$signPackage["appId"]}}',
             timestamp: {{ $signPackage["timestamp"]}},
             nonceStr: '{{$signPackage["nonceStr"];}}',
-            signature: '{{$signPackage["signature"];}}'
+            signature: '{{$signPackage["signature"];}}',
             jsApiList: [
                 'checkJsApi',
                 'hideOptionMenu'
