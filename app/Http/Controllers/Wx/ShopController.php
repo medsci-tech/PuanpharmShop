@@ -43,8 +43,8 @@ class ShopController extends WxController
     public function index()
     {
 		
-		//$jssdk = new JSSDK(env('WX_APPID'), env('WX_SECRET'));
-	    //$signPackage = $jssdk->getSignPackage();
+		$jssdk = new JSSDK(env('WX_APPID'), env('WX_SECRET'));
+	    $signPackage = $jssdk->getSignPackage();
         $categories = array_chunk(Category::where('is_banner', 1)->get()->toArray(), 8);
         return view('wx.index', [
             'products' => Product::where('category_id', 106)->orderBy('beans', 'asc')->get(),
@@ -52,7 +52,7 @@ class ShopController extends WxController
             'activities' => Activity::all(),
             'cartCount' => sizeof(\Redis::command('HKEYS', ['wx_id:' . $this->wxMember->id])),
             'banners' => Banner::orderBy('weight', 'desc')->get(),
-			//'signPackage' => $signPackage,
+			'signPackage' => $signPackage,
         ]); 
     }
 	
