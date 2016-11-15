@@ -348,6 +348,7 @@ class Erp
 //        ];
 
         $data['sign'] = $this->sign($data, $this->secret);
+        var_dump($data);
         return $this->mycurl($this->url, $data);
     }
 }
