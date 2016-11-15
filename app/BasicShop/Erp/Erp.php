@@ -284,14 +284,14 @@ class Erp
                 "oid" => $orderID . '-' . $product->id,
                 "item_code" => $product->id,
                 "sku_code" => "",
-                "price" => "0",
+                "price" => 1,
                 "qty" => $product->quantity,
                 "refund" => 0
             ]);
 
             array_push($data['payments'], [
                 "pay_type_code" => "cash",
-                "payment" => 0,
+                "payment" => 1,
                 "pay_code" => "",
                 "paytime" => time()
             ]);
