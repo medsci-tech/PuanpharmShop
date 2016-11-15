@@ -6,6 +6,8 @@ namespace App\BasicShop\Erp;
  * Class Erp
  * @package App\BasicShop\Erp
  */
+use App\Models\Order;
+
 /**
  * Class Erp
  * @package App\BasicShop\Erp
@@ -162,7 +164,7 @@ class Erp
         $data['page_no'] = '1';
         $data['page_size'] = '10';
         // $data['code'] = '001';
-        $data['sign'] = sign($data, $this->secret);
+        $data['sign'] = $this->sign($data, $this->secret);
         return 'response: ' . $this->mycurl($this->url, $data);
     }
 
@@ -234,5 +236,120 @@ class Erp
         $data['skus'] = $skus;
         $data['sign'] = $this->sign($data, $this->secret);
         return 'response: ' . $this->mycurl($this->url, $data);
+    }
+
+    function addTrade($orderID)
+    {
+        $order = Order::find($orderID);
+        $data = [
+            "appkey" => $this->appkey,
+            "sessionkey" => $this->sessionkey,
+            "method" => "gy.erp.trade.add",
+            "order_type_code" => "Sales",
+            "refund" => 0,
+            "cod" => false,
+            "warehouse_code" => "易康伴侣",
+            "shop_code" => "易康伴侣",
+            "express_code" => "htky",
+            "platform_code" => $order->out_trade_no,
+            "deal_datetime" => $order->created_at,
+            "pay_datetime" => $order->created_at,
+            "business_man_code" => "",
+            "vip_code" => $order->address_name,
+            "vip_name" => $order->address_name,
+            "post_fee" => 0,
+            "cod_fee" => 0,
+            "discount_fee" => 0,
+            "tag_code" => "1",
+            "plan_delivery_date" => "",
+            "buyer_memo" => "",
+            "seller_memo" => "",
+            "extend_memo" => "",
+            "seller_memo_late" => "",
+            "receiver_name" => $order->address_name,
+            "receiver_phone" => $order->address_phone,
+            "receiver_mobile" => $order->address_phone,
+            "receiver_address" => $order->address_detail,
+            "receiver_province" => $order->address_province,
+            "receiver_city" => $order->address_city,
+            "receiver_district" => $order->address_district,
+            "vipRealName" => "",
+            "vipIdCard" => "",
+            "vipEmail" => "",
+            "details" => [],
+            "payments" => [],
+        ];
+        foreach ($order->products as $product) {
+            array_push($data['details'], [
+                "oid" => $orderID . '-' . $product->id,
+                "item_code" => $product->id,
+                "sku_code" => "",
+                "price" => "0",
+                "qty" => $product->quantity,
+                "refund" => 0
+            ]);
+
+            array_push($data['payments'], [
+                "oid" => $orderID . '-' . $product->id,
+                "item_code" => $product->id,
+                "sku_code" => "0",
+                "price" => "0",
+                "qty" => $product->quantity,
+                "refund" => 0
+            ]);
+        }
+        $data['sign'] = $this->sign($data, $this->secret);
+
+//        $data = [
+//            "appkey" => $this->appkey,
+//            "sessionkey" => $this->sessionkey,
+//            "method" => "gy.erp.trade.add",
+//            "order_type_code" => "Sales",
+//            "refund" => 0, "cod" => false,
+//            "warehouse_code" => "易康伴侣",
+//            "shop_code" => "易康伴侣",
+//            "express_code" => "htky",
+//            "platform_code" => '123-123',
+//            "deal_datetime" => "2016-10-27 19:44:15",
+//            "pay_datetime" => "2016-10-27 19:44:15",
+//            "business_man_code" => "",
+//            "tag_code" => "1",
+//            "post_fee" => 0,
+//            "cod_fee" => 0,
+//            "discount_fee" => 0,
+//            "plan_delivery_date" => "",
+//            "vip_code" => "呵呵测试测试",
+//            "vip_name" => "哈测试哈",
+//            "buyer_memo" => "",
+//            "seller_memo" => "",
+//            "extend_memo" => "",
+//            "seller_memo_late" => "",
+//            "receiver_name" => "asdasd",
+//            "receiver_phone" => "",
+//            "receiver_mobile" => "13659856965",
+//            "receiver_address" => "贵州省毕节黔西县迎宾小区5栋2单元202",
+//            "receiver_province" => "贵州省",
+//            "receiver_city" => "毕节市",
+//            "receiver_district" => "黔西县",
+//            "vipRealName" => "",
+//            "vipIdCard" => "",
+//            "vipEmail" => "",
+//            "details" => [
+//                [
+//                    "oid" => "12234-12",
+//                    "item_code" => "1234564321",
+//                    "sku_code" => "",
+//                    "price" => "16.96",
+//                    "qty" => 1,
+//                    "refund" => 0]],
+//            "payments" => [
+//                [
+//                    "pay_type_code" => "cash",
+//                    "payment" => 0,
+//                    "pay_code" => "", "paytime" => time()]]
+//        ];
+
+        $data['sign'] = $this->sign($data, $this->secret);
+        return $this->mycurl($this->url, $data);
     }
 }
