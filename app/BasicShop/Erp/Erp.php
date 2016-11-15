@@ -290,12 +290,10 @@ class Erp
             ]);
 
             array_push($data['payments'], [
-                "oid" => $orderID . '-' . $product->id,
-                "item_code" => $product->id,
-                "sku_code" => "0",
-                "price" => "0",
-                "qty" => $product->quantity,
-                "refund" => 0
+                "pay_type_code" => "cash",
+                "payment" => 0,
+                "pay_code" => "",
+                "paytime" => time()
             ]);
         }
         $data['sign'] = $this->sign($data, $this->secret);
