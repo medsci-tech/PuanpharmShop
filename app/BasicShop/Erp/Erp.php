@@ -121,8 +121,8 @@ class Erp
     {
         $data_string = $this->json_encode_ch($data);
         //echo 'request: ' . $data_string . "\n";
-        $data_string = urlencode($data_string);
         var_dump($data_string);
+        $data_string = urlencode($data_string);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
