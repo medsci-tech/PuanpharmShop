@@ -122,6 +122,7 @@ class Erp
         $data_string = $this->json_encode_ch($data);
         //echo 'request: ' . $data_string . "\n";
         $data_string = urlencode($data_string);
+        var_dump($data_string);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -348,7 +349,6 @@ class Erp
 //        ];
 
         $data['sign'] = $this->sign($data, $this->secret);
-        var_dump($data);
         return $this->mycurl($this->url, $data);
     }
 }
