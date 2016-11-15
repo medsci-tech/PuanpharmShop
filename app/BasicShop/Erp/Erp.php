@@ -286,7 +286,7 @@ class Erp
                 "item_code" => $product->id,
                 "sku_code" => "",
                 "price" => 1,
-                "qty" => $product->quantity,
+                "qty" => $product->pivot->quantity,
                 "refund" => 0
             ]);
 

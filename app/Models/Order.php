@@ -59,7 +59,7 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany('App\Models\Product')->withPivot(['quantity', 'specification_id']);
+        return $this->belongsToMany(Product::class)->withPivot(['quantity', 'specification_id']);
     }
 
     public static function create(array $options = [])
