@@ -90,7 +90,7 @@
                         <img src="{{$product->logo}}" alt="">
                     </div>
                     <div class="product-info">
-                        <p class="product-name">{{$product->name}}</p>
+                        <p class="product-name" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{$product->name}}</p>
 
                         <p class="product-price">
                             <span class="price">&yen;{{$product->price}}</span>
