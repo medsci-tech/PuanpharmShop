@@ -46,6 +46,11 @@ class PaymentController extends Controller
                     }
                 }
                 $result = \Wechat::paymentNotify();
+                /* 同步注册用户通行证验证 */
+                $cash_paid = $order->total_fee-$order->beans_fee; // 实际支付
+                $post_data = array("cash_paid_by_beans" => $order->beans_fee, "phone" => $customer->phone,'cash_paid'=> $cash_paid);
+                \Helper::tocurl(env('API_URL'). '/consume', $post_data,1);
+
                 return $result;
             } else {
                 return 'FAIL';
