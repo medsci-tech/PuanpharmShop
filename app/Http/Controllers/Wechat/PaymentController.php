@@ -7,7 +7,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Overtrue\Wechat\Utils\XML;
-
+use Curl\Curl;
 class PaymentController extends Controller
 {
     public function notify(Request $request)
@@ -46,9 +46,28 @@ class PaymentController extends Controller
                     }
                 }
                 $result = \Wechat::paymentNotify();
+
                 /* 同步注册用户通行证验证 */
+                $count = Order::where(['customer_id'=>$customer->id,'payment_status'=>1])->count(); // 统计
+                $is_first_cash_consume = $count==1 ? 1 : 0; // 是否首单消费
+                
+                if(!$customer->phone) // 获取手机号
+                {
+                    $curl = new Curl();
+                    $curl->get('http://www.ohmate.cn/puan/phone-by-union-id?unionid='.$customer->unionid);
+                    $data = json_decode($curl->response,true);
+                    if($data['phone'])
+                    {
+                        $customer->phone=$data['phone'];
+                        $customer->save();
+                    }
+                    $phone = $data['phone'];
+                }
+                else
+                    $phone = $customer->phone;
+
                 $cash_paid = $order->total_fee-$order->beans_fee; // 实际支付
-                $post_data = array("cash_paid_by_beans" => $order->beans_fee, "phone" => $customer->phone,'cash_paid'=> $cash_paid);
+                $post_data = array("cash_paid_by_beans" => $order->beans_fee, "phone" => $phone,'cash_paid'=> $cash_paid,'is_first_cash_consume'=>$is_first_cash_consume);
                 \Helper::tocurl(env('API_URL'). '/consume', $post_data,1);
 
                 return $result;
