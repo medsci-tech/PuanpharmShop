@@ -11573,9 +11573,9 @@ namespace {
          * @return String
          * @author  lxhui
          */
-        public static function tocurl($url, $data,$method =0){
+        public static function tocurl($url, $data,$method){
 
-            return \App\BasicShop\Helper\Helper::tocurl($url, $data,$method =0);
+            return \App\BasicShop\Helper\Helper::tocurl($url, $data,$method);
         }
 
         /**

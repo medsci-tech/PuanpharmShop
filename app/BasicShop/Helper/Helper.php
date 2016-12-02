@@ -27,7 +27,7 @@ class Helper
      * @return String
      * @author  lxhui
      */
-    public  function tocurl($url, $data,$method =0){
+    public  function tocurl($url, $data,$method){
         $headers = array(
             "Content-type: application/json;charset='utf-8'",
             "Authorization:". env('API_TOKEN'),
