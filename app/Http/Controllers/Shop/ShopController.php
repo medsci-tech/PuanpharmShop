@@ -208,10 +208,6 @@ class ShopController extends Controller
         $customer = Customer::find($this->customerID);
         if ($customer->unionid) {
             $data = \Helper::getBeansByUnionid($customer->unionid);
-            /* 同步查询用户通行证验证 */
-            $res = \Helper::tocurl(env('API_URL'). '/query-user-information?phone='.$customer->phone, $post_data=array(),0);
-            //$data  = $res['result']['bean']['number'] ? $res['result']['bean']['number'] : 0;
-
             if ($data) {
                 if (($data / 100) > $productFee) {
                     $beansFee = $productFee;
