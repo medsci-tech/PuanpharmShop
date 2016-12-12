@@ -70,7 +70,7 @@ class PaymentController extends Controller
                 $cash_paid = $order->total_fee-$order->beans_fee; // 实际支付
                 $post_data = array("cash_paid_by_beans" => $order->beans_fee, "phone" => $phone,'cash_paid'=> $cash_paid,'is_first_cash_consume'=>$is_first_cash_consume);
                 /* 同步查询用户通行证验证 */
-                $res = \Helper::tocurl(env('API_URL'). '/query-user-information2?phone='.$phone, $post_data=array(),0);
+                $res = \Helper::tocurl(env('API_URL'). '/query-user-information?phone='.$phone, $post_data=array(),0);
                 $beans_total  = isset($res['phone']) ? 0 : $res['result']['bean']['number']; //购买前剩余迈豆
 
                 $res2 = \Helper::tocurl(env('API_URL'). '/consume', $post_data,1);
