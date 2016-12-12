@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Wechat;
 
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Overtrue\Wechat\Utils\XML;
@@ -47,7 +48,7 @@ class PaymentController extends Controller
                 }
                 $result = \Wechat::paymentNotify();
 
-                /* 同步注册用户通行证验证 */
+                /* 同步用户通行证验证 */
                 $count = Order::where(['customer_id'=>$customer->id,'payment_status'=>1])->count(); // 统计
                 $is_first_cash_consume = $count==1 ? 1 : 0; // 是否首单消费
                 
@@ -68,7 +69,25 @@ class PaymentController extends Controller
 
                 $cash_paid = $order->total_fee-$order->beans_fee; // 实际支付
                 $post_data = array("cash_paid_by_beans" => $order->beans_fee, "phone" => $phone,'cash_paid'=> $cash_paid,'is_first_cash_consume'=>$is_first_cash_consume);
-                \Helper::tocurl(env('API_URL'). '/consume', $post_data,1);
+                /* 同步查询用户通行证验证 */
+                $res = \Helper::tocurl(env('API_URL'). '/query-user-information2?phone='.$phone, $post_data=array(),0);
+                $beans_total  = isset($res['phone']) ? 0 : $res['result']['bean']['number']; //购买前剩余迈豆
+
+                $res2 = \Helper::tocurl(env('API_URL'). '/consume', $post_data,1);
+                /* 记录详细积分流向日志 */
+                if($res2)
+                {
+                    $log = new Log();
+                    $log->customer_id =$customer->id;
+                    $log->action ='cost';
+                    $log->beans = $beans_total;//购买前剩余迈豆
+                    $log->beans2 = $res2['bean_rest']; // 购买后剩余迈豆
+                    $log->order_id = $order->id;
+                    $log->phone = $phone;
+                    $log->cash_paid_by_beans = $order->beans_fee;
+                    $log->cash_paid = $cash_paid;
+                    $log->save();
+                }
 
                 return $result;
             } else {
