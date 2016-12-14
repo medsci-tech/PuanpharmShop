@@ -57,8 +57,9 @@ class PaymentController extends Controller
                 /* 同步查询用户通行证验证 */
                 $res = \Helper::tocurl(env('API_URL'). '/query-user-information?phone='.$phone, $post_data=array(),0);
                 $beans_total  = isset($res['phone']) ? 0 : $res['result']['bean']['number']; //购买前剩余迈豆
-                $res2 = \Helper::tocurl(env('API_URL'). '/consume', $post_data,1);
-                \Log::info('post_data', ['post_data' => $post_data,'response'=> $res2]); // 文件日志记录
+                $res2 = \Helper::tocurl(env('API_URL'). '/consume', $post_data,1); // 同步消费扣积分
+                $bean_rest = isset($res2['bean_rest']) ? $res2['bean_rest'] : null; //买后剩余积分
+                \Log::info('post_data', ['post_data' => $post_data,'response'=> $res2,'bean'=>array('bean_before'=>$beans_total,'beans_after'=>$bean_rest)]); // 文件日志记录
                 
                 // 短信提醒
                 $orders = Order::whereIn('id', $idArray)->get();
