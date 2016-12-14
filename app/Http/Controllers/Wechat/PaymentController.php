@@ -72,19 +72,8 @@ class PaymentController extends Controller
                 /* 同步查询用户通行证验证 */
                 $res = \Helper::tocurl(env('API_URL'). '/query-user-information?phone='.$phone, $post_data=array(),0);
                 $beans_total  = isset($res['phone']) ? 0 : $res['result']['bean']['number']; //购买前剩余迈豆
-                \Log::info('post_data', ['post_data' => $post_data]); // 文件日志记录
                 $res2 = \Helper::tocurl(env('API_URL'). '/consume', $post_data,1);
-                /* 记录详细积分流向日志 */
-                $log = new Log();
-                $log->customer_id =$customer->id;
-                $log->action ='cost';
-                $log->beans = $beans_total;//购买前剩余迈豆
-                $log->beans2 = $res2['bean_rest']; // 购买后剩余迈豆
-                $log->order_id = $order->id;
-                $log->phone = $phone;
-                $log->cash_paid_by_beans = $order->beans_fee;
-                $log->cash_paid = $cash_paid;
-                $log->save();
+                \Log::info('post_data', ['post_data' => $post_data,'response'=> $res2]); // 文件日志记录
 
                 return $result;
             } else {
