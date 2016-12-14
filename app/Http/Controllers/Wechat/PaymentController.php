@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Wechat;
 
 use App\Models\Customer;
 use App\Models\Order;
-use App\Models\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Overtrue\Wechat\Utils\XML;
