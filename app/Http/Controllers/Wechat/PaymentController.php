@@ -75,19 +75,16 @@ class PaymentController extends Controller
 
                 $res2 = \Helper::tocurl(env('API_URL'). '/consume', $post_data,1);
                 /* 记录详细积分流向日志 */
-                if($res2)
-                {
-                    $log = new Log();
-                    $log->customer_id =$customer->id;
-                    $log->action ='cost';
-                    $log->beans = $beans_total;//购买前剩余迈豆
-                    $log->beans2 = $res2['bean_rest']; // 购买后剩余迈豆
-                    $log->order_id = $order->id;
-                    $log->phone = $phone;
-                    $log->cash_paid_by_beans = $order->beans_fee;
-                    $log->cash_paid = $cash_paid;
-                    $log->save();
-                }
+                $log = new Log();
+                $log->customer_id =$customer->id;
+                $log->action ='cost';
+                $log->beans = $beans_total;//购买前剩余迈豆
+                $log->beans2 = $res2['bean_rest']; // 购买后剩余迈豆
+                $log->order_id = $order->id;
+                $log->phone = $phone;
+                $log->cash_paid_by_beans = $order->beans_fee;
+                $log->cash_paid = $cash_paid;
+                $log->save();
 
                 return $result;
             } else {
