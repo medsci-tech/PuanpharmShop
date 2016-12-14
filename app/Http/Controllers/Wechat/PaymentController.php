@@ -72,7 +72,7 @@ class PaymentController extends Controller
                 /* 同步查询用户通行证验证 */
                 $res = \Helper::tocurl(env('API_URL'). '/query-user-information?phone='.$phone, $post_data=array(),0);
                 $beans_total  = isset($res['phone']) ? 0 : $res['result']['bean']['number']; //购买前剩余迈豆
-
+                \Log::info('post_data', ['post_data' => $post_data]); // 文件日志记录
                 $res2 = \Helper::tocurl(env('API_URL'). '/consume', $post_data,1);
                 /* 记录详细积分流向日志 */
                 $log = new Log();
