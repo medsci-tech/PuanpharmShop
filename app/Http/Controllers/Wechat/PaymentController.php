@@ -34,23 +34,9 @@ class PaymentController extends Controller
                 if ($customer->unionid) {
                     \Helper::updateBeansByUnionid($customer->unionid, $order->beans_fee * 100);
                 }
-
-                // 短信提醒
-                $orders = Order::whereIn('id', $idArray)->get();
-                foreach($orders as $order) {
-                    if($order->supplier_id == 2) {
-                        \Message::createMessage($order->address_phone, '尊敬的顾客您好！您在易康商城购买的货品订单号为['.$order->order_sn.'-'.$order->id.']，将由普安药房尽快为您安排发货，如有任何问题您可以拨打客服电话：4001199802进行咨询，感谢您的惠顾！');
-                    } else {
-                        // 海外直邮
-                        \Message::createMessage($order->address_phone, '尊敬的顾客您好！您在易康商城购买的货品订单号为['.$order->order_sn.'-'.$order->id.']，我们将尽快为您安排发货，如有任何问题您可以拨打客服电话：4001199802进行咨询，感谢您的惠顾！');
-                    }
-                }
-                $result = \Wechat::paymentNotify();
-
                 /* 同步用户通行证验证 */
                 $count = Order::where(['customer_id'=>$customer->id,'payment_status'=>1])->count(); // 统计
                 $is_first_cash_consume = $count==1 ? 1 : 0; // 是否首单消费
-                
                 if(!$customer->phone) // 获取手机号
                 {
                     $curl = new Curl();
@@ -73,6 +59,18 @@ class PaymentController extends Controller
                 $beans_total  = isset($res['phone']) ? 0 : $res['result']['bean']['number']; //购买前剩余迈豆
                 $res2 = \Helper::tocurl(env('API_URL'). '/consume', $post_data,1);
                 \Log::info('post_data', ['post_data' => $post_data,'response'=> $res2]); // 文件日志记录
+                
+                // 短信提醒
+                $orders = Order::whereIn('id', $idArray)->get();
+                foreach($orders as $order) {
+                    if($order->supplier_id == 2) {
+                        \Message::createMessage($order->address_phone, '尊敬的顾客您好！您在易康商城购买的货品订单号为['.$order->order_sn.'-'.$order->id.']，将由普安药房尽快为您安排发货，如有任何问题您可以拨打客服电话：4001199802进行咨询，感谢您的惠顾！');
+                    } else {
+                        // 海外直邮
+                        \Message::createMessage($order->address_phone, '尊敬的顾客您好！您在易康商城购买的货品订单号为['.$order->order_sn.'-'.$order->id.']，我们将尽快为您安排发货，如有任何问题您可以拨打客服电话：4001199802进行咨询，感谢您的惠顾！');
+                    }
+                }
+                $result = \Wechat::paymentNotify();
 
                 return $result;
             } else {
