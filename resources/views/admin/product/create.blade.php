@@ -92,7 +92,23 @@
                             <span class="am-form-caret"> </span>
                         </div>
                     </div>
-
+                    <div class="am-form-group am-form-select">
+                        <label for="doc-select-1" class="am-u-sm-3 am-form-label">是否海淘</label>
+                        <div class="am-u-sm-9">
+                            <select id="is_abroad" name="is_abroad">
+                                <option value="0">否</option>
+                                <option value="1">是</option>
+                            </select>
+                            <span class="am-form-caret"> </span>
+                        </div>
+                    </div>
+                    <div class="am-form-group" id="pricetax">
+                        <label for="price" class="am-u-sm-3 am-form-label">海淘税收</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" id="price_tax" placeholder="海淘税收费" name="price_tax">
+                            <small></small>
+                        </div>
+                    </div>
                     <div class="am-form-group">
                         <label for="specifications" class="am-u-sm-3 am-form-label">默认规格</label>
 
@@ -215,6 +231,15 @@
             $parent.find('input[name=file_name]').css('display', 'block');
             $parent.find('input[name=file_name]').val($(this).val());
         });
+        $('#pricetax').hide(); //初始化
+        $('#is_abroad').change(function () {
+            if($(this).val()==0){
+                $('#pricetax').hide();
+            }
+            else
+                $('#pricetax').show();
+        })
+
         <!-- 实例化编辑器 -->
         var ue = UE.getEditor('container');
         ue.ready(function () {

@@ -60,6 +60,7 @@
                             <th class="table-type">供应商</th>
                             <th class="table-type">活动</th>
                             <th class="table-type">状态</th>
+                            <th class="table-type">是否海淘</th>
                             <th class="table-author">价格</th>
                             <th class="table-author">默认规格</th>
                             <th class="table-author">权重</th>
@@ -78,6 +79,7 @@
                                 </td>
                                 {{--<td>{!!  $product->activity ? '<a href="/admin/product?activity_id='.$product->activity->id.'">'.$product->activity->activity_name.'</a>' : '暂未参加活动'!!}</td>--}}
                                 <td>{{$product->is_on_sale ?'出售' : '不出售'}}</td>
+                                <td>{{$product->is_abroad ?'是: 税费:'.$product->price_tax : '否'}}</td>
                                 <td class="am-hide-sm-only">{{$product->price}}</td>
                                 <td class="am-hide-sm-only">{{$product->default_spec}}</td>
                                 <td class="am-hide-sm-only">{{$product->weight}}</td>
