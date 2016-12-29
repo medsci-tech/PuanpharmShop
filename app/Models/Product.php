@@ -44,6 +44,8 @@ class Product extends Model
         'detail',
         'default_spec',
         'weight',
+        'is_abroad',
+        'price_tax',
     ];
 
     public function category()

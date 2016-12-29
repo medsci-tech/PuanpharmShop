@@ -37,11 +37,12 @@ class ProductController extends Controller
             'beans' => $request->input('beans'),
             'tags' => $request->input('tags'),
             'is_on_sale' => $request->input('is_on_sale'),
+            'is_abroad' => $request->input('is_abroad'), // 是否海淘
+            'price_tax' => $request->input('price_tax'), //海淘税
             'default_spec' => $request->input('default_spec'),
             'weight' => $request->input('weight'),
             'puan_id' => $request->input('puan_id')
         ];
-
         if ($request->has('activity_id') && $request->input('activity_id')) {
             $data['activity_id'] = $request->input('activity_id');
         }
@@ -77,6 +78,8 @@ class ProductController extends Controller
             'beans' => $request->input('beans'),
             'tags' => $request->input('tags'),
             'is_on_sale' => $request->input('is_on_sale'),
+            'is_abroad' => $request->input('is_abroad'), // 是否海淘
+            'price_tax' => $request->input('price_tax'), //海淘税
             'default_spec' => $request->input('default_spec'),
             'weight' => $request->input('weight'),
             'puan_id' => $request->input('puan_id')
