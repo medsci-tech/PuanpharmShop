@@ -23,6 +23,7 @@ class Address extends Model
         'customer_id',
         'phone',
         'name',
+        'idCard',
         'zipcode',
         'province',
         'city',

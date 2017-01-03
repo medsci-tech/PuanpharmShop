@@ -39,6 +39,7 @@ class Order extends Model
         'address_district',
         'address_detail',
         'order_sn',
+        'idCard',
         'ems_num'
     ];
 
