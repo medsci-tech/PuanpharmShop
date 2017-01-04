@@ -188,6 +188,8 @@ class ShopController extends Controller
         } else {
             $productID = \Session::get('pay_product_id');;
         }
+        $is_abroad = []; // 是否海淘标识
+        $productTaxFee = 0; // 海淘税费用
 
         $products = [];
         $productFee = 0;
@@ -201,27 +203,37 @@ class ShopController extends Controller
             } else {
                 $productFee += $product->price * $product->quantity;
             }
+            if($product->is_abroad==1) //  海淘商品
+            {
+                array_push($is_abroad, 1);
+                $productTaxFee += $product->price_tax * $product->quantity;  // 海淘税
+            }
             array_push($products, $product);
         }
+        $abroad= array_sum($is_abroad)>=1 ? 1 : 0; // 是否包含海淘
 
         $beansFee = 0.0;
         $customer = Customer::find($this->customerID);
         if ($customer->unionid) {
             $data = \Helper::getBeansByUnionid($customer->unionid);
             if ($data) {
-                if (($data / 100) > $productFee) {
-                    $beansFee = $productFee;
+                if (($data / 100) > $productFee+$productTaxFee) {
+                    $beansFee = $productFee+$productTaxFee;
                 } else {
                     $beansFee = $data / 100;
                     $beansFee = sprintf("%.2f", substr(sprintf("%.3f", $beansFee), 0, -2));
                 }
+
             }
         }
+
         return view('shop.pay', [
             'products' => $products,
             'address' => $address,
             'productFee' => $productFee,
             'beansFee' => $beansFee,
+            'is_abroad' => $abroad,
+            'productTaxFee' => $productTaxFee,
         ]);
     }
 

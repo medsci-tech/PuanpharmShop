@@ -65,6 +65,7 @@ class OrderController extends Controller
         $productArray = $request->input('product');
         $productId = array_keys($productArray);
         $orderProducts = [];
+        $productTaxFee = 0.0; //进口税商品总价
         $productsFee = 0.0; //支付商品总价
         foreach ($productArray as $id => $quantity) {
             // products
@@ -84,6 +85,10 @@ class OrderController extends Controller
                 //$productDetail['product_price'] = $product->price;;
                 $productsFee += $product->price * $quantity;
             }
+            if($product->is_abroad==1) // 海淘商品
+            {
+                $productTaxFee += $product->price_tax * $quantity; // 进口税总价
+            }
             // 拆分订单
             if (!array_key_exists($product->supplier_id, $orderProducts)) {
                 $orderProducts[$product->supplier_id] = [];
@@ -99,15 +104,15 @@ class OrderController extends Controller
         if ($customer->unionid) {
             $customerBeans = \Helper::getBeansByUnionid($customer->unionid);
             if ($customerBeans) {
-                if (($customerBeans / 100) > $productsFee) {
-                    $beansFee = $productsFee;
+                if (($customerBeans / 100) > $productsFee+$productTaxFee) {
+                    $beansFee = $productsFee+$productTaxFee;
                 } else {
                     $beansFee = $customerBeans / 100;
                     $beansFee = sprintf("%.2f", substr(sprintf("%.3f", $beansFee), 0, -2));
                 }
             }
         }
-        $totalFee = $productsFee + $shippingFee;
+        $totalFee = $productsFee + $shippingFee + $productTaxFee;
         $payFee = $totalFee - $beansFee;
 //        包邮
 //        if ($productsFee >= 99.0) {
@@ -135,6 +140,7 @@ class OrderController extends Controller
                 'address_city' => $request->input('address_city'),
                 'address_district' => $request->input('address_district'),
                 'address_detail' => $request->input('address_detail'),
+                'idCard' => $request->input('address_idCard'),
             ];
             $outTradeNo .= '-' . Order::create($orderData)->id;
         }

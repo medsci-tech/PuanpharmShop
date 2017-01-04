@@ -32,6 +32,7 @@ class AddressController extends Controller
         $data = [
             'customer_id' => $this->customerID,
             'name' => $request->input('name'),
+            'idCard' => $request->input('idCard'),
             'phone' => $request->input('phone'),
             'province' => $request->input('province'),
             'city' => $request->input('city'),
@@ -70,6 +71,8 @@ class AddressController extends Controller
      */
     public function selectAddress(Request $request)
     {
+        $is_abroad = $request->input('is_abroad');
+        $is_abroad = isset($is_abroad) ? $is_abroad : 0;
         $addresses = Address::where('customer_id', $this->customerID)->get()->toArray();
         if ($request->ajax()) {
             return response()->json([
@@ -80,7 +83,8 @@ class AddressController extends Controller
             ]);
         } else {
             return view('shop.address.select', [
-                'addresses' => $addresses
+                'addresses' => $addresses,
+                'is_abroad' => $is_abroad
 
             ]);
         }
@@ -101,9 +105,11 @@ class AddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function payCreate()
+    public function payCreate(Request $request)
     {
-        return view('shop.address.pay-create');
+        $is_abroad = $request->input('is_abroad');
+        $is_abroad = isset($is_abroad) ? $is_abroad : 0;
+        return view('shop.address.pay-create',['is_abroad' => $is_abroad]);
     }
 
     /**
@@ -111,9 +117,11 @@ class AddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function selectCreate()
+    public function selectCreate(Request $request)
     {
-        return view('shop.address.select-create');
+        $is_abroad = $request->input('is_abroad');
+        $is_abroad = isset($is_abroad) ? $is_abroad : 0;
+        return view('shop.address.select-create',['is_abroad' => $is_abroad]);
     }
 
     /**
