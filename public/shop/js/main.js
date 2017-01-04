@@ -38,11 +38,21 @@
 
     }
 
-    function validateForm(name, phone, province, city, district, address, zip) {
+    function validateForm(name, phone, province, city, district, address, zip,idCard) {
         // Todo
         if (!name || name.length < 2) {
             showNotify('请填写用户名！', 3000);
             return false;
+        }
+
+        if($("#cardId").is(":visible")) // 如果输入身份证,简单验证
+        {
+            var len = idCard.length;
+            if(len<15 || len > 18)
+            {
+                showNotify('请输入有效的身份证号码！', 3000);
+                return false;
+            }
         }
 
         if (!phone || !phone.length || !/^\d+$/.test(phone)) {
@@ -508,13 +518,14 @@
                 Components.createCityPicker($('#province'), $('#city'), $('#district'));
                 var $window = $('.window.address');
                 $('.express').on('click', function () {
+                    var is_abroad = $(this).attr('is_abroad');
                     if ($(this).find('.address.on').length) {
-                        window.location.href = '/shop/select-address';
+                        window.location.href = '/shop/select-address?is_abroad='+is_abroad;
                         return false;
                     }
                     showMaskLayer(true);
                     //showWindow($window, true);
-                    window.location.href = '/shop/address/pay-create';
+                    window.location.href = '/shop/address/pay-create?is_abroad='+is_abroad;
                 })
             },
             _moveCartButton: function () {
@@ -709,13 +720,14 @@
                 $('.address .footer.create .button.save').on('click', function () {
                     var $form = $('.address form');
                     var name = $form.find('.name').val();
+                    var idCard = $form.find('.idCard').val();
                     var phone = $form.find('.phone').val();
                     var province = $form.find('#province').val();
                     var city = $form.find('#city').val();
                     var district = $form.find('#district').val();
                     var address = $form.find('.detail-address').val();
                     var zip = $form.find('.zip-code').val();
-                    if (!validateForm(name, phone, province, city, district, address, zip)) {
+                    if (!validateForm(name, phone, province, city, district, address, zip, idCard)) {
                         return false;
                     }
                     $submitBtn.click();
@@ -730,6 +742,7 @@
                     var $this = $(this);
                     var $parent = $this.parents('.address-item');
                     var name = $parent.find('.address-item-customer-name').text();
+                    var idCard = $parent.find('.address-item-customer-idCard').text();
                     var tel = $parent.find('.address-item-customer-tel').text();
                     // var address = $parent.find('.address-item-address').text();
                     var province = $parent.find('.address-item-address .province').text();
@@ -791,13 +804,14 @@
                 var $addressWindow = $('.pay .window.address');
                 $addressWindow.find('.save').on('click', function (event) {
                     var name = $addressWindow.find('.name').val();
+                    var idCard = $addressWindow.find('.idCard').val();
                     var phone = $addressWindow.find('.phone').val();
                     var province = $addressWindow.find('#province').val();
                     var city = $addressWindow.find('#city').val();
                     var district = $addressWindow.find('#district').val();
                     var address = $addressWindow.find('.detail-address').val();
                     var zip = $addressWindow.find('.zip-code').val();
-                    if (!validateForm(name, phone, province, city, district, address, zip)) {
+                    if (!validateForm(name, phone, province, city, district, address, zip, idCard)) {
                         return false;
                     }
 
@@ -860,6 +874,7 @@
                 var $aWindow = $('.address .window.address');
                 $aWindow.find('.save').on('click', function (event) {
                     var name = $aWindow.find('.name').val();
+                    var idCard = $aWindow.find('.idCard').val();
                     var phone = $aWindow.find('.phone').val();
                     var province = $aWindow.find('#province').val();
                     var city = $aWindow.find('#city').val();
@@ -868,7 +883,7 @@
                     var zip = $aWindow.find('.zip-code').val();
 
                     var id = $aWindow.data('address_id');
-                    if (!validateForm(name, phone, province, city, district, address, zip)) {
+                    if (!validateForm(name, phone, province, city, district, address, zip,idCard)) {
                         return false;
                     }
 
@@ -878,6 +893,7 @@
                         data: {
                             id: id,
                             name: name,
+                            idCard: idCard,
                             phone: phone,
                             province: province,
                             city: city,
@@ -894,11 +910,13 @@
                         var $address = $('.address .address-item[data-address_id="' + id + '"]');
 
                         var name = data.data.address.name;
+                        var idCard = data.data.address.idCard;
                         var tel = data.data.address.phone;
                         var address = data.data.address.province + data.data.address.city + data.data.address.district + data.data.address.address;
                         //var id = data.data.address.id;
 
                         $address.find('.address-item-customer-name').text(name);
+                        $address.find('.address-item-customer-idCard').text(idCard);
                         $address.find('.address-item-customer-tel').text(tel);
                         $address.find('.address-item-address').text(address);
 
