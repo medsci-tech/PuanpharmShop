@@ -79,7 +79,10 @@ var is_abroad = parseInt('{{$is_abroad}}');
 if(is_abroad)
     $('#cardId').show();
 else
-    $('#cardId').hide();
+{
+	$('#cardId').hide();
+	$('#idCard').val('');
+}
 </script>
 </body>
 </html>
