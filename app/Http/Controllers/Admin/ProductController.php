@@ -43,6 +43,7 @@ class ProductController extends Controller
             'weight' => $request->input('weight'),
             'puan_id' => $request->input('puan_id')
         ];
+        $data['price_tax'] = $request->input('is_abroad')>0 ? $request->input('price_tax') : 0;
         if ($request->has('activity_id') && $request->input('activity_id')) {
             $data['activity_id'] = $request->input('activity_id');
         }
@@ -84,7 +85,7 @@ class ProductController extends Controller
             'weight' => $request->input('weight'),
             'puan_id' => $request->input('puan_id')
         ];
-
+        $data['price_tax'] = $request->input('is_abroad')>0 ? $request->input('price_tax') : 0;
         if (!$request->input('activity_id')) {
             $data['activity_id'] = null;
         } else {
