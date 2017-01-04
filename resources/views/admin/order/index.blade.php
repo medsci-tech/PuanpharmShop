@@ -84,7 +84,7 @@
                                 <td>{{$order->beans_fee}}</td>
                                 <td>
                                     收货地址：{{$order->address_province.$order->address_city.$order->address_district.$order->address_detail}}
-                                    姓名：{{$order->address_name}}电话：{{$order->address_phone}}</td>
+                                    姓名：{{$order->address_name}}电话：{{$order->address_phone}} @if($order->idCard)身份证：{{$order->idCard}}@endif</td>
                                 <td>{{$order->created_at}}</td>
                                 <td>
                                     @if($order->ems_num)

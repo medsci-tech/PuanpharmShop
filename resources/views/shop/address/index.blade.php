@@ -25,6 +25,7 @@
                     </div>
                     <div class="address-item-customer">
                         <span class="address-item-customer-name">{{$address['name']}}</span>
+                        <span class="address-item-customer-idCard">{{$address['idCard']}}</span>
                         <span class="address-item-customer-tel">{{$address['phone']}}</span>
                     </div>
                     <p class="address-item-address">
@@ -61,6 +62,10 @@
             <div class="block-item">
                 <label>收货人</label>
                 <input type="text" name="name" class="name" value="" placeholder="名字">
+            </div>
+            <div class="block-item">
+                <label>身份证号</label>
+                <input type="text" name="idCard" class="idCard" value="" placeholder="请输入身份证号码(选填)" readonly>
             </div>
             <div class="block-item">
                 <label>联系电话</label>

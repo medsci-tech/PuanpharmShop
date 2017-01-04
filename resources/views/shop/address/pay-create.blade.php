@@ -18,6 +18,10 @@
                 <label>收货人</label>
                 <input type="text" name="name" class="name" value="" placeholder="名字">
             </div>
+            <div class="block-item" id="cardId">
+                <label>身份证号</label>
+                <input type="text" name="idCard" class="idCard" value="" placeholder="请输入身份证号码">
+            </div>
             <div class="block-item">
                 <label>联系电话</label>
                 <input type="text" name="phone" class="phone" value="" placeholder="手机或固话">
@@ -70,5 +74,12 @@
 <script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
 <script type="text/javascript" src="/shop/js/components.js"></script>
 <script type="text/javascript" src="/shop/js/main.js"></script>
+<script>
+var is_abroad = parseInt('{{$is_abroad}}');
+if(is_abroad)
+    $('#cardId').show();
+else
+    $('#cardId').hide();
+</script>
 </body>
 </html>

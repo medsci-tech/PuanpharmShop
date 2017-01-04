@@ -13,14 +13,18 @@
 </head>
 <body class="pay" style="background-color: #F8F8F8;font-size:  0.4375rem">
 <main class="content">
-    <div class="express">
+    <div class="express"  is_abroad="{{$is_abroad}}">
         <div class="container">
             @if($address)
                 <div class="address item on">
                     <div class="address-panel">
-                        <div class="address-detail" data-address_id="{{$address->id}}">
+                        <div class="address-detail" data-address_id="{{$address->id}}" data-address_idCard="{{$address->idCard}}"  >
                             <div class="customer-info">
                                 <span class="name">收&nbsp;货&nbsp;人&nbsp;：{{$address->name}}</span>
+                                @if($is_abroad == 1)
+                                    <span class="name">身&nbsp;份&nbsp;证&nbsp;：{{$address->idCard}}</span>
+                                @endif
+
                             </div>
                             <div class="customer-info" style="margin-top: 0.1rem;">
                                 <span class="tel">手&nbsp;机&nbsp;号&nbsp;：{{$address->phone}}</span>
@@ -44,6 +48,7 @@
         @if($address)
             <input type="hidden" name="address_phone" value="{{$address->phone}}">
             <input type="hidden" name="address_name" value="{{$address->name}}">
+            @if($is_abroad == 1)<input type="hidden" name="address_idCard" value="{{$address->idCard}}">@endif
             <input type="hidden" name="address_province" value="{{$address->province}}">
             <input type="hidden" name="address_city" value="{{$address->city}}">
             <input type="hidden" name="address_district" value="{{$address->district}}">
@@ -94,6 +99,10 @@
             {{--<p>邮费<span class="num rmb">&yen;8</span></p>--}}
             {{--@endif--}}
 
+            @if($is_abroad == 1)
+            <p>进口税<span class="num rmb">&yen;{{$productTaxFee}}</span></p>
+            @endif
+
             <p>邮费<span class="num rmb">&yen;8</span></p>
 
             <p>迈豆抵扣<span class="num rmb">&yen;{{$beansFee}} &nbsp;&nbsp;&nbsp;<span
@@ -106,7 +115,7 @@
             {{--@endif--}}
 
             <p>实际需付<span class="num rmb"
-                         style="color: #f60;font-weight: bold">&yen;{{$productFee + 8 - $beansFee}}</span></p>
+                         style="color: #f60;font-weight: bold">&yen;{{$productFee+$productTaxFee + 8 - $beansFee}}</span></p>
         </div>
         <div class="confirm">
             <input type="hidden" name="address_id" class="selected_address"
@@ -134,6 +143,7 @@
 <script type="text/javascript" src="/shop/js/components.js"></script>
 
 <script type="text/javascript">
+    var is_abroad = parseInt('{{$is_abroad}}'); // 是否包含海淘
     var $maskLayer = $('.mask-layer');
     function showMaskLayer(show) {
         return show ? $maskLayer.show() : $maskLayer.hide();
@@ -153,10 +163,20 @@
     $('#pay-weixin').on('click', function () {
         // 地址验证
         var id = $('.address-detail').attr('data-address_id');
+        var idCard = $('.address-detail').attr('data-address_idCard'); //身份证
         if (!id) {
             showNotify('地址不能为空！', 3000);
             return false;
         }
+        if(is_abroad)
+        {
+            if (!idCard) {
+                showNotify('身份证号码不能为空！', 3000);
+                return false;
+            }
+
+        }
+
         var payButton = $('#pay-weixin');
         payButton.attr('disabled', "true");
         payButton.html("支付中...");
@@ -237,5 +257,9 @@
     })
 </script>
 <script type="text/javascript" src="/shop/js/main.js"></script>
+<script>
+    if(is_abroad)
+        showNotify('根据中华人民共和国务院令第392号《中华人民共和国进出口关税条例》规定，中华人民共和国准许进口的货物、进境物品，海关需收进口关税(每月3笔，每比2000，每年不超过2万元加一起', 8000);
+</script>
 </body>
 </html>

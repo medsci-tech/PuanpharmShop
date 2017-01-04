@@ -41,7 +41,7 @@
                 </div>
             @endforeach
         </div>
-        <a class="add-address" href="/shop/address/select-create">
+        <a class="add-address" href="/shop/address/select-create?is_abroad={{ $is_abroad}}">
             <i class="icon-add"></i>
             <span>新增地址</span>
             <i class="icon-arrow-right"></i>
@@ -61,6 +61,10 @@
             <div class="block-item">
                 <label>收货人</label>
                 <input type="text" name="name" class="name" value="" placeholder="名字">
+            </div>
+            <div class="block-item" id="cardId">
+                <label>身份证号</label>
+                <input type="text" name="idCard" class="idCard" value="" placeholder="请输入身份证号码">
             </div>
             <div class="block-item">
                 <label>联系电话</label>
