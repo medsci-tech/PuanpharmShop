@@ -124,5 +124,12 @@
 <script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
 <script type="text/javascript" src="/shop/js/components.js"></script>
 <script type="text/javascript" src="/shop/js/main.js"></script>
+<script>
+var is_abroad = parseInt('{{$is_abroad}}');
+if(is_abroad)
+    $('#cardId').show();
+else
+    $('#cardId').hide();
+</script>
 </body>
 </html>
