@@ -83,7 +83,7 @@
 
         <p>迈豆抵扣<span class="num rmb">&yen;{{$order->beans_fee}}</span></p>
 
-        <p>实际需付<span class="num rmb" style="color: #f60;font-weight: bold">&yen;{{$order->total_fee-$order->beans_fee}}</span></p>
+        <p>实际需付<span class="num rmb" style="color: #f60;font-weight: bold">&yen;{{$order->products_fee-$order->beans_fee+$order->shipping_fee}}</span></p>
     </div>
 
     <div class="order-express" style="border-top: 0.03125rem solid #e5e5e5;border-bottom: 0.03125rem solid #e5e5e5;">
