@@ -156,7 +156,6 @@ class ShopController extends Controller
      */
     public function detail(Request $request)
     {
-        \Wechat::authorizeUser($request->fullUrl());
         return view('shop.detail', [
             'product' => Product::find($request->input('id')),
             'cartCount' => sizeof(\Redis::command('HKEYS', ['user_id:' . $this->customerID]))
