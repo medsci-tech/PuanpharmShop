@@ -84,30 +84,30 @@
     <div class="trade-detail">
         <div class="tab-nav">
             <span class="nav-btn current">商品详情</span>
-            <span class="nav-btn">商品成交</span>
+            {{--<span class="nav-btn">商品成交</span>--}}
 
             <div class="tabs">
                 <div class="tab  current">
                     {!! $product->detail !!}
                 </div>
-                <div class="tab">
-                    <div class="trade-list-header">
-                        <span class="col">买家</span>
-                        <span class="col">成交时间</span>
-                        <span class="col">数量</span>
-                    </div>
-                    <div class="trade-list">
-                        @foreach($product->orders as $order)
-                            @if($order->payment_status)
-                                <div class="trade block-item">
-                                    <span class="col address-name">{{\App\Models\Customer::find($order->customer_id)->nickname}}</span>
-                                    <span class="col">{{$order->created_at}}</span>
-                                    <span class="col">{{$order->pivot->quantity}}</span>
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
+                {{--<div class="tab">--}}
+                    {{--<div class="trade-list-header">--}}
+                        {{--<span class="col">买家</span>--}}
+                        {{--<span class="col">成交时间</span>--}}
+                        {{--<span class="col">数量</span>--}}
+                    {{--</div>--}}
+                    {{--<div class="trade-list">--}}
+                        {{--@foreach($product->orders as $order)--}}
+                            {{--@if($order->payment_status)--}}
+                                {{--<div class="trade block-item">--}}
+                                    {{--<span class="col address-name">{{\App\Models\Customer::find($order->customer_id)->nickname}}</span>--}}
+                                    {{--<span class="col">{{$order->created_at}}</span>--}}
+                                    {{--<span class="col">{{$order->pivot->quantity}}</span>--}}
+                                {{--</div>--}}
+                            {{--@endif--}}
+                        {{--@endforeach--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>
