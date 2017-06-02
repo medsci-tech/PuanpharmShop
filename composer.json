@@ -18,7 +18,8 @@
     "zgldh/qiniu-laravel-storage": "^0.4.2",
     "simplesoftwareio/simple-qrcode": "1.3.*",
     "curl/curl": "^1.3",
-    "vinelab/http": "dev-master"
+    "vinelab/http": "dev-master",
+    "doctrine/dbal": "^2.5"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

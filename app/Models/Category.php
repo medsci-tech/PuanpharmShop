@@ -6,8 +6,41 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Category
+ *
  * @package App\Models
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category actives()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category byName()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category childsOf($id)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category full()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category inactives()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category lightSelection()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category mothers()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category search($name)
+ * @property int $id
+ * @property int $category_id
+ * @property bool $is_banner
+ * @property string $name
+ * @property string $description
+ * @property string $icon
+ * @property string $logo
+ * @property bool $status
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category whereCategoryId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category whereIcon($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category whereIsBanner($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category whereLogo($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Category whereUpdatedAt($value)
  */
 class Category extends Model
 {

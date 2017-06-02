@@ -175,7 +175,8 @@ return [
         App\Providers\ErpServiceProvider::class,
         App\Providers\MessageServiceProvider::class,
         App\Providers\EMSServiceProvider::class,
-        App\Providers\KdniaoServiceProvider::class
+        App\Providers\KdniaoServiceProvider::class,
+        App\Providers\CartServiceProvider::class,
     ],
 
     /*
@@ -234,7 +235,8 @@ return [
         'Erp' => App\BasicShop\Erp\Facades\Erp::class,
         'Message' => App\BasicShop\Message\Facades\Message::class,
         'EMS' => App\BasicShop\EMS\Facades\EMS::class,
-        'Kdniao' => App\BasicShop\Kdniao\Facades\Kdniao::class
+        'Kdniao' => App\BasicShop\Kdniao\Facades\Kdniao::class,
+        'Cart' => App\BasicShop\Cart\Facades\Cart::class,
     ],
 
 ];

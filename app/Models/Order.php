@@ -6,8 +6,66 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Order
+ *
  * @package App\Models
  * @mixin \Eloquent
+ * @property-read \App\Models\Address $address
+ * @property-read \App\Models\Customer $customer
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read \App\Models\Supplier $supplier
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order search($seed)
+ * @property int $id
+ * @property string $order_sn
+ * @property string $out_trade_no
+ * @property string $shipping_no
+ * @property float $total_fee
+ * @property float $shipping_fee
+ * @property float $products_fee
+ * @property float $beans_fee
+ * @property float $pay_fee
+ * @property bool $status
+ * @property bool $payment_status
+ * @property string $delivered_at
+ * @property string $remark
+ * @property string $address_phone
+ * @property string $address_name
+ * @property string $address_province
+ * @property string $address_city
+ * @property string $address_district
+ * @property string $address_detail
+ * @property int $customer_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
+ * @property int $supplier_id
+ * @property int $wx_payment_detail_id
+ * @property string $ems_num
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereAddressCity($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereAddressDetail($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereAddressDistrict($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereAddressName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereAddressPhone($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereAddressProvince($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereBeansFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereCustomerId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereDeliveredAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereEmsNum($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereOrderSn($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereOutTradeNo($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order wherePayFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order wherePaymentStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereProductsFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereRemark($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereShippingFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereShippingNo($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereSupplierId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereTotalFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereWxPaymentDetailId($value)
  */
 class Order extends Model
 {

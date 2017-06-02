@@ -16,6 +16,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property boolean $expired 验证码过期时间.
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\MessageVerify whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\MessageVerify whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\MessageVerify whereExpired($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\MessageVerify whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\MessageVerify wherePhone($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\MessageVerify whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\MessageVerify whereUpdatedAt($value)
  */
 class MessageVerify extends Model
 {

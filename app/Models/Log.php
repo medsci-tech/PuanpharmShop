@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Banner
+ *
  * @package App\Models
  * @mixin \Eloquent
  */

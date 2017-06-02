@@ -74,7 +74,6 @@ class CartController extends Controller
         } else {
             return response()->json(['success' => false]);
         }
-
     }
 
     public function get()
@@ -87,14 +86,8 @@ class CartController extends Controller
 
     public function delete(Request $request)
     {
-//        $inputCount = $request->input('quantity', 1);
-//        $productCount = \Redis::command('hget', ['user_id:' . $this->customerID, $request->input('product_id')]);
-//        if ($inputCount >= $productCount) {
-//            \Redis::command('hdel', ['user_id:' . $this->customerID, $request->input('product_id')]);
-//        } else {
-//            \Redis::command('HINCRBY', ['user_id:' . $this->customerID, $request->input('product_id'), -$inputCount]);
-//        }
         $productID = $request->input('product_id');
+        \Redis::command('HDEL', ['user_id:' . $this->customerID, 'coupon']);
         if ($request->has('spec_id')) {
             $specID = $request->input('spec_id', 1);
             \Redis::command('hdel', ['user_id:' . $this->customerID, $productID . '-' . $specID]);

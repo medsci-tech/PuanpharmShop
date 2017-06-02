@@ -8,3 +8,4 @@ Homestead.json
 /storage
 /public/upload
 composer.lock
+.phpstorm.meta.php

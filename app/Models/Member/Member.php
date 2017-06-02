@@ -9,6 +9,21 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models\Member
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Member\MemberAddress[] $addresses
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Member\MemberBeanLog[] $beanLogs
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Member\MemberOrder[] $orders
+ * @property int $id
+ * @property string $phone
+ * @property string $openid
+ * @property string $source
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\Member whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\Member whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\Member whereOpenid($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\Member wherePhone($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\Member whereSource($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\Member whereUpdatedAt($value)
  */
 class Member extends Model
 {

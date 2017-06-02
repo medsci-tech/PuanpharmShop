@@ -8,8 +8,61 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Product
+ *
  * @package App\Models
  * @mixin \Eloquent
+ * @property-read \App\Models\Activity $activity
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProductBanner[] $banners
+ * @property-read \App\Models\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProductSpecification[] $specifications
+ * @property-read \App\Models\Supplier $supplier
+ * @property-read \App\Models\ProductType $type
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product search($seed)
+ * @property int $id
+ * @property int $category_id
+ * @property int $puan_id
+ * @property string $name
+ * @property string $description
+ * @property string $detail
+ * @property float $price
+ * @property string $default_spec
+ * @property float $beans
+ * @property string $tags
+ * @property string $logo
+ * @property int $sale_counts
+ * @property int $view_counts
+ * @property bool $is_on_sale
+ * @property bool $is_show
+ * @property int $weight
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $deleted_at
+ * @property int $type_id
+ * @property int $supplier_id
+ * @property int $activity_id
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereActivityId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereBeans($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereCategoryId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereDefaultSpec($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereDetail($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereIsOnSale($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereIsShow($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereLogo($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product wherePrice($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product wherePuanId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereSaleCounts($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereSupplierId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereTags($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereTypeId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereViewCounts($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereWeight($value)
  */
 class Product extends Model
 {

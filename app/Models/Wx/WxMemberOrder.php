@@ -8,8 +8,59 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class WxMemberOrder
+ *
  * @package App\Models\Member
  * @mixin \Eloquent
+ * @property-read \App\Models\Wx\WxMember $member
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read \App\Models\Supplier $supplier
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder search($seed)
+ * @property int $id
+ * @property string $order_sn
+ * @property string $out_trade_no
+ * @property string $shipping_no
+ * @property float $total_fee
+ * @property float $beans_fee
+ * @property float $shipping_fee
+ * @property float $products_fee
+ * @property bool $status
+ * @property bool $payment_status
+ * @property string $delivered_at
+ * @property string $remark
+ * @property string $address_phone
+ * @property string $address_name
+ * @property string $address_province
+ * @property string $address_city
+ * @property string $address_district
+ * @property string $address_detail
+ * @property int $wx_member_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
+ * @property int $supplier_id
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereAddressCity($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereAddressDetail($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereAddressDistrict($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereAddressName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereAddressPhone($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereAddressProvince($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereBeansFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereDeliveredAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereOrderSn($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereOutTradeNo($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder wherePaymentStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereProductsFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereRemark($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereShippingFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereShippingNo($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereSupplierId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereTotalFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMemberOrder whereWxMemberId($value)
  */
 class WxMemberOrder extends Model
 {

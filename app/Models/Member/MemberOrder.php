@@ -8,8 +8,59 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class MemberOrder
+ *
  * @package App\Models\Member
  * @mixin \Eloquent
+ * @property-read \App\Models\Member\Member $member
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read \App\Models\Supplier $supplier
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder search($seed)
+ * @property int $id
+ * @property string $order_sn
+ * @property string $out_trade_no
+ * @property string $shipping_no
+ * @property float $total_fee
+ * @property float $beans_fee
+ * @property float $shipping_fee
+ * @property float $products_fee
+ * @property bool $status
+ * @property bool $payment_status
+ * @property string $delivered_at
+ * @property string $remark
+ * @property string $address_phone
+ * @property string $address_name
+ * @property string $address_province
+ * @property string $address_city
+ * @property string $address_district
+ * @property string $address_detail
+ * @property int $member_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
+ * @property int $supplier_id
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereAddressCity($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereAddressDetail($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereAddressDistrict($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereAddressName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereAddressPhone($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereAddressProvince($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereBeansFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereDeliveredAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereMemberId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereOrderSn($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereOutTradeNo($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder wherePaymentStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereProductsFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereRemark($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereShippingFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereShippingNo($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereSupplierId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereTotalFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Member\MemberOrder whereUpdatedAt($value)
  */
 class MemberOrder extends Model
 {

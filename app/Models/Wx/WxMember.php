@@ -9,6 +9,21 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models\Member
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Wx\WxMemberAddress[] $addresses
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Wx\WxMemberBeanLog[] $beanLogs
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Wx\WxMemberOrder[] $orders
+ * @property int $id
+ * @property string $phone
+ * @property string $openid
+ * @property string $source
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMember whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMember whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMember whereOpenid($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMember wherePhone($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMember whereSource($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Wx\WxMember whereUpdatedAt($value)
  */
 class WxMember extends Model
 {
