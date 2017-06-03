@@ -8,17 +8,19 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="viewport"
           content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
 </head>
 <body class="pay" style="background-color: #F8F8F8;font-size:  0.4375rem">
 <main class="content">
-    <div class="express"  is_abroad="{{$is_abroad}}">
+    <div class="express" is_abroad="{{$is_abroad}}">
         <div class="container">
             @if($address)
                 <div class="address item on">
                     <div class="address-panel">
-                        <div class="address-detail" data-address_id="{{$address->id}}" data-address_idCard="{{$address->idCard}}"  >
+                        <div class="address-detail" data-address_id="{{$address->id}}"
+                             data-address_idCard="{{$address->idCard}}">
                             <div class="customer-info">
                                 <span class="name">收&nbsp;货&nbsp;人&nbsp;：{{$address->name}}</span>
                                 @if($is_abroad == 1)
@@ -100,13 +102,46 @@
             {{--@endif--}}
 
             @if($is_abroad == 1)
-            <p>进口税<span class="num rmb">&yen;{{$productTaxFee}}</span></p>
+                <p>进口税<span class="num rmb">&yen;{{$productTaxFee}}</span></p>
             @endif
 
             <p>邮费<span class="num rmb">&yen;8</span></p>
 
-            <p>迈豆抵扣<span class="num rmb">&yen;{{$beansFee}} &nbsp;&nbsp;&nbsp;<span
-                            style="color: #00b7ee">[{{$beansFee*100}}迈豆]</span></span></p>
+            {{--<p>迈豆抵扣<span class="num rmb">&yen;{{$beansFee}} &nbsp;&nbsp;&nbsp;<span--}}
+            {{--style="color: #00b7ee">[{{$beansFee*100}}迈豆]</span></span></p>--}}
+
+            <p>使用优惠券<span class="num rmb">
+                    <input type="hidden" id="coupon" name="coupon" value="0">
+                    <a type="button" data-toggle="modal" data-target="#myModal">选择优惠券</a>
+                </span>
+            </p>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">选择优惠券</h4>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-unstyled">
+                                @foreach($coupons as $coupon)
+                                    <li class="list-group-item">
+                                        <a style="text-decoration: none!important;" onclick="liclick($coupon)">
+                                            <div class="panel panel-info">
+                                                <div class="panel-heading">
+                                                    {{ $coupon-> type }}
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             {{--@if($productFee >= 99)--}}
             {{--<p>实际需付<span class="num rmb" style="color: #f60;font-weight: bold">&yen;{{$productFee}}</span></p>--}}
@@ -114,8 +149,9 @@
             {{--<p>实际需付<span class="num rmb" style="color: #f60;font-weight: bold">&yen;{{$productFee + 8}}</span></p>--}}
             {{--@endif--}}
 
-            <p>实际需付<span class="num rmb"
-                         style="color: #f60;font-weight: bold">&yen;{{$productFee+$productTaxFee + 8 - $beansFee}}</span></p>
+            <p>实际需付<span id="priceall" class="num rmb"
+                         style="color: #f60;font-weight: bold">&yen;{{$productFee+$productTaxFee + 8}}</span>
+            </p>
         </div>
         <div class="confirm">
             <input type="hidden" name="address_id" class="selected_address"
@@ -141,7 +177,26 @@
 <script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
 <script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
 <script type="text/javascript" src="/shop/js/components.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
+<script>
+    var productFee = {{$productFee}};
+    var productTaxFee = {{$productTaxFee}};
+
+    function liclick(e) {
+        $('#coupon').attr('value',e.id).sibling('a').text(e.type);
+        if(e.cut_price){
+            var fee = (productFee+productTaxFee-e.cut_price).toFixed(2);
+            $('#priceall').text('￥'+fee);
+        }
+        if(e.cut_percentage){
+            var fee = (productFee+productTaxFee-e.cut_price).toFixed(2);
+            $('#priceall').text('￥'+fee);
+        }
+        $('#myModal').modal('hide');
+    }
+</script>
 <script type="text/javascript">
     var is_abroad = parseInt('{{$is_abroad}}'); // 是否包含海淘
     var $maskLayer = $('.mask-layer');
@@ -168,8 +223,7 @@
             showNotify('地址不能为空！', 3000);
             return false;
         }
-        if(is_abroad)
-        {
+        if (is_abroad) {
             if (!idCard) {
                 showNotify('身份证号码不能为空！', 3000);
                 return false;
@@ -182,42 +236,42 @@
         payButton.html("支付中...");
 
         $.post('/shop/order/store',
-                $('#pay-form').serialize(),
-                function (data) {
-                    if (data.success) {
-                        console.log(JSON.stringify(data));
+            $('#pay-form').serialize(),
+            function (data) {
+                if (data.success) {
+                    console.log(JSON.stringify(data));
 
-                        function onBridgeReady() {
-                            WeixinJSBridge.invoke(
-                                    'getBrandWCPayRequest', JSON.parse(data.data.result),
-                                    function (res) {
+                    function onBridgeReady() {
+                        WeixinJSBridge.invoke(
+                            'getBrandWCPayRequest', JSON.parse(data.data.result),
+                            function (res) {
 
-                                        if (res.err_msg == "get_brand_wcpay_request:ok") {
-                                            window.location.href = "/shop/pay-success";
-                                        } // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                                if (res.err_msg == "get_brand_wcpay_request:ok") {
+                                    window.location.href = "/shop/pay-success";
+                                } // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
 
-                                        if (res.err_msg == "get_brand_wcpay_request:cancel") {
-                                            payButton.removeAttr('disabled');
-                                            payButton.html("微信支付");
+                                if (res.err_msg == "get_brand_wcpay_request:cancel") {
+                                    payButton.removeAttr('disabled');
+                                    payButton.html("微信支付");
+                                }
+
+                                if (res.err_msg == "get_brand_wcpay_request:fail") {
+                                    alert("请长按识别下方二维码付款。");
+                                    payButton.html("长按下方图片识别二维码支付");
+                                    console.log(data.data.out_trade_no);
+                                    $.ajax({
+                                        url: '/shop/get_code_url',
+                                        method: 'GET',
+                                        data: {
+                                            out_trade_no: data.data.out_trade_no
                                         }
-
-                                        if (res.err_msg == "get_brand_wcpay_request:fail") {
-                                            alert("请长按识别下方二维码付款。");
-                                            payButton.html("长按下方图片识别二维码支付");
-                                            console.log(data.data.out_trade_no);
-                                            $.ajax({
-                                                url: '/shop/get_code_url',
-                                                method: 'GET',
-                                                data: {
-                                                    out_trade_no: data.data.out_trade_no
-                                                }
-                                            }).done(function (data) {
-                                                console.log(JSON.stringify(data.data.codeUrl));
-                                                img = '<img src="' + data.data.codeUrl + '">';
-                                                $('h4').after(img);
-                                                $('.qrcode').show();
-                                            });
-                                        }
+                                    }).done(function (data) {
+                                        console.log(JSON.stringify(data.data.codeUrl));
+                                        img = '<img src="' + data.data.codeUrl + '">';
+                                        $('h4').after(img);
+                                        $('.qrcode').show();
+                                    });
+                                }
 //                                        if (res.err_code == 3) {
 //                                            alert("请长按识别下方二维码付款。");
 //                                            payButton.html("长按下方图片识别二维码支付");
@@ -235,30 +289,30 @@
 //                                                $('.qrcode').show();
 //                                            });
 //                                        }
-                                    }
-                            );
-                        }
-
-                        if (typeof WeixinJSBridge == "undefined") {
-                            if (document.addEventListener) {
-                                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-                            } else if (document.attachEvent) {
-                                document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-                                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
                             }
-                        } else {
-                            onBridgeReady();
+                        );
+                    }
+
+                    if (typeof WeixinJSBridge == "undefined") {
+                        if (document.addEventListener) {
+                            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                        } else if (document.attachEvent) {
+                            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
                         }
                     } else {
-                        alert('服务器异常!');
+                        onBridgeReady();
                     }
-                }, "json"
+                } else {
+                    alert('服务器异常!');
+                }
+            }, "json"
         );
     })
 </script>
 <script type="text/javascript" src="/shop/js/main.js"></script>
 <script>
-    if(is_abroad)
+    if (is_abroad)
         showNotify('根据中华人民共和国务院令第392号《中华人民共和国进出口关税条例》规定，中华人民共和国准许进口的货物、进境物品，海关需收进口关税(每月3笔，每比2000，每年不超过2万元加一起', 8000);
 </script>
 </body>
