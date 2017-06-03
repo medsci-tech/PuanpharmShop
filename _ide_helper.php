@@ -2195,7 +2195,7 @@ namespace Illuminate\Support\Facades {
          */
         public static function increment($key, $value = 1)
         {
-            return \Illuminate\Cache\FileStore::increment($key, $value);
+            return \Illuminate\Cache\RedisStore::increment($key, $value);
         }
         
         /**
@@ -2208,7 +2208,7 @@ namespace Illuminate\Support\Facades {
          */
         public static function decrement($key, $value = 1)
         {
-            return \Illuminate\Cache\FileStore::decrement($key, $value);
+            return \Illuminate\Cache\RedisStore::decrement($key, $value);
         }
         
         /**
@@ -2219,29 +2219,41 @@ namespace Illuminate\Support\Facades {
          */
         public static function flush()
         {
-            \Illuminate\Cache\FileStore::flush();
+            \Illuminate\Cache\RedisStore::flush();
         }
         
         /**
-         * Get the Filesystem instance.
+         * Get the Redis connection instance.
          *
-         * @return \Illuminate\Filesystem\Filesystem 
+         * @return \Predis\ClientInterface 
          * @static 
          */
-        public static function getFilesystem()
+        public static function connection()
         {
-            return \Illuminate\Cache\FileStore::getFilesystem();
+            return \Illuminate\Cache\RedisStore::connection();
         }
         
         /**
-         * Get the working directory of the cache.
+         * Set the connection name to be used.
          *
-         * @return string 
+         * @param string $connection
+         * @return void 
          * @static 
          */
-        public static function getDirectory()
+        public static function setConnection($connection)
         {
-            return \Illuminate\Cache\FileStore::getDirectory();
+            \Illuminate\Cache\RedisStore::setConnection($connection);
+        }
+        
+        /**
+         * Get the Redis database instance.
+         *
+         * @return \Illuminate\Redis\Database 
+         * @static 
+         */
+        public static function getRedis()
+        {
+            return \Illuminate\Cache\RedisStore::getRedis();
         }
         
         /**
@@ -2252,7 +2264,19 @@ namespace Illuminate\Support\Facades {
          */
         public static function getPrefix()
         {
-            return \Illuminate\Cache\FileStore::getPrefix();
+            return \Illuminate\Cache\RedisStore::getPrefix();
+        }
+        
+        /**
+         * Set the cache key prefix.
+         *
+         * @param string $prefix
+         * @return void 
+         * @static 
+         */
+        public static function setPrefix($prefix)
+        {
+            \Illuminate\Cache\RedisStore::setPrefix($prefix);
         }
         
     }         
@@ -10999,6 +11023,115 @@ namespace App\BasicShop\Kdniao\Facades {
     }         
 }
     
+namespace App\BasicShop\Cart\Facades {
+
+    class Cart {
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function addProduct($product_id, $quantity)
+        {
+            return \App\BasicShop\Cart\Cart::addProduct($product_id, $quantity);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function addProducts($product_ids_with_quantities)
+        {
+            return \App\BasicShop\Cart\Cart::addProducts($product_ids_with_quantities);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function removeProduct($product_id, $quantity = 0)
+        {
+            return \App\BasicShop\Cart\Cart::removeProduct($product_id, $quantity);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function addCoupon($coupon_id)
+        {
+            return \App\BasicShop\Cart\Cart::addCoupon($coupon_id);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function totalPrice()
+        {
+            return \App\BasicShop\Cart\Cart::totalPrice();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function adjustedPrice()
+        {
+            return \App\BasicShop\Cart\Cart::adjustedPrice();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function save()
+        {
+            return \App\BasicShop\Cart\Cart::save();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function clear()
+        {
+            return \App\BasicShop\Cart\Cart::clear();
+        }
+        
+        /**
+         * 
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getProducts()
+        {
+            return \App\BasicShop\Cart\Cart::getProducts();
+        }
+        
+        /**
+         * 
+         *
+         * @return int|null 
+         * @static 
+         */
+        public static function getCoupon()
+        {
+            return \App\BasicShop\Cart\Cart::getCoupon();
+        }
+        
+    }         
+}
+    
     
 namespace {
 
@@ -13817,5 +13950,30 @@ if (! function_exists('with')) {
     
     class Kdniao extends \App\BasicShop\Kdniao\Facades\Kdniao {}
     
+    class Cart extends \App\BasicShop\Cart\Facades\Cart {}
+    
 }
 
+namespace Illuminate\Support {
+    /**
+     * Methods commonly used in migrations
+     *
+     * @method Fluent after(string $column) Add the after modifier
+     * @method Fluent charset(string $charset) Add the character set modifier
+     * @method Fluent collation(string $collation) Add the collation modifier
+     * @method Fluent comment(string $comment) Add comment
+     * @method Fluent default(mixed $value) Add the default modifier
+     * @method Fluent first() Select first row
+     * @method Fluent index(string $name = null) Add the in dex clause
+     * @method Fluent on(string $table) `on` of a foreign key
+     * @method Fluent onDelete(string $action) `on delete` of a foreign key
+     * @method Fluent onUpdate(string $action) `on update` of a foreign key
+     * @method Fluent primary() Add the primary key modifier
+     * @method Fluent references(string $column) `references` of a foreign key
+     * @method Fluent nullable() Add the nullable modifier
+     * @method Fluent unique(string $name = null) Add unique index clause
+     * @method Fluent unsigned() Add the unsigned modifier
+     * @method Fluent useCurrent() Add the default timestamp value
+     */
+    class Fluent {}
+}

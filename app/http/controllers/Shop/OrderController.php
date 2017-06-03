@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coupon;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
@@ -114,6 +115,34 @@ class OrderController extends Controller
         }
         $totalFee = $productsFee + $shippingFee + $productTaxFee;
         $payFee = $totalFee - $beansFee;
+
+        if ($coupon_id = $request->input('coupon', null)) {
+            $cut_fee = 0;
+
+            $coupon = Coupon::find($coupon_id);
+            if (!$coupon || $coupon->customer_id != $customer->id) {
+                return response('Wrong coupon!', 500);
+            }
+
+            if ($productsFee < $coupon->couponType->price_required) {
+                return response('Not enough price to use this coupon!', 500);
+            }
+
+            if ($product_id_required = $coupon->couponType->product_id_required) {
+                if (!$this->productsArrayContainsProduct($productArray, $product_id_required)) {
+                    return response('Does not have necessary product!', 500);
+                }
+            }
+
+            if ($coupon_cut_price = $coupon->couponType->cut_price) {
+                $cut_fee = $coupon_cut_price;
+            } elseif ($cut_percentage = $coupon->couponType->cut_percentage) {
+                $cut_fee = $productsFee * (1 - $cut_percentage);
+            }
+
+            $payFee -= $cut_fee;
+        }
+
 //        包邮
 //        if ($productsFee >= 99.0) {
 //            $totalFee = $productsFee;
@@ -141,8 +170,11 @@ class OrderController extends Controller
                 'address_district' => $request->input('address_district'),
                 'address_detail' => $request->input('address_detail'),
                 'idCard' => $request->input('address_idCard'),
+                'coupon_id' => $coupon_id
             ];
-            $outTradeNo .= '-' . Order::create($orderData)->id;
+            $order = Order::create($orderData);
+            $outTradeNo .= '-' . $order->id;
+
         }
 
         if($this->customerID == 4) {
@@ -225,5 +257,18 @@ class OrderController extends Controller
         return view('shop.order.detail', [
             'order' => $order
         ]);
+    }
+
+    private function productsArrayContainsProduct($productID, $product_id_required)
+    {
+        foreach ($productID as $k => $v) {
+            $array = explode('-', $k);
+            $product_id = $array[0];
+            if ($product_id == $product_id_required) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

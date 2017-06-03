@@ -14,11 +14,13 @@ class CreateCouponTypesTable extends Migration
     {
         Schema::create('coupon_types', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->string('type');
-            $table->decimal('price_required')->default(0);
+            $table->decimal('price_required')->nullable();
             $table->unsignedInteger('product_id_required')->nullable();
             $table->decimal('cut_price')->default(0);
             $table->decimal('cut_percentage')->default(0);
+            $table->timestamp('expire_at');
             $table->timestamps();
 
             $table->foreign('product_id_required')->references('id')->on('products');

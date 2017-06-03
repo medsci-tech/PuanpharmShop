@@ -122,4 +122,20 @@ class Cart
     {
         return \Session::remove('cart');
     }
+
+    /**
+     * @return array
+     */
+    public function getProducts(): array
+    {
+        return $this->products;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getCoupon()
+    {
+        return $this->coupon;
+    }
 }

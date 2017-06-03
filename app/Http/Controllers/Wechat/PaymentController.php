@@ -18,7 +18,9 @@ class PaymentController extends Controller
             $outTradeNo = $input['out_trade_no'];
             $idArray = explode("-", $outTradeNo);
             array_shift($idArray);
-            $result = Order::whereIn('id', $idArray)->where('payment_status', 0)->update(['payment_status' => 1, 'out_trade_no' => $input['out_trade_no']]);
+            $order_to_pay = Order::whereIn('id', $idArray)->where('payment_status', 0);
+            $result = $order_to_pay->update(['payment_status' => 1, 'out_trade_no' => $input['out_trade_no']]);
+            $order_to_pay->first()->coupon()->update(['used' => 1]);
             \Log::info('order_result', ['result' => $result]);
             if ($result) {
                 // 迈豆返现

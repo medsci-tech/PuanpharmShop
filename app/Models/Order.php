@@ -223,4 +223,9 @@ class Order extends Model
             ->orWhere('id', 'like', '%' . $seed . '%')
             ->orWhere('customer_id', 'like', '%' . $seed . '%');
     }
+
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class);
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\ProductSpecification;
@@ -227,12 +228,30 @@ class ShopController extends Controller
             }
         }
 
+        $coupon_list = [];
+
+        foreach ($customer->coupons()->where('used', 0)->get() as $coupon) {
+            if ($productFee < $coupon->couponType->price_required) {
+                continue;
+            }
+
+            if ($product_id_required = $coupon->couponType->product_id_required) {
+                if (!$this->productsArrayContainsProduct($productID, $product_id_required)) {
+                    continue;
+                }
+            }
+
+            $coupon_list []= $coupon;
+        }
+
+
         return view('shop.pay', [
             'products' => $products,
             'address' => $address,
             'productFee' => $productFee,
             'beansFee' => $beansFee,
             'is_abroad' => $abroad,
+            'coupons' => $coupon_list,
             'productTaxFee' => $productTaxFee,
         ]);
     }
@@ -300,5 +319,18 @@ class ShopController extends Controller
                 'codeUrl' => \Wechat::getCodeUrl($paymentConfig)
             ]
         ]);
+    }
+
+    private function productsArrayContainsProduct($productID, $product_id_required)
+    {
+        foreach ($productID as $k => $v) {
+            $array = explode('-', $k);
+            $product_id = $array[0];
+            if ($product_id == $product_id_required) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
