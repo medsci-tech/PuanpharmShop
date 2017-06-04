@@ -134,10 +134,10 @@ class OrderController extends Controller
                 }
             }
 
-            if ($coupon_cut_price = $coupon->couponType->cut_price) {
+            if (($coupon_cut_price = $coupon->couponType->cut_price) > 0) {
                 $cut_fee = $coupon_cut_price;
-            } elseif ($cut_percentage = $coupon->couponType->cut_percentage) {
-                $cut_fee = $productsFee * (1 - $cut_percentage);
+            } elseif (($cut_percentage = $coupon->couponType->cut_percentage) > 0  && ($cut_percentage < 1)) {
+                $cut_fee = $productsFee * $cut_percentage;
             }
 
             $payFee -= $cut_fee;
