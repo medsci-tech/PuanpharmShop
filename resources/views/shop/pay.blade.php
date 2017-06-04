@@ -112,7 +112,7 @@
 
             <p>使用优惠券<span class="num rmb">
                     <input type="hidden" id="coupon" name="coupon" value="0">
-                    <a type="button" data-toggle="modal" data-target="#myModal">选择优惠券</a>
+                    <button id="coupon_btn" class="btn-link" type="button" data-toggle="modal" data-target="#myModal">选择优惠券</button>
                 </span>
             </p>
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -126,11 +126,11 @@
                         <div class="modal-body">
                             <ul class="list-unstyled">
                                 @foreach($coupons as $coupon)
-                                    <li class="list-group-item">
-                                        <a style="text-decoration: none!important;" onclick="liclick($coupon)">
+                                    <li>
+                                        <a href="JavaScript:void(0)" style="text-decoration: none!important;" onclick="liclick({{$coupon}})">
                                             <div class="panel panel-info">
                                                 <div class="panel-heading">
-                                                    {{ $coupon-> type }}
+                                                    {{ $coupon->couponType->name }}
                                                 </div>
                                             </div>
                                         </a>
@@ -185,13 +185,14 @@
     var productTaxFee = {{$productTaxFee}};
 
     function liclick(e) {
-        $('#coupon').attr('value',e.id).sibling('a').text(e.type);
-        if(e.cut_price){
-            var fee = (productFee+productTaxFee-e.cut_price).toFixed(2);
+        $('#coupon').attr('value',e.id);
+        $('#coupon_btn').text(e.coupon_type.name);
+        if(e.coupon_type.cut_price){
+            var fee = (productFee+productTaxFee-e.coupon_type.cut_price).toFixed(2);
             $('#priceall').text('￥'+fee);
         }
-        if(e.cut_percentage){
-            var fee = (productFee+productTaxFee-e.cut_price).toFixed(2);
+        if(e.coupon_type.cut_percentage){
+            var fee = (productFee*(1-e.coupon_type.cut_percentage)+productTaxFee).toFixed(2);
             $('#priceall').text('￥'+fee);
         }
         $('#myModal').modal('hide');
