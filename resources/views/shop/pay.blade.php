@@ -112,7 +112,7 @@
 
             <p>使用优惠券<span class="num rmb">
                     <input type="hidden" id="coupon" name="coupon" value="0">
-                    <button class="btn-link" type="button" data-toggle="modal" data-target="#myModal">选择优惠券</button>
+                    <button id="coupon_btn" class="btn-link" type="button" data-toggle="modal" data-target="#myModal">选择优惠券</button>
                 </span>
             </p>
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -127,7 +127,7 @@
                             <ul class="list-unstyled">
                                 @foreach($coupons as $coupon)
                                     <li class="list-group-item">
-                                        <a style="text-decoration: none!important;" onclick="liclick({{$coupon}})">
+                                        <a href="JavaScript:void(0)" style="text-decoration: none!important;" onclick="liclick({{$coupon}})">
                                             <div class="panel panel-info">
                                                 <div class="panel-heading">
                                                     {{ $coupon->couponType->name }}
@@ -185,7 +185,8 @@
     var productTaxFee = {{$productTaxFee}};
 
     function liclick(e) {
-        $('#coupon').attr('value',e.id).sibling('button').text(e.coupon_type.name);
+        $('#coupon').attr('value',e.id);
+        $('#coupon_btn').text(e.coupon_type.name);
         if(e.cut_price){
             var fee = (productFee+productTaxFee-e.cut_price).toFixed(2);
             $('#priceall').text('￥'+fee);
