@@ -127,10 +127,10 @@
                             <ul class="list-unstyled">
                                 @foreach($coupons as $coupon)
                                     <li class="list-group-item">
-                                        <a style="text-decoration: none!important;" onclick="liclick($coupon)">
+                                        <a style="text-decoration: none!important;" onclick="liclick({{$coupon}})">
                                             <div class="panel panel-info">
                                                 <div class="panel-heading">
-                                                    {{ $coupon-> type }}
+                                                    {{ $coupon-> name }}
                                                 </div>
                                             </div>
                                         </a>
@@ -185,7 +185,7 @@
     var productTaxFee = {{$productTaxFee}};
 
     function liclick(e) {
-        $('#coupon').attr('value',e.id).sibling('a').text(e.type);
+        $('#coupon').attr('value',e.id).sibling('a').text(e.name);
         if(e.cut_price){
             var fee = (productFee+productTaxFee-e.cut_price).toFixed(2);
             $('#priceall').text('￥'+fee);
