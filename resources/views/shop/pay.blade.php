@@ -187,11 +187,11 @@
     function liclick(e) {
         $('#coupon').attr('value',e.id);
         $('#coupon_btn').text(e.coupon_type.name);
-        if(e.cut_price){
+        if(e.coupon_type.cut_price){
             var fee = (productFee+productTaxFee-e.cut_price).toFixed(2);
             $('#priceall').text('￥'+fee);
         }
-        if(e.cut_percentage){
+        if(e.coupon_type.cut_percentage){
             var fee = (productFee*(1-e.cut_percentage)+productTaxFee).toFixed(2);
             $('#priceall').text('￥'+fee);
         }
