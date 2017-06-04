@@ -130,7 +130,7 @@
                                         <a style="text-decoration: none!important;" onclick="liclick({{$coupon}})">
                                             <div class="panel panel-info">
                                                 <div class="panel-heading">
-                                                    {{ $coupon-> name }}
+                                                    {{ $coupon->coupon_type->name }}
                                                 </div>
                                             </div>
                                         </a>
@@ -185,13 +185,13 @@
     var productTaxFee = {{$productTaxFee}};
 
     function liclick(e) {
-        $('#coupon').attr('value',e.id).sibling('a').text(e.name);
+        $('#coupon').attr('value',e.id).sibling('button').text(e.coupon_type.name);
         if(e.cut_price){
             var fee = (productFee+productTaxFee-e.cut_price).toFixed(2);
             $('#priceall').text('￥'+fee);
         }
         if(e.cut_percentage){
-            var fee = (productFee+productTaxFee-e.cut_price).toFixed(2);
+            var fee = (productFee*(1-e.cut_percentage)+productTaxFee).toFixed(2);
             $('#priceall').text('￥'+fee);
         }
         $('#myModal').modal('hide');
