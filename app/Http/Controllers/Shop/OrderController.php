@@ -136,7 +136,7 @@ class OrderController extends Controller
 
             if (($coupon_cut_price = $coupon->couponType->cut_price) > 0) {
                 $cut_fee = $coupon_cut_price;
-            } elseif (($cut_percentage = $coupon->couponType->cut_percentage) > 0  && ($cut_percentage < 1)) {
+            } elseif ((($cut_percentage = $coupon->couponType->cut_percentage) > 0)  && ($cut_percentage < 1)) {
                 $cut_fee = $productsFee * $cut_percentage;
             }
 
