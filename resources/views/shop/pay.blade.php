@@ -130,7 +130,7 @@
                                         <a style="text-decoration: none!important;" onclick="liclick({{$coupon}})">
                                             <div class="panel panel-info">
                                                 <div class="panel-heading">
-                                                    {{ $coupon->coupon_type->name }}
+                                                    {{ $coupon->couponType->name }}
                                                 </div>
                                             </div>
                                         </a>
