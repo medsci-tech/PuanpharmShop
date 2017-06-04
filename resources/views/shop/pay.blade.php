@@ -112,7 +112,7 @@
 
             <p>使用优惠券<span class="num rmb">
                     <input type="hidden" id="coupon" name="coupon" value="0">
-                    <a type="button" data-toggle="modal" data-target="#myModal">选择优惠券</a>
+                    <button class="btn-link" type="button" data-toggle="modal" data-target="#myModal">选择优惠券</button>
                 </span>
             </p>
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
