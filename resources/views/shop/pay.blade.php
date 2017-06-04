@@ -126,7 +126,7 @@
                         <div class="modal-body">
                             <ul class="list-unstyled">
                                 @foreach($coupons as $coupon)
-                                    <li class="list-group-item">
+                                    <li>
                                         <a href="JavaScript:void(0)" style="text-decoration: none!important;" onclick="liclick({{$coupon}})">
                                             <div class="panel panel-info">
                                                 <div class="panel-heading">
