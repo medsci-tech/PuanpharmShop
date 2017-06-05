@@ -399,7 +399,7 @@
                         }
                     });
 
-                    $priceValue.text(total);
+                    $priceValue.text(total.toFixed(2));
                     // $('.btn.pay').find('.count').html($checks.filter('.checked').length);
                     $btnPay.val('结算(' + $checks.filter('.checked').length + ')');
                 }
