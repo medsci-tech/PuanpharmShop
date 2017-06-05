@@ -244,4 +244,7 @@ Route::group(['prefix' => 'wx', 'namespace' => 'Wx', 'middleware' => 'wx'], func
 Route::any('ems', 'TestController@ems');
 Route::any('demo', 'TestController@demo');
 
+Route::group(['prefix' => 'outer-api', 'namespace' => 'Shop'], function () {
+    Route::any('add-coupon', 'CouponController@addCoupon');
+});
 

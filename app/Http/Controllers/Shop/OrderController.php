@@ -140,11 +140,17 @@ class OrderController extends Controller
                 $cut_fee = $productsFee * $cut_percentage;
             }
 
-            $payFee -= $cut_fee;
+            if ($payFee >= $cut_fee) {
+                $payFee -= $cut_fee;
+            } else {
+                $payFee = 0;
+            }
+
         }
 
 //        包邮
 //        if ($productsFee >= 99.0) {
+
 //            $totalFee = $productsFee;
 //            $payFee = $totalFee - $beansFee;
 //        } else {
