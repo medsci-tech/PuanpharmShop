@@ -23,5 +23,6 @@ class VerifyCsrfToken extends BaseVerifier
         '/wechat*',
         '/admin/product/excel*',
         '/admin/product/update-puan-id*',
+        '/outer-api/*'
     ];
 }
