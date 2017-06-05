@@ -13,13 +13,17 @@ class OuterApiController extends Controller
 {
     public function addCoupon(Request $request)
     {
-        $this->validate($request, [
+        $validator = \Validator::make($request->all(), [
             'phone' => 'required|exists:customers',
             'coupon_type_id' => 'required|exists:coupon_types,id'
-        ], [
-            'phone' => 'phone error!',
-            'coupon_type_id' => 'coupon_type_id error!'
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error inputs!'
+            ]);
+        }
+
         $phone = $request->input('phone');
         $coupon_type_id = $request->input('coupon_type_id');
         $amount = $request->input('amount', 1);
