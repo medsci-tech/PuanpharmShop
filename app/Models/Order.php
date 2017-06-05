@@ -98,7 +98,8 @@ class Order extends Model
         'address_detail',
         'order_sn',
         'idCard',
-        'ems_num'
+        'ems_num',
+        'coupon_type_id'
     ];
 
     public function customer()
