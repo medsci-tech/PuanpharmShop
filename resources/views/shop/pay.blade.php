@@ -181,18 +181,18 @@
 
 
 <script>
-    var productFee = {{$productFee}};
-    var productTaxFee = {{$productTaxFee}};
+    var productFee = '{{$productFee}}';
+    var productTaxFee = '{{$productTaxFee}}';
 
     function liclick(e) {
         $('#coupon').attr('value',e.id);
         $('#coupon_btn').text(e.coupon_type.name);
-        if(e.coupon_type.cut_price){
-            var fee = (productFee+productTaxFee-e.coupon_type.cut_price).toFixed(2);
+        if(e.coupon_type.cut_price != 0){
+            var fee = (productFee+productTaxFee-e.coupon_type.cut_price+8).toFixed(2);
             $('#priceall').text('￥'+fee);
         }
-        if(e.coupon_type.cut_percentage){
-            var fee = (productFee*(1-e.coupon_type.cut_percentage)+productTaxFee).toFixed(2);
+        if(e.coupon_type.cut_percentage != 0){
+            var fee = (productFee*(1-e.coupon_type.cut_percentage)+productTaxFee+8).toFixed(2);
             $('#priceall').text('￥'+fee);
         }
         $('#myModal').modal('hide');
