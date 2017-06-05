@@ -15,7 +15,7 @@ class OuterApiController extends Controller
     {
         $this->validate($request, [
             'phone' => 'required|exists:customers',
-            'coupon_type_id' => 'required|exists:coupon_types'
+            'coupon_type_id' => 'required|exists:coupon_types,id'
         ]);
         $phone = $request->input('phone');
         $coupon_type_id = $request->input('coupon_type_id');
