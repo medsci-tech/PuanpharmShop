@@ -20,7 +20,7 @@ class OuterApiController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'error inputs!'
+                'success' => 'false'
             ]);
         }
 
