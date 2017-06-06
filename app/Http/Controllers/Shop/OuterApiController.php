@@ -15,7 +15,8 @@ class OuterApiController extends Controller
     {
         $validator = \Validator::make($request->all(), [
             'phone' => 'required|exists:customers',
-            'coupon_type_id' => 'required|exists:coupon_types,id'
+            'coupon_type_id' => 'required|exists:coupon_types,id',
+            'amount' => 'integer|min:1'
         ]);
 
         if ($validator->fails()) {
