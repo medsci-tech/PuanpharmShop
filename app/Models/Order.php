@@ -99,7 +99,7 @@ class Order extends Model
         'order_sn',
         'idCard',
         'ems_num',
-        'coupon_type_id'
+        'coupon_id'
     ];
 
     public function customer()
