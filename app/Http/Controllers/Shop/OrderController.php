@@ -176,7 +176,7 @@ class OrderController extends Controller
                 'address_district' => $request->input('address_district'),
                 'address_detail' => $request->input('address_detail'),
                 'idCard' => $request->input('address_idCard'),
-                'coupon_id' => $coupon_id
+                'coupon_id' => $coupon_id? $coupon_id: null
             ];
             $order = Order::create($orderData);
             $outTradeNo .= '-' . $order->id;
