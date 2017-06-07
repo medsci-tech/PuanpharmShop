@@ -116,8 +116,8 @@ class OrderController extends Controller
         $totalFee = $productsFee + $shippingFee + $productTaxFee;
         $payFee = $totalFee - $beansFee;
 
+        $cut_fee = 0.00;
         if ($coupon_id = $request->input('coupon', null)) {
-            $cut_fee = 0;
 
             $coupon = Coupon::find($coupon_id);
             if (!$coupon || $coupon->customer_id != $customer->id) {
@@ -160,6 +160,7 @@ class OrderController extends Controller
 
         // 创建订单
         $outTradeNo = time();
+//        $orders_count = count($orderProducts);
         foreach ($orderProducts as $supplierID => $supplierProducts) {
             $orderData = [
                 'supplier_id' => $supplierID,
@@ -176,7 +177,10 @@ class OrderController extends Controller
                 'address_district' => $request->input('address_district'),
                 'address_detail' => $request->input('address_detail'),
                 'idCard' => $request->input('address_idCard'),
-                'coupon_id' => $coupon_id? $coupon_id: null
+                'coupon_id' => $coupon_id? $coupon_id: null,
+                'tax_fee' => $productTaxFee,
+                'pay_fee' => $payFee,
+                'cut_fee' =>$cut_fee
             ];
             $order = Order::create($orderData);
             $outTradeNo .= '-' . $order->id;

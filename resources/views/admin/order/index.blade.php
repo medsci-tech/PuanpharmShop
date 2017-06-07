@@ -54,7 +54,12 @@
                             <th class="table-title">供应商</th>
                             <th>商品</th>
                             <th>是否支付</th>
-                            <th>商品总价</th>
+                            <th>订单总价(拆单前)</th>
+                            <th>邮费</th>
+                            <th>税费</th>
+                            <th>优惠券抵扣</th>
+                            <th>实际支付</th>
+                            <th>商品总价（拆单后）</th>
                             <th>迈豆抵扣</th>
                             <th>收获地址</th>
                             <th>下单时间</th>
@@ -80,6 +85,11 @@
                                     @endforeach
                                 </td>
                                 <td>{{$order->payment_status ?'已支付' : '未支付'}}</td>
+                                <td>{{$order->total_fee}}</td>
+                                <td>{{$order->shipping_fee}}</td>
+                                <td>{{$order->tax_fee}}</td>
+                                <td>{{$order->cut_fee}}</td>
+                                <td>{{$order->pay_fee}}</td>
                                 <td>{{$order->products_fee}}</td>
                                 <td>{{$order->beans_fee}}</td>
                                 <td>
