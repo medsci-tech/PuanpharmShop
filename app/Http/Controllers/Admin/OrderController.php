@@ -101,8 +101,11 @@ class OrderController extends Controller
      */
     public function setEMSNum(Request $request)
     {
+        $shipping_type = $request->input('shipping_type');
+        $shipping_no = $request->input('shipping_no');
         $order = Order::find($request->input('order_id'));
-        if ($order->ems_num && $order->supplier_id == 1) {
+        $send_message = $request->input('send_message');
+        if ($order->shipping_no && $order->supplier_id == 1) {
             return response()->json([
                 'success' => false,
                 'data' => [
@@ -110,10 +113,15 @@ class OrderController extends Controller
                 ]
             ]);
         } else {
-            $EMSNum = \EMS::getBillNum();
-            \Message::createMessage($order->address_phone, '顾客您好！您在易康商城的订单['.$order->order_sn.'-'.$order->id.']已经为您发货，EMS发货单号为'.$order->ems_num.'，感谢您的惠顾！');
+            Order::find($request->input('order_id'))->update([
+                'shipping_type' => $shipping_type,
+                'shipping_no' => $shipping_no
+            ]);
+            if ($send_message) {
+                \Message::createMessage($order->address_phone, '顾客您好！您在易康商城的订单['.$order->order_sn.'-'.$order->id.']已经为您发货，发货单号为：【'.$shipping_type.'】'.$shipping_no.'，感谢您的惠顾！');
+            }
             return response()->json([
-                'success' => Order::find($request->input('order_id'))->update(['ems_num' => $EMSNum])
+                'success' => true
             ]);
         }
     }

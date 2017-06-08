@@ -44,9 +44,9 @@
         </div>
 
         <div class="am-g">
-            <div class="am-u-sm-12">
+            <div class="am-u-sm-12 am-text-nowrap am-scrollable-horizontal">
                 <form class="am-form">
-                    <table class="am-table am-table-striped am-table-hover table-main">
+                    <table class="am-table am-table-striped am-table-compact am-table-hover table-main">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -60,10 +60,9 @@
                             <th>优惠券抵扣</th>
                             <th>实际支付</th>
                             <th>商品总价（拆单后）</th>
-                            <th>迈豆抵扣</th>
-                            <th>收获地址</th>
+                            <th>收货地址</th>
                             <th>下单时间</th>
-                            <th>EMS订单号</th>
+                            <th>订单号</th>
                             <th class="table-set">操作</th>
                         </tr>
                         </thead>
@@ -91,19 +90,18 @@
                                 <td>{{$order->cut_fee}}</td>
                                 <td>{{$order->pay_fee}}</td>
                                 <td>{{$order->products_fee}}</td>
-                                <td>{{$order->beans_fee}}</td>
                                 <td>
                                     收货地址：{{$order->address_province.$order->address_city.$order->address_district.$order->address_detail}}
                                     姓名：{{$order->address_name}}电话：{{$order->address_phone}} @if($order->idCard)身份证：{{$order->idCard}}@endif</td>
                                 <td>{{$order->created_at}}</td>
                                 <td>
-                                    @if($order->ems_num)
-                                        {{$order->ems_num}}
+                                    @if($order->shipping_no)
+                                        {{'【'.$order->shipping_type.'】'.$order->shipping_no}}
                                     @elseif($order->supplier_id == 1)
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
                                                 <a type="button" class="am-btn am-btn-success"
-                                                   id="set-num{{ $order->id }}">分配单号</a>
+                                                   id="set-num{{ $order->id }}">填写单号</a>
                                             </div>
                                         </div>
                                     @else
@@ -140,8 +138,15 @@
             <div class="am-modal-bd">
             </div>
             <div class="am-modal-footer">
-                <span class="am-modal-btn" data-am-modal-confirm>是</span>
-                <span class="am-modal-btn" data-am-modal-cancel>否</span>
+                <select name="shipping_type" id="shipping_type">
+                    <option value="圆通">圆通</option>
+                    <option value="顺丰">顺丰</option>
+                </select>
+                <input type="text" id="shipping_no" placeholder="在此填写单号"><br>
+                <input type="checkbox" id="send_message">
+                <label for="send_message">给顾客发送短信提醒</label>
+                <span class="am-modal-btn" data-am-modal-confirm>确认</span>
+                <span class="am-modal-btn" data-am-modal-cancel>关闭</span>
             </div>
         </div>
     </div>
@@ -160,16 +165,23 @@
 
         $(function () {
             $('[id^=set-num]').on('click', function () {
-                $('.am-modal-bd').text('您确定分配EMS订单号?');
+                $('.am-modal-bd').text('请填写订单号');
                 id = this.id.slice(7);
-//                $('#my-confirm').modal({
-//                    relatedTarget: this,
-//                    onConfirm: function (options) {
+                $('#my-confirm').modal({
+                    relatedTarget: this,
+                    onConfirm: function (options) {
+
+                        var shippingNo = $('#shipping_no').val();
+                        var shippingType = $('#shipping_type').val();
+                        var sendMessage = $('#send_message').get(0).checked;
                         $.ajax({
                             url: '/admin/order/set-ems-num',
                             type: 'get',
                             dataType: 'text',
                             data: {
+                                shipping_no: shippingNo,
+                                shipping_type: shippingType,
+                                send_message: sendMessage,
                                 order_id: id
                             },
                             contentType: 'application/json',
@@ -181,10 +193,10 @@
                                 alert(XMLResponse.responseText);
                             }
                         });
-//                    },
-//                    onCancel: function () {
-//                    }
-//                });
+                    },
+                    onCancel: function () {
+                    }
+                });
             });
         });
     </script>
