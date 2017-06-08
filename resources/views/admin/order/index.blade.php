@@ -63,7 +63,6 @@
                             <th>收货地址</th>
                             <th>下单时间</th>
                             <th>订单号</th>
-                            <th class="table-set">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -106,17 +105,6 @@
                                         </div>
                                     @else
                                         ERP
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($order->ems_num && $order->supplier_id == 1)
-                                        <div class="am-btn-toolbar">
-                                            <div class="am-btn-group am-btn-group-xs">
-                                                <a target="_blank" href="/admin/order/ems-print?order_id={{$order->id}}" class="am-btn am-btn-xs am-btn-primary">
-                                                    <span class="am-icon-pencil"></span>打印
-                                                </a>
-                                            </div>
-                                        </div>
                                     @endif
                                 </td>
                             </tr>
