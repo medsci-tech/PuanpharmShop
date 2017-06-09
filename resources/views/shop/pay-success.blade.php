@@ -9,6 +9,7 @@
           content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
 </head>
 
 <body class="empty">
@@ -16,8 +17,9 @@
     <div class="empty-list " style="padding-top:60px;">
         <!-- 文本 -->
         <div class="empty-list-header">
-            <h4>支付成功</h4>
-            <span>您现在可以</span>
+            <h2>支付成功!</h2>
+            <br>
+            <p>您现在可以</p>
         </div>
         <div class="empty-list-content">
             <a href="/shop/index" class="empty-btn">回到首页</a>

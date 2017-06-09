@@ -9,6 +9,7 @@
           content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
 </head>
 <body class="address">
 <main class="content">
@@ -41,7 +42,7 @@
                     </span>
                 </div>
             </div>
-            <div class="block-item" style="padding-right: 0.3rem">
+            <div class="block-item">
                 <label>详细地址</label>
                 <textarea type="text" name="address" class="detail-address" value="" placeholder="街道门牌信息"></textarea>
             </div>

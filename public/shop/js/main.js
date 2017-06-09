@@ -41,7 +41,7 @@
     function validateForm(name, phone, province, city, district, address, zip,idCard) {
         // Todo
         if (!name || name.length < 2) {
-            showNotify('请填写用户名！', 3000);
+            showNotify('请填写用户名！', 2000);
             return false;
         }
 
@@ -50,47 +50,47 @@
             var len = idCard.length;
             if(len<15 || len > 18)
             {
-                showNotify('请输入有效的身份证号码！', 3000);
+                showNotify('请输入有效的身份证号码！', 2000);
                 return false;
             }
         }
 
         if (!phone || !phone.length || !/^\d+$/.test(phone)) {
-            showNotify('请填写电话号码！', 3000);
+            showNotify('请填写电话号码！', 2000);
             return false;
         }
 
         if (!(/^1[3|4|5|7|8]\d{9}$/.test(phone))) {
-            showNotify('手机号码有误！', 3000);
+            showNotify('手机号码有误！', 2000);
             return false;
         }
         // } else if(!/^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/.test(phone)){
-        //     showNotify('固话号码有误！', 3000);
+        //     showNotify('固话号码有误！', 2000);
         //     // return false;
         // } else {
         //     return false;
         // }
 
         if (!province || !province.length || province.indexOf('选择') !== -1) {
-            showNotify('请选择省份！', 3000);
+            showNotify('请选择省份！', 2000);
             return false;
         }
 
         if (!city || !city.length || city.indexOf('选择') !== -1) {
-            showNotify('请选择城市！', 3000);
+            showNotify('请选择城市！', 2000);
             return false;
         }
 
 
         if (district) {
             if (district.indexOf('选择') !== -1) {
-                showNotify('请选择地区！', 3000);
+                showNotify('请选择地区！', 2000);
                 return false;
             }
         }
 
         if (!address || !address.length) {
-            showNotify('请填写详细地址！', 3000);
+            showNotify('请填写详细地址！', 2000);
             return false;
         }
         return true;
@@ -143,7 +143,7 @@
                 var swiperConfig = {
                     pagination: '.swiper-pagination',
                     loop: true,
-                    autoplay: 3000
+                    autoplay: 2000
                 };
                 var swiper = new Swiper('.swiper-container', swiperConfig);
 
@@ -577,7 +577,7 @@
                             setTimeout(function () {
                                 $notify.fadeOut();
                                 showMaskLayer(false);
-                            }, 3000);
+                            }, 2000);
                         }
                     });
                 }
@@ -781,7 +781,7 @@
                 $('.address .footer form .button.save').on('click', function () {
                     var id = $footerForm.find('.selected_address').val();
                     if (!id || !id.length) {
-                        showNotify('请添加地址！', 3000);
+                        showNotify('请添加地址！', 2000);
                         return false;
                     }
                 });
@@ -795,7 +795,7 @@
                     //var $textarea = $('.pay .goods-list .order-msg textarea');
                     //$payForm.find('.user_message').val($textarea.val());
                     //if (!id || !id.length) {
-                    //    showNotify('地址不能为空！', 3000);
+                    //    showNotify('地址不能为空！', 2000);
                     //    return false;
                     //}
                 })
@@ -829,7 +829,7 @@
                         }
                     }).done(function (data) {
                         if (!data.success) {
-                            showNotify('添加地址失败', 3000);
+                            showNotify('添加地址失败', 2000);
                             return false;
                         }
 
@@ -863,7 +863,7 @@
                         showWindow($addressWindow, false);
                         showMaskLayer(false);
 
-                        showNotify('添加地址成功', 3000);
+                        showNotify('添加地址成功', 2000);
 
                     });
                     event.stopPropagation();
@@ -903,7 +903,7 @@
                         }
                     }).done(function (data) {
                         if (!data.success) {
-                            showNotify('更新地址失败', 3000);
+                            showNotify('更新地址失败', 2000);
                             return false;
                         }
 
@@ -921,7 +921,7 @@
                         $address.find('.address-item-address').text(address);
 
 
-                        showNotify('更新地址成功', 3000);
+                        showNotify('更新地址成功', 2000);
                         showWindow($aWindow, false);
 
                     });
@@ -941,9 +941,9 @@
                         }
                     }).done(function (data) {
                         if (!data.success) {
-                            showNotify('删除地址失败', 3000);
+                            showNotify('删除地址失败', 2000);
                         }
-                        showNotify('删除地址成功', 3000);
+                        showNotify('删除地址成功', 2000);
                         showWindow($aWindow, false);
                         var $address = $('.address .address-item[data-address_id="' + id + '"]');
                         $address.remove();
@@ -1010,7 +1010,7 @@
                     }).done(function (data) {
                         if (data.success) {
                             $orderItem.remove();
-                            showNotify('取消订单<br>' + order_id + ' <br>成功!', 3000);
+                            showNotify('取消订单<br>' + order_id + ' <br>成功!', 2000);
 
                             if ($('.order .order-item').length === 0) {
                                 window.location.reload();
@@ -1030,7 +1030,7 @@
                     //             ++index;
                     //             if (index == len && !fail) {
                     //                 $orderItem.remove();
-                    //                 showNotify('取消订单 ' + order_id + ' 成功!', 3000);
+                    //                 showNotify('取消订单 ' + order_id + ' 成功!', 2000);
                     //             }
                     //         } else {
                     //             fail = true;

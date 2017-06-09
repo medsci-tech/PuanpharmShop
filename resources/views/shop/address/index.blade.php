@@ -10,6 +10,7 @@
           content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
 </head>
 <body class="address">
 <main class="content">
@@ -29,7 +30,7 @@
                         <span class="address-item-customer-tel">{{$address['phone']}}</span>
                     </div>
                     <p class="address-item-address">
-                        <!-- {{$address['province'].$address['city'].$address['district'].$address['address']}} -->
+                    <!-- {{$address['province'].$address['city'].$address['district'].$address['address']}} -->
                         <span class="province">{{ $address['province'] }}</span>
                         <span class="city">{{ $address['city'] }}</span>
                         <span class="district">{{ $address['district'] }}</span>
@@ -37,15 +38,14 @@
                     </p>
 
                     <div class="address-edit-container">
-                        <i>i</i>
+                        <i class="fa fa-edit"></i>
                     </div>
                 </div>
             @endforeach
         </div>
         <a class="add-address" href="/shop/address/create">
-            <i class="icon-add"></i>
+            <i class="fa fa-plus"></i>
             <span>新增地址</span>
-            <i class="icon-arrow-right"></i>
         </a>
     </div>
 </main>
@@ -78,10 +78,10 @@
                             <span>
                                 <select name="province" id="province" readonly="true"></select>
                             </span>
-                            <span>
+                    <span>
                                 <select name="city" id="city" readonly="true"></select>
                             </span>
-                            <span>
+                    <span>
                                 <select name="district" id="district" readonly="true"></select>
                             </span>
                 </div>
@@ -110,7 +110,7 @@
             <button type="submit" class="button-text">确认</button>
         </div>
         <div class="button cancle">
-            <a class="button-text">取消</a>
+            <button type="button" class="button-text">取消</button>
         </div>
     </form>
 </nav>

@@ -10,6 +10,7 @@
           content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
     <style>
         .shop-kuaidi100{
             display: inline-block;
@@ -80,9 +81,13 @@
         <p>商品合计<span class="num rmb">&yen;{{$order->products_fee}}</span></p>
 
         <p>邮费<span class="num rmb">&yen;{{$order->shipping_fee}}</span></p>
-
-        <p>迈豆抵扣<span class="num rmb">&yen;{{$order->beans_fee}}</span></p>
-
+        @if($order->beans_fee)
+        <p>迈豆抵扣<span class="num rmb" style="color: #3bb4f2">-&emsp;&yen;{{$order->beans_fee}}</span></p>
+        @endif
+        @if($order->cut_fee)
+        <p>优惠券抵扣<span class="num rmb" style="color: #3bb4f2">-&emsp;&yen;{{$order->cut_fee}}</span></p>
+        @endif
+        <hr>
         <p>实际需付<span class="num rmb" style="color: #f60;font-weight: bold">&yen;{{$order->products_fee-$order->beans_fee+$order->shipping_fee}}</span></p>
     </div>
 

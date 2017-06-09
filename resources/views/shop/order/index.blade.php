@@ -1,4 +1,4 @@
-{{----}}<!doctype html>
+<!doctype html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -10,6 +10,7 @@
           content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
 </head>
 
 @if(count($orders))
@@ -65,7 +66,7 @@
                             下单时间：{{$order->created_at}}
 
                             <span style="float: right"><strong
-                                        style="color: #007aff">&yen;{{$order->products_fee}}</strong></span>
+                                        style="color: red">&yen;{{$order->products_fee}}</strong></span>
                             {{--<div class="btn-group">--}}
 
                             {{--<span class="btn cancel">取消</span>--}}

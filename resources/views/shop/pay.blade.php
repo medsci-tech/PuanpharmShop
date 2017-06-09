@@ -11,6 +11,7 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
 </head>
 <body class="pay" style="background-color: #F8F8F8;font-size:  0.4375rem">
 <main class="content">
@@ -148,7 +149,7 @@
             {{--@else--}}
             {{--<p>实际需付<span class="num rmb" style="color: #f60;font-weight: bold">&yen;{{$productFee + 8}}</span></p>--}}
             {{--@endif--}}
-
+            <hr>
             <p>实际需付<span id="priceall" class="num rmb"
                          style="color: #f60;font-weight: bold">&yen;{{$productFee+$productTaxFee + 8}}</span>
             </p>

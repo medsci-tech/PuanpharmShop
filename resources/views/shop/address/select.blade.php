@@ -10,6 +10,7 @@
           content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
 </head>
 <body class="address">
 <main class="content">
@@ -36,15 +37,14 @@
                     </p>
 
                     <div class="address-edit-container">
-                        <i>i</i>
+                        <i class="fa fa-edit"></i>
                     </div>
                 </div>
             @endforeach
         </div>
         <a class="add-address" href="/shop/address/select-create?is_abroad={{ $is_abroad}}">
-            <i class="icon-add"></i>
+            <i class="fa fa-plus"></i>
             <span>新增地址</span>
-            <i class="icon-arrow-right"></i>
         </a>
     </div>
 </main>
@@ -110,7 +110,7 @@
             <button type="submit" class="button-text">确认</button>
         </div>
         <div class="button cancle">
-            <a class="button-text">取消</a>
+            <button type="button" class="button-text">取消</button>
         </div>
     </form>
 </nav>

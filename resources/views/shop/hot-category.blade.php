@@ -10,11 +10,14 @@
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/swiper.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
 </head>
 <body class="category">
 <main class="content">
     <div class="categories">
-        <h4>热门分类</h4>
+        <div class="block-title" style="margin-top: 5px;"><h2><em>热门</em>分类</h2>
+            <small>C A T E G O R I E S</small>
+        </div>
         <table>
             @foreach($catArrays as $catArray)
                 <tr>
@@ -30,27 +33,53 @@
 </main>
 
 <nav class="footer">
-    <a href="/shop/index" class="home fa fa-home" aria-hidden="true"></a>
-
     <div class="menus">
         <div class="menu">
-            <a href="/shop/hot-category" class="menu-name fa fa-pause-circle">商品分类</a>
+            <a href="/shop/index">
+                <i class="fa fa-home"></i>
+                <p>首页</p>
+            </a>
         </div>
         <div class="menu">
-            <span class="menu-name fa fa-pause-circle">特惠专区</span>
-
+            <a href="/shop/hot-category">
+                <i class="fa fa-list-ul"></i>
+                <p>商品分类</p>
+            </a>
+        </div>
+        <div class="menu">
+            <a href="/shop/activity"></a>
+            <span>
+                <i class="fa fa-shopping-bag"></i>
+                <p>特惠专区</p>
+            </span>
             <div class="sub-menu">
                 <ul>
-                    @foreach($activities as $activity)
-                        <li class="sub-menu-item">
-                            <a href="/shop/activity?activity_id={{$activity->id}}">{{$activity->activity_name}}</a>
-                        </li>
-                    @endforeach
+                    <li class="sub-menu-item">
+                        <a href="/shop/activity?activity_id=1">十元专区</a>
+                    </li>
+                    <li class="sub-menu-item">
+                        <a href="/shop/activity?activity_id=2">糖尿病专区</a>
+                    </li>
+                    <li class="sub-menu-item">
+                        <a href="/shop/activity?activity_id=3">海外直邮</a>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="menu">
-            <a href="/shop/personal" class="menu-name fa fa-pause-circle">个人中心</a>
+            <a href="/shop/cart">
+                @if($cartCount)
+                    <span class="title-num">{{$cartCount}}</span>
+                @endif
+                <i class="fa fa-shopping-cart"></i>
+                <p>购物车</p>
+            </a>
+        </div>
+        <div class="menu">
+            <a href="/shop/personal">
+                <i class="fa fa-user"></i>
+                <p>个人中心</p>
+            </a>
         </div>
     </div>
 </nav>
@@ -60,5 +89,6 @@
 <script type="text/javascript" src="/shop/js/libs/swiper.jquery.min.js"></script>
 <script type="text/javascript" src="/shop/js/libs/jquery.pep.js"></script>
 <script type="text/javascript" src="/shop/js/main.js"></script>
+<script>$('.footer').find('.menu a[href="' + window.location.pathname + '"]').parent().addClass('active');</script>
 </body>
 </html>

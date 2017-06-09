@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/swiper.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
 </head>
 <body class="detail">
 <!--<header>-->
@@ -61,18 +62,19 @@
 
         @if($product->supplier_id == 2)
             <div class="trade-reward">
-                <span class="trade-reward-info" style="font-size: 16px;color: red;font-weight: bold;">此商品由普安药房实际运营并负责发货</span>
+                <span class="trade-reward-info"
+                      style="font-size: 16px;color: red;font-weight: bold;">此商品由普安药房实际运营并负责发货</span>
             </div>
         @endif
 
     </div>
-        {{--<div class="store-info">--}}
-        {{--<div class="store">--}}
-        {{--<a class="store-link fa fa-shopping-bag" href="#">此商品由普安药房实际运营并负责发货</a>--}}
-        {{--</div>--}}
-        {{--<div class="store">--}}
-        {{--<a class="store-link fa fa-map-marker" href="#">线下商店</a>--}}
-        {{--</div>--}}
+    {{--<div class="store-info">--}}
+    {{--<div class="store">--}}
+    {{--<a class="store-link fa fa-shopping-bag" href="#">此商品由普安药房实际运营并负责发货</a>--}}
+    {{--</div>--}}
+    {{--<div class="store">--}}
+    {{--<a class="store-link fa fa-map-marker" href="#">线下商店</a>--}}
+    {{--</div>--}}
     {{--<div class="verification">--}}
     {{--<p class="verify fa fa-check-circle">企业认证</p>--}}
 
@@ -91,28 +93,45 @@
                     {!! $product->detail !!}
                 </div>
                 {{--<div class="tab">--}}
-                    {{--<div class="trade-list-header">--}}
-                        {{--<span class="col">买家</span>--}}
-                        {{--<span class="col">成交时间</span>--}}
-                        {{--<span class="col">数量</span>--}}
-                    {{--</div>--}}
-                    {{--<div class="trade-list">--}}
-                        {{--@foreach($product->orders as $order)--}}
-                            {{--@if($order->payment_status)--}}
-                                {{--<div class="trade block-item">--}}
-                                    {{--<span class="col address-name">{{\App\Models\Customer::find($order->customer_id)->nickname}}</span>--}}
-                                    {{--<span class="col">{{$order->created_at}}</span>--}}
-                                    {{--<span class="col">{{$order->pivot->quantity}}</span>--}}
-                                {{--</div>--}}
-                            {{--@endif--}}
-                        {{--@endforeach--}}
-                    {{--</div>--}}
+                {{--<div class="trade-list-header">--}}
+                {{--<span class="col">买家</span>--}}
+                {{--<span class="col">成交时间</span>--}}
+                {{--<span class="col">数量</span>--}}
+                {{--</div>--}}
+                {{--<div class="trade-list">--}}
+                {{--@foreach($product->orders as $order)--}}
+                {{--@if($order->payment_status)--}}
+                {{--<div class="trade block-item">--}}
+                {{--<span class="col address-name">{{\App\Models\Customer::find($order->customer_id)->nickname}}</span>--}}
+                {{--<span class="col">{{$order->created_at}}</span>--}}
+                {{--<span class="col">{{$order->pivot->quantity}}</span>--}}
+                {{--</div>--}}
+                {{--@endif--}}
+                {{--@endforeach--}}
+                {{--</div>--}}
                 {{--</div>--}}
             </div>
         </div>
     </div>
 </main>
 <nav class="footer">
+    <div class="menus">
+        <div class="menu">
+            <a href="/shop/index">
+                <i class="fa fa-home"></i>
+                <p>首页</p>
+            </a>
+        </div>
+        <div class="menu">
+            <a href="/shop/cart">
+                @if($cartCount)
+                    <span class="title-num">{{$cartCount}}</span>
+                @endif
+                <i class="fa fa-shopping-cart"></i>
+                <p>购物车</p>
+            </a>
+        </div>
+    </div>
     {{--<div class="button chufang on">--}}
     {{--<a class="button-text">需求登记</a>--}}
     {{--</div>--}}
@@ -124,7 +143,7 @@
             <a class="button-text">加入购物车</a>
         </div>
     @else
-        <span class="disabled-buy" style="width: 100%;">不可购买</span>
+        <span class="disabled-buy">不可购买</span>
     @endif
 
 </nav>
@@ -146,7 +165,7 @@
             </p>
         </div>
         <div class="close">
-            <i class="fa fa-times-circle" aria-hidden="true"></i>
+            <i class="fa fa-remove" aria-hidden="true"></i>
         </div>
     </div>
     <div class="window-frame">
