@@ -300,6 +300,11 @@ body.detail {
       background: linear-gradient(to right, #5bc0de, #3bb4f2);
     }
   }
+  .quantity {
+    > div, > input {
+      border-color: #fd8307!important;
+    }
+  }
 }
 
 body.cart {

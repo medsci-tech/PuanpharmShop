@@ -313,7 +313,7 @@
             </p>
         </div>
         <div class="close">
-            <i class="fa fa-times-circle" aria-hidden="true"></i>
+            <i class="fa fa-remove" aria-hidden="true"></i>
         </div>
     </div>
     <div class="window-frame">
