@@ -108,7 +108,8 @@ class ShopController extends Controller
     {
         return view('shop.hot-category', [
             'catArrays' => array_chunk(Category::where('status', 1)->get()->toArray(), 3),
-            'activities' => Activity::all()
+            'activities' => Activity::all(),
+            'cartCount' => sizeof(\Redis::command('HKEYS', ['user_id:' . $this->customerID]))
         ]);
     }
 
