@@ -41,7 +41,6 @@
         <div class="goods-price">
             <span>&yen;</span>
             <span class="current">{{$product->price}}</span>
-            <span class="original">/{{$product->beans}}迈豆</span>
         </div>
         {{--<div class="trade-reward">--}}
         {{--<span class="trade-reward-tag">优惠</span>--}}
@@ -358,17 +357,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="global-cart">
-    <a href="/shop/cart">
-        @if($cartCount)
-            <span class="title-num">{{$cartCount}}</span>
-        @else
-            <span class="title-num">0</span>
-        @endif
-        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-    </a>
 </div>
 
 <div class="notify">
