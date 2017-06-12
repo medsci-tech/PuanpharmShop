@@ -1,5 +1,8 @@
 body {
   background-color: #f7f7f7;
+  a {
+    -webkit-tap-highlight-color: transparent !important;
+  }
 }
 
 header {
@@ -302,7 +305,7 @@ body.detail {
   }
   .quantity {
     > div, > input {
-      border-color: #fd8307!important;
+      border-color: #fd8307 !important;
     }
   }
 }
