@@ -58,10 +58,10 @@
             <div class="sub-menu">
                 <ul>
                     <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=1">十元专区</a>
+                        <a href="/shop/activity?activity_id=1">母婴专区</a>
                     </li>
                     <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=2">糖尿病专区</a>
+                        <a href="/shop/activity?activity_id=2">甜蜜家园</a>
                     </li>
                     <li class="sub-menu-item">
                         <a href="/shop/activity?activity_id=3">海外直邮</a>

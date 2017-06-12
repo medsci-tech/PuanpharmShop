@@ -77,13 +77,13 @@
     <div class="ad-box">
         <dl>
             <dt><a href="/shop/activity?activity_id=2"><img
-                            src="http://o93nlp231.bkt.clouddn.com/%E7%B3%96%E5%B0%BF%E7%97%85%E4%B8%93%E5%8C%BA.jpg"
+                            src="http://o93nlp231.bkt.clouddn.com/%E7%94%9C%E8%9C%9C%E5%AE%B6%E5%9B%AD1.jpg"
                             alt=""/></a></dt>
             <dd><a href="/shop/activity?activity_id=3"><img
                             src="http://o93nlp231.bkt.clouddn.com/%E6%B5%B7%E5%A4%96%E7%9B%B4%E9%82%AE.jpg"
                             alt=""/></a></dd>
             <dd style="margin-top: -0.05rem;"><a href="/shop/activity?activity_id=1"><img
-                            src="http://o93nlp231.bkt.clouddn.com/%E5%8D%81%E5%85%83%E4%B8%93%E5%8C%BA.jpg"
+                            src="http://o93nlp231.bkt.clouddn.com/%E6%AF%8D%E5%A9%B4%E4%B8%93%E5%8C%BA.jpg"
                             alt=""/></a></dd>
         </dl>
     </div>
@@ -142,10 +142,10 @@
             <div class="sub-menu">
                 <ul>
                     <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=1">十元专区</a>
+                        <a href="/shop/activity?activity_id=1">母婴专区</a>
                     </li>
                     <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=2">糖尿病专区</a>
+                        <a href="/shop/activity?activity_id=2">甜蜜家园</a>
                     </li>
                     <li class="sub-menu-item">
                         <a href="/shop/activity?activity_id=3">海外直邮</a>
