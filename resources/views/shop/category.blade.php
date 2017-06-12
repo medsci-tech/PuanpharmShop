@@ -15,6 +15,9 @@
 </head>
 <body class="index">
 <main class="content">
+    <div class="block-title" style="margin-top: 5px;"><h2><em>热门</em>分类</h2>
+        <small>C A T E G O R I E S</small>
+    </div>
     <div class="products products-wrapper">
         @foreach($category->products as $product)
             <a class="product" id="product-{{$product->id}}" href="/shop/detail?id={{$product->id}}">

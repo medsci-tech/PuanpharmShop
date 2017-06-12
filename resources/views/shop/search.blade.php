@@ -27,6 +27,9 @@
 </header>
 <div style="height: 38px;"></div>
 <main class="content">
+     <div class="block-title" style="margin-top: 5px;"><h2><em style="color: #3bb4f2">搜索</em>结果</h2>
+        <small>S E A R C H</small>
+    </div>
     <div class="products products-wrapper">
         @foreach($products as $product)
             <a class="product" id="product-{{$product->id}}" href="/shop/detail?id={{$product->id}}">
