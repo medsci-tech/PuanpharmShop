@@ -95,14 +95,17 @@ header {
 }
 
 .ad-box {
+  background-color: transparent;
   width: auto;
   border: none;
-  margin: 10px;
+  margin: 6px;
   padding: 5px;
-  border-radius: 5px;
   dt, dd {
     width: calc(50% - 8px) !important;
     padding: 4px;
+    img {
+      border-radius: 5px;
+    }
   }
 }
 
