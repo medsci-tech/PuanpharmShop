@@ -25,12 +25,12 @@
                             <div class="customer-info">
                                 <span class="name">收&nbsp;货&nbsp;人&nbsp;：{{$address->name}}</span>
                             </div>
-                            <div class="customer-info">
+                            <div class="customer-info" style="margin-top: 0.1rem;>
                                 @if($is_abroad == 1)
                                     <span class="name">身&nbsp;份&nbsp;证&nbsp;：{{$address->idCard}}</span>
                                 @endif
                             </div>
-                            <div class="customer-info">
+                            <div class="customer-info" style="margin-top: 0.1rem;>
                                 <span class="tel">手&nbsp;机&nbsp;号&nbsp;：{{$address->phone}}</span>
                             </div>
                             <div class="address-detail-info">

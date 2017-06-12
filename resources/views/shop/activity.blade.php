@@ -14,7 +14,7 @@
 </head>
 <body class="index">
 <main class="content">
-    <div class="block-title" style="margin-top: 15px;"><h2><em>特惠</em>专区</h2>
+    <div class="block-title" style="margin-top: 12px;"><h2><em>特惠</em>专区</h2>
         <small>D I S C O U N T</small>
     </div>
     <div class="products products-wrapper">

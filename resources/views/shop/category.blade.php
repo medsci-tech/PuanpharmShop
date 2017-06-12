@@ -15,7 +15,7 @@
 </head>
 <body class="index">
 <main class="content">
-    <div class="block-title" style="margin-top: 5px;"><h2><em>热门</em>分类</h2>
+    <div class="block-title" style="margin-top: 12px;"><h2><em>热门</em>分类</h2>
         <small>C A T E G O R I E S</small>
     </div>
     <div class="products products-wrapper">
