@@ -92,7 +92,7 @@
             </a>
         </div>
         <div class="menu">
-            <a href="/shop/personal">
+            <a href="http://www.ohmate.cn/index.php?g=user&m=center&a=index">
                 <i class="fa fa-user"></i>
                 <p>个人中心</p>
             </a>
