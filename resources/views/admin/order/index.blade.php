@@ -53,6 +53,7 @@
                             <th>微信订单号</th>
                             <th class="table-title">供应商</th>
                             <th>商品</th>
+                            <th>备注</th>
                             <th>是否支付</th>
                             <th>订单总价(拆单前)</th>
                             <th>邮费</th>
@@ -81,6 +82,18 @@
                                             】
                                         @endif
                                     @endforeach
+                                </td>
+                                <td>
+                                    @if($order->remark)
+                                        {{$order->remark}}
+                                    @else
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <a type="button" class="am-btn am-btn-success"
+                                                   id="set-remark{{ $order->id }}">添加备注</a>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </td>
                                 <td>{{$order->payment_status ?'已支付' : '未支付'}}</td>
                                 <td>{{$order->total_fee}}</td>
@@ -138,6 +151,18 @@
             </div>
         </div>
     </div>
+
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm-2">
+        <div class="am-modal-dialog">
+            <div class="am-modal-bd-2">
+            </div>
+            <div class="am-modal-footer">
+                <input type="text" placeholder="在此填写备注" id="remark">
+                <span class="am-modal-btn" data-am-modal-confirm>确认</span>
+                <span class="am-modal-btn" data-am-modal-cancel>关闭</span>
+            </div>
+        </div>
+    </div>
     <script src="/admin/js/jquery.min.js"></script>
     <script type="text/javascript" language="javascript">
         window.onload = function () {
@@ -170,6 +195,39 @@
                                 shipping_no: shippingNo,
                                 shipping_type: shippingType,
                                 send_message: sendMessage,
+                                order_id: id
+                            },
+                            contentType: 'application/json',
+                            async: true,
+                            success: function (data) {
+                                location.reload();
+                            },
+                            error: function (XMLResponse) {
+                                alert(XMLResponse.responseText);
+                            }
+                        });
+                    },
+                    onCancel: function () {
+                    }
+                });
+            });
+        });
+
+        $(function () {
+            $('[id^=set-remark]').on('click', function () {
+                $('.am-modal-bd-2').text('请填写备注');
+                id = this.id.slice(10);
+                $('#my-confirm-2').modal({
+                    relatedTarget: this,
+                    onConfirm: function (options) {
+
+                        var remark = $('#remark').val();
+                        $.ajax({
+                            url: '/admin/order/set-remark',
+                            type: 'get',
+                            dataType: 'text',
+                            data: {
+                                remark: remark,
                                 order_id: id
                             },
                             contentType: 'application/json',

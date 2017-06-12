@@ -126,6 +126,19 @@ class OrderController extends Controller
         }
     }
 
+    public function setRemark(Request $request)
+    {
+        $order = Order::find($request->input('order_id'));
+
+        $order->update([
+            'remark' => $request->input('remark')
+        ]);
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
     public function printEMSOrder(Request $request)
     {
         $order = Order::find($request->input('order_id'));
