@@ -83,7 +83,7 @@
                             src="http://o93nlp231.bkt.clouddn.com/%E6%B5%B7%E5%A4%96%E7%9B%B4%E9%82%AE.jpg"
                             alt=""/></a></dd>
             <dd style="margin-top: 0.03rem;"><a href="/shop/activity?activity_id=1"><img
-                            src="http://o93nlp231.bkt.clouddn.com/%E6%AF%8D%E5%A9%B4%E4%B8%93%E5%8C%BA.jpg"
+                            src="http://o93nlp231.bkt.clouddn.com/%E6%AF%8D%E5%A9%B4%E4%B8%93%E5%8C%BA1.jpg"
                             alt=""/></a></dd>
         </dl>
     </div>
