@@ -45,6 +45,10 @@
                 </div>
             @endif
         </div>
+           <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" style="width: 100%">
+            </div>
+        </div>
     </div>
     <form action="/shop/order/store" method="post" id="pay-form">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
