@@ -10,6 +10,7 @@ use App\Models\Coupon;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\ProductSpecification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Models\Product;
@@ -231,7 +232,7 @@ class ShopController extends Controller
 
         $coupon_list = [];
 
-        foreach ($customer->coupons()->where('used', 0)->get() as $coupon) {
+        foreach ($customer->coupons()->where('used', 0)->where('expire_at', '>', Carbon::now())->get() as $coupon) {
             if ($productFee < $coupon->couponType->price_required) {
                 continue;
             }

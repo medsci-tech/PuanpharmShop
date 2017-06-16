@@ -26,6 +26,12 @@ use function PHPSTORM_META\elementType;
  */
 class Coupon extends Model
 {
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'expire_at'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo | \App\Models\CouponType
      */

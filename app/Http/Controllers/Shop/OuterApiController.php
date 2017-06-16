@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Shop;
 
 use App\Models\Coupon;
 use App\Models\Customer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,9 +15,11 @@ class OuterApiController extends Controller
     public function addCoupon(Request $request)
     {
         $validator = \Validator::make($request->all(), [
-            'phone' => 'required|exists:customers',
+            'phone' => 'exists:customers',
+            'unionid' => 'exists:customers',
             'coupon_type_id' => 'required|exists:coupon_types,id',
-            'amount' => 'integer|min:1'
+            'amount' => 'integer|min:1',
+            'expire_at' => 'date'
         ]);
 
         if ($validator->fails()) {
@@ -26,16 +29,33 @@ class OuterApiController extends Controller
         }
 
         $phone = $request->input('phone');
+        $unionid = $request->input('unionid');
         $coupon_type_id = $request->input('coupon_type_id');
         $amount = $request->input('amount', 1);
+        $expire_at = $request->input('expire_at', null);
 
-        $customer = Customer::where('phone', $phone)->first();
+        if ($phone) {
+            $customer = Customer::where('phone', $phone)->first();
+        } elseif ($unionid) {
+            $customer = Customer::where('unionid', $unionid)->first();
+        } else {
+            return response()->json([
+                'success' => 'false'
+            ]);
+        }
+
+        if ($expire_at) {
+            $expire_at_carbon = Carbon::createFromTimestamp(strtotime($expire_at));
+        } else {
+            $expire_at_carbon = Carbon::now()->addMonth(1);
+        }
 
         for ($i = 0; $i < $amount; $i++) {
             $coupon = new Coupon();
             $coupon->customer_id = $customer->id;
             $coupon->coupon_type_id = $coupon_type_id;
             $coupon->source = '易康伴侣';
+            $coupon->expire_at = $expire_at_carbon;
             $coupon->save();
         }
 
