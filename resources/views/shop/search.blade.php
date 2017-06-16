@@ -27,6 +27,9 @@
 </header>
 <div style="height: 38px;"></div>
 <main class="content">
+     <div class="block-title" style="margin-top: 5px;"><h2><em style="color: #3bb4f2">搜索</em>结果</h2>
+        <small style="color: #3bb4f2">S E A R C H</small>
+    </div>
     <div class="products products-wrapper">
         @foreach($products as $product)
             <a class="product" id="product-{{$product->id}}" href="/shop/detail?id={{$product->id}}">
@@ -71,10 +74,10 @@
             <div class="sub-menu">
                 <ul>
                     <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=1">十元专区</a>
+                        <a href="/shop/activity?activity_id=1">母婴专区</a>
                     </li>
                     <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=2">糖尿病专区</a>
+                        <a href="/shop/activity?activity_id=2">甜蜜家园</a>
                     </li>
                     <li class="sub-menu-item">
                         <a href="/shop/activity?activity_id=3">海外直邮</a>
@@ -92,7 +95,7 @@
             </a>
         </div>
         <div class="menu">
-            <a href="/shop/personal">
+            <a href="http://www.ohmate.cn/index.php?g=user&m=center&a=index">
                 <i class="fa fa-user"></i>
                 <p>个人中心</p>
             </a>

@@ -77,7 +77,7 @@
                                         <div class="btn minus disabled">
                                             <i class="fa fa-minus" aria-hidden="true"></i>
                                         </div>
-                                        <input class="txt" type="text" value="1">
+                                        <input class="txt" type="text" value="1" max="1999">
 
                                         <div class="btn plus">
                                             <i class="fa fa-plus" aria-hidden="true"></i>

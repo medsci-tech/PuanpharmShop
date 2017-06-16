@@ -81,7 +81,7 @@
             </div>
         </div>
         <div class="menu">
-            <a href="/shop/personal" class="menu-name fa fa-pause-circle">个人中心</a>
+            <a href="http://www.ohmate.cn/index.php?g=user&m=center&a=index" class="menu-name fa fa-pause-circle">个人中心</a>
         </div>
     </div>
 </nav>

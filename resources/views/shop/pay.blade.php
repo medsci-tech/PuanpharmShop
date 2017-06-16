@@ -24,12 +24,13 @@
                              data-address_idCard="{{$address->idCard}}">
                             <div class="customer-info">
                                 <span class="name">收&nbsp;货&nbsp;人&nbsp;：{{$address->name}}</span>
+                            </div>
+                            <div class="customer-info" style="margin-top: 0.1rem;>
                                 @if($is_abroad == 1)
                                     <span class="name">身&nbsp;份&nbsp;证&nbsp;：{{$address->idCard}}</span>
                                 @endif
-
                             </div>
-                            <div class="customer-info" style="margin-top: 0.1rem;">
+                            <div class="customer-info" style="margin-top: 0.1rem;>
                                 <span class="tel">手&nbsp;机&nbsp;号&nbsp;：{{$address->phone}}</span>
                             </div>
                             <div class="address-detail-info">
@@ -44,6 +45,10 @@
                     添加收货地址
                 </div>
             @endif
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" style="width: 100%">
+            </div>
         </div>
     </div>
     <form action="/shop/order/store" method="post" id="pay-form">
@@ -128,7 +133,8 @@
                             <ul class="list-unstyled">
                                 @foreach($coupons as $coupon)
                                     <li>
-                                        <a href="JavaScript:void(0)" style="text-decoration: none!important;" onclick="liclick({{$coupon}})">
+                                        <a href="JavaScript:void(0)" style="text-decoration: none!important;"
+                                           onclick="liclick({{$coupon}})">
                                             <div class="panel panel-info">
                                                 <div class="panel-heading">
                                                     {{ $coupon->couponType->name }}
@@ -186,15 +192,15 @@
     var productTaxFee = {{$productTaxFee}};
 
     function liclick(e) {
-        $('#coupon').attr('value',e.id);
+        $('#coupon').attr('value', e.id);
         $('#coupon_btn').text(e.coupon_type.name);
-        if(e.coupon_type.cut_price != '0.00'){
-            var fee = (productFee+productTaxFee-e.coupon_type.cut_price+8).toFixed(2);
-            $('#priceall').text('￥'+fee);
+        if (e.coupon_type.cut_price != '0.00') {
+            var fee = (productFee + productTaxFee - e.coupon_type.cut_price + 8).toFixed(2);
+            $('#priceall').text('￥' + fee);
         }
-        if(e.coupon_type.cut_percentage != '0.00'){
-            var fee = (productFee*(1-e.coupon_type.cut_percentage)+productTaxFee+8).toFixed(2);
-            $('#priceall').text('￥'+fee);
+        if (e.coupon_type.cut_percentage != '0.00') {
+            var fee = (productFee * (1 - e.coupon_type.cut_percentage) + productTaxFee + 8).toFixed(2);
+            $('#priceall').text('￥' + fee);
         }
         $('#myModal').modal('hide');
     }
@@ -222,12 +228,12 @@
         var id = $('.address-detail').attr('data-address_id');
         var idCard = $('.address-detail').attr('data-address_idCard'); //身份证
         if (!id) {
-            showNotify('地址不能为空！', 3000);
+            showNotify('地址不能为空！', 1500);
             return false;
         }
         if (is_abroad) {
             if (!idCard) {
-                showNotify('身份证号码不能为空！', 3000);
+                showNotify('身份证号码不能为空！', 1500);
                 return false;
             }
 
@@ -315,7 +321,7 @@
 <script type="text/javascript" src="/shop/js/main.js"></script>
 <script>
     if (is_abroad)
-        showNotify('根据中华人民共和国务院令第392号《中华人民共和国进出口关税条例》规定，中华人民共和国准许进口的货物、进境物品，海关需收进口关税(每月3笔，每比2000，每年不超过2万元加一起', 8000);
+        showNotify('根据我国相关法律条例，购买进口商品需向海关填报身份信息，并缴纳进口关税。', 4000);
 </script>
 </body>
 </html>

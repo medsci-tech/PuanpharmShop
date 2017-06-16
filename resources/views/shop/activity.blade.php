@@ -14,7 +14,7 @@
 </head>
 <body class="index">
 <main class="content">
-    <div class="block-title" style="margin-top: 15px;"><h2><em>特惠</em>专区</h2>
+    <div class="block-title" style="margin-top: 12px;"><h2><em>特惠</em>专区</h2>
         <small>D I S C O U N T</small>
     </div>
     <div class="products products-wrapper">
@@ -58,10 +58,10 @@
             <div class="sub-menu">
                 <ul>
                     <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=1">十元专区</a>
+                        <a href="/shop/activity?activity_id=1">母婴专区</a>
                     </li>
                     <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=2">糖尿病专区</a>
+                        <a href="/shop/activity?activity_id=2">甜蜜家园</a>
                     </li>
                     <li class="sub-menu-item">
                         <a href="/shop/activity?activity_id=3">海外直邮</a>
@@ -79,7 +79,7 @@
             </a>
         </div>
         <div class="menu">
-            <a href="/shop/personal">
+            <a href="http://www.ohmate.cn/index.php?g=user&m=center&a=index">
                 <i class="fa fa-user"></i>
                 <p>个人中心</p>
             </a>
