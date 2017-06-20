@@ -142,7 +142,7 @@
             <a class="button-text">加入购物车</a>
         </div>
     @else
-        <span class="disabled-buy">不可购买</span>
+        <span class="disabled-buy">库存不足</span>
     @endif
 
 </nav>
