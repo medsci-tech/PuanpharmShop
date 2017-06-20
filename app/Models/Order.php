@@ -66,6 +66,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereTotalFee($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereWxPaymentDetailId($value)
+ * @property string $shipping_type
+ * @property int $coupon_id
+ * @property float $tax_fee
+ * @property float $cut_fee
+ * @property string $idCard 订单身份证号码(冗余字段)
+ * @property-read \App\Models\Coupon $coupon
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereCouponId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereCutFee($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereIdCard($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereShippingType($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereTaxFee($value)
  */
 class Order extends Model
 {

@@ -24,6 +24,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\CouponType whereProductIdRequired($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\CouponType whereType($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\CouponType whereUpdatedAt($value)
+ * @property string $name
+ * @property string $expire_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\CouponType whereExpireAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\CouponType whereName($value)
  */
 class CouponType extends Model
 {

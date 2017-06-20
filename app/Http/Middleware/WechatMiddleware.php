@@ -33,7 +33,10 @@ class WechatMiddleware
             if ($request->has('utm_source')) {
                 $customer->source = $request->input('utm_source');
             }
+
             $customer->save();
+
+            $customer->deliverStashedCoupons();
         } elseif (!$customer->unionid) {
             $customer->unionid = $wechatUser['unionid'];
             $customer->save();

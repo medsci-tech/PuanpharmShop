@@ -23,6 +23,10 @@ use function PHPSTORM_META\elementType;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Coupon whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Coupon whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Coupon whereUsed($value)
+ * @property string $source
+ * @property \Carbon\Carbon $expire_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Coupon whereExpireAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Coupon whereSource($value)
  */
 class Coupon extends Model
 {

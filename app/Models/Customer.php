@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -146,5 +147,31 @@ class Customer extends Model
         $date = explode('-', $month);
         $nextMonth = $date[0] . '-0' . ++$date[1];
         return BeanLog::where('customer_id', $this->id)->where('created_at', '>', $month)->where('created_at', '<', $nextMonth)->orderBy('created_at', 'desc')->get();
+    }
+
+    public function deliverStashedCoupons()
+    {
+        if (!$this->unionid) {
+            return;
+        }
+
+        $stashed_coupons = StashedCoupon::where('unionid', $this->unionid)->where('delivered', 0)->get();
+
+        if ($stashed_coupons->count()) {
+            foreach ($stashed_coupons as $stashed_coupon) {
+                \DB::transaction(function () use ($stashed_coupon) {
+                    $coupon = new Coupon();
+                    $coupon->customer_id = $this->id;
+                    $coupon->coupon_type_id = $stashed_coupon->coupon_type_id;
+                    $coupon->source = $stashed_coupon->source;
+                    $coupon->expire_at = $stashed_coupon->expire_at;
+                    $coupon->save();
+
+                    $stashed_coupon->delivered = 1;
+                    $stashed_coupon->delivered_at = Carbon::now();
+                    $stashed_coupon->save();
+                });
+            }
+        }
     }
 }

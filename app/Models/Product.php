@@ -63,6 +63,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereViewCounts($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereWeight($value)
+ * @property int $is_abroad 是否海淘商品 是:1 0:否
+ * @property float $price_tax 海淘税费
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product whereIsAbroad($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product wherePriceTax($value)
  */
 class Product extends Model
 {

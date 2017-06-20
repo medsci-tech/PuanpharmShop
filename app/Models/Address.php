@@ -33,6 +33,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Address whereProvince($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Address whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Address whereZipcode($value)
+ * @property string $idCard 身份证号码
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Address whereIdCard($value)
  */
 class Address extends Model
 {
