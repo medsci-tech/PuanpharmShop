@@ -505,6 +505,118 @@ body.pay {
       box-shadow: 1px 1px 3px #666;
     }
   }
+
+  .modal {
+    $colors: (1, #E83928), (2, #F8B62C), (3, #2FA8E1);
+    $bgc: #f3f3f3;
+    background-color: $bgc;
+    .modal-body {
+      background-color: $bgc;
+    }
+    .coupon-list {
+      background-color: #fff;
+      margin: 0 0 15px;
+      border-radius: 5px;
+      border-top: 10px solid #aaa;
+      .coupon-header {
+        padding: 10px 15px 0;
+        border-bottom: 2px dashed #eee;
+      }
+      .coupon-body {
+        padding: 5px 15px;
+      }
+      .coupon-name {
+        vertical-align: top;
+        width: calc(100% - 110px);
+        font-size: 24px;
+        display: inline-block;
+      }
+      .coupon-cut {
+        text-align: right;
+        line-height: normal;
+        width: 105px;
+        font-size: 50px;
+        display: inline-block;
+        font-weight: bold;
+        small {
+          font-size: 24px;
+        }
+      }
+      .coupon-detail {
+        width: calc(100% - 75px);
+        font-size: 80%;
+        display: inline-block;
+        p {
+          color: #333 !important;
+          font-size: 80%;
+          margin: 0;
+          padding: 0;
+          &:first-child {
+            font-size: 120%;
+          }
+        }
+      }
+      .coupon-link {
+        vertical-align: top;
+        margin-top: 15px;
+        font-size: 80%;
+        display: inline-block;
+        text-align: center;
+        a {
+          text-decoration: none;
+          width: 70px;
+          border-radius: 10px;
+          background-color: #aaa;
+          font-size: 120%;
+          display: inline-block;
+          padding: 2px 2px;
+          color: #fff;
+        }
+        .coupon-used, .coupon-overdue {
+          background-color: rgba(255, 255, 255, 0);
+          border: 2px solid #aaa;
+          color: #aaa;
+          text-shadow: 1px 1px #fff;
+          font-weight: bold;
+          border-radius: 3px;
+        }
+        .coupon-used {
+          position: relative;
+          transform: rotate(35deg);
+          top: -70px;
+          right: -15px;
+        }
+      }
+      .coupon-circle-1 {
+        left: -6px;
+        float: left;
+        top: -7px;
+        position: relative;
+        border-radius: 6px;
+        border: 6px solid $bgc;
+      }
+      .coupon-circle-2 {
+        right: -6px;
+        float: right;
+        top: -7px;
+        position: relative;
+        border-radius: 6px;
+        border: 6px solid $bgc;
+      }
+    }
+    @each $type, $color in $colors {
+      .coupon-style-#{$type} {
+        border-color: $color;
+        .coupon-name, .coupon-cut, .coupon-detail p:first-child {
+          color: $color!important;
+        }
+        .coupon-link a {
+          background-color: $color;
+        }
+      }
+    }
+  }
+
 }
 
 body.address {
@@ -640,4 +752,128 @@ body.order {
     }
   }
 }
+
+body.coupon {
+  $colors: (1, #E83928), (2, #F8B62C), (3, #2FA8E1);
+  $bgc: #f3f3f3;
+  background-color: $bgc;
+  .coupon-list {
+    background-color: #fff;
+    margin: 15px;
+    border-radius: 5px;
+    border-top: 10px solid #aaa;
+    .coupon-header {
+      padding: 10px 15px 0;
+      border-bottom: 2px dashed #aaa;
+    }
+    .coupon-body {
+      padding: 5px 15px;
+    }
+    .coupon-name {
+      vertical-align: top;
+      width: calc(100% - 110px);
+      font-size: 24px;
+      display: inline-block;
+    }
+    .coupon-cut {
+      text-align: right;
+      line-height: normal;
+      width: 105px;
+      font-size: 50px;
+      display: inline-block;
+      font-weight: bold;
+      small {
+        font-size: 24px;
+      }
+    }
+    .coupon-detail {
+      width: calc(100% - 75px);
+      font-size: 80%;
+      display: inline-block;
+      p {
+        &:first-child {
+          font-size: 120%;
+        }
+        margin: 0;
+      }
+    }
+    .coupon-link {
+      vertical-align: top;
+      margin-top: 15px;
+      font-size: 80%;
+      display: inline-block;
+      text-align: center;
+      a {
+        text-decoration: none;
+        width: 70px;
+        border-radius: 10px;
+        background-color: #aaa;
+        font-size: 120%;
+        display: inline-block;
+        padding: 2px 2px;
+        color: #fff;
+      }
+      .coupon-used, .coupon-overdue {
+        background-color: rgba(255,255,255,0);
+        border: 2px solid #aaa;
+        color: #aaa;
+        text-shadow: 1px 1px #fff;
+        font-weight: bold;
+        border-radius: 3px;
+      }
+      .coupon-used {
+        position: relative;
+        transform: rotate(35deg);
+        top: -70px;
+        right: -15px;
+      }
+    }
+    .coupon-circle-1 {
+      left: -6px;
+      float: left;
+      top: -7px;
+      position: relative;
+      border-radius: 6px;
+      border: 6px solid $bgc;
+    }
+    .coupon-circle-2 {
+      right: -6px;
+      float: right;
+      top: -7px;
+      position: relative;
+      border-radius: 6px;
+      border: 6px solid $bgc;
+    }
+  }
+  .nav-tabs {
+    background-color: #fff;
+    box-shadow: 2px 0 2px #aaa;
+    border: none;
+    li {
+      width: 33%;
+      text-align: center;
+      a {
+        border: none;
+        color: #555;
+      }
+    }
+    .active>a{
+      border: none;
+      border-bottom: 2px solid red;
+      color: red;
+    }
+  }
+  @each $type, $color in $colors {
+    .coupon-style-#{$type} {
+      border-color: $color;
+      .coupon-name, .coupon-cut, .coupon-detail p:first-child {
+        color: $color;
+      }
+      .coupon-link a {
+        background-color: $color;
+      }
+    }
+  }
+}
+
 

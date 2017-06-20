@@ -26,154 +26,172 @@
                                 <span class="name">收&nbsp;货&nbsp;人&nbsp;：{{$address->name}}</span>
                             </div>
                             <div class="customer-info" style="margin-top: 0.1rem;>
-                                @if($is_abroad == 1)
-                                    <span class="name">身&nbsp;份&nbsp;证&nbsp;：{{$address->idCard}}</span>
-                                @endif
-                            </div>
-                            <div class="customer-info" style="margin-top: 0.1rem;>
-                                <span class="tel">手&nbsp;机&nbsp;号&nbsp;：{{$address->phone}}</span>
-                            </div>
-                            <div class="address-detail-info">
-                                <p>收货地址：{{$address->province.$address->city.$address->district.$address->address}}
-                                </p>
-                            </div>
+                            @if($is_abroad == 1)
+                                    <span class=" name
+                            ">身&nbsp;份&nbsp;证&nbsp;：{{$address->idCard}}</span>
+                            @endif
                         </div>
+                        <div class="customer-info" style="margin-top: 0.1rem;>
+                                <span class=" tel
+                        ">手&nbsp;机&nbsp;号&nbsp;：{{$address->phone}}</span>
+                    </div>
+                    <div class="address-detail-info">
+                        <p>收货地址：{{$address->province.$address->city.$address->district.$address->address}}
+                        </p>
                     </div>
                 </div>
-            @else
-                <div class="empty-address-tip item on">
-                    添加收货地址
-                </div>
-            @endif
+        </div>
+    </div>
+    @else
+        <div class="empty-address-tip item on">
+            添加收货地址
+        </div>
+        @endif
         </div>
         <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped" style="width: 100%">
             </div>
         </div>
-    </div>
-    <form action="/shop/order/store" method="post" id="pay-form">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        @if($address)
-            <input type="hidden" name="address_phone" value="{{$address->phone}}">
-            <input type="hidden" name="address_name" value="{{$address->name}}">
-            @if($is_abroad == 1)<input type="hidden" name="address_idCard" value="{{$address->idCard}}">@endif
-            <input type="hidden" name="address_province" value="{{$address->province}}">
-            <input type="hidden" name="address_city" value="{{$address->city}}">
-            <input type="hidden" name="address_district" value="{{$address->district}}">
-            <input type="hidden" name="address_detail" value="{{$address->address}}">
-        @endif
-        <div class="goods-list">
-            <div class="header">
-                <span class="shop">商品列表</span>
-            </div>
-            <div class="goods">
-                @foreach($products as $product)
-                    <input type="hidden"
-                           name="product[{{sizeof($product->specification) ?$product->id.'-'.$product->specification->id :$product->id}}]"
-                           value="{{$product->quantity}}"/>
-                    <div class="cart-item">
-                        <div class="cart-info">
-                            <a href="/shop/detail?id={{$product->id}}" class="preview">
-                                <img src="{{$product->logo}}" alt="">
-                            </a>
-
-                            <div class="detail">
-                                <a href="/shop/detail?id={{$product->id}}" class="goods-link">
-                                    <h3 class="goods-title">{{$product->name}}</h3>
+        </div>
+        <form action="/shop/order/store" method="post" id="pay-form">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            @if($address)
+                <input type="hidden" name="address_phone" value="{{$address->phone}}">
+                <input type="hidden" name="address_name" value="{{$address->name}}">
+                @if($is_abroad == 1)<input type="hidden" name="address_idCard" value="{{$address->idCard}}">@endif
+                <input type="hidden" name="address_province" value="{{$address->province}}">
+                <input type="hidden" name="address_city" value="{{$address->city}}">
+                <input type="hidden" name="address_district" value="{{$address->district}}">
+                <input type="hidden" name="address_detail" value="{{$address->address}}">
+            @endif
+            <div class="goods-list">
+                <div class="header">
+                    <span class="shop">商品列表</span>
+                </div>
+                <div class="goods">
+                    @foreach($products as $product)
+                        <input type="hidden"
+                               name="product[{{sizeof($product->specification) ?$product->id.'-'.$product->specification->id :$product->id}}]"
+                               value="{{$product->quantity}}"/>
+                        <div class="cart-item">
+                            <div class="cart-info">
+                                <a href="/shop/detail?id={{$product->id}}" class="preview">
+                                    <img src="{{$product->logo}}" alt="">
                                 </a>
 
-                                <p class="goods-weight">{{sizeof($product->specification) ? $product->specification->specification_name : $product->default_spec}}</p>
-                            </div>
-                            <div class="count">
-                                <p class="price">
-                                    <span class="unit">&yen;</span>
-                                    <span class="value">{{sizeof($product->specification) ?$product->specification->specification_price :$product->price}}</span>
-                                </p>
+                                <div class="detail">
+                                    <a href="/shop/detail?id={{$product->id}}" class="goods-link">
+                                        <h3 class="goods-title">{{$product->name}}</h3>
+                                    </a>
 
-                                <div class="num">
-                                    <p class="value">{{$product->quantity}}</p>
+                                    <p class="goods-weight">{{sizeof($product->specification) ? $product->specification->specification_name : $product->default_spec}}</p>
+                                </div>
+                                <div class="count">
+                                    <p class="price">
+                                        <span class="unit">&yen;</span>
+                                        <span class="value">{{sizeof($product->specification) ?$product->specification->specification_price :$product->price}}</span>
+                                    </p>
+
+                                    <div class="num">
+                                        <p class="value">{{$product->quantity}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
-        <div class="block-item price">
-            <p>商品合计<span class="num rmb">&yen;{{$productFee}}</span></p>
-            {{--@if($productFee >= 99)--}}
-            {{--<p>邮费<span class="num rmb"><b>商品满99包邮</b></span></p>--}}
-            {{--@else--}}
-            {{--<p>邮费<span class="num rmb">&yen;8</span></p>--}}
-            {{--@endif--}}
+            <div class="block-item price">
+                <p>商品合计<span class="num rmb">&yen;{{$productFee}}</span></p>
+                {{--@if($productFee >= 99)--}}
+                {{--<p>邮费<span class="num rmb"><b>商品满99包邮</b></span></p>--}}
+                {{--@else--}}
+                {{--<p>邮费<span class="num rmb">&yen;8</span></p>--}}
+                {{--@endif--}}
 
-            @if($is_abroad == 1)
-                <p>进口税<span class="num rmb">&yen;{{$productTaxFee}}</span></p>
-            @endif
+                @if($is_abroad == 1)
+                    <p>进口税<span class="num rmb">&yen;{{$productTaxFee}}</span></p>
+                @endif
 
-            <p>邮费<span class="num rmb">&yen;8</span></p>
+                <p>邮费<span class="num rmb">&yen;8</span></p>
 
-            {{--<p>迈豆抵扣<span class="num rmb">&yen;{{$beansFee}} &nbsp;&nbsp;&nbsp;<span--}}
-            {{--style="color: #00b7ee">[{{$beansFee*100}}迈豆]</span></span></p>--}}
+                {{--<p>迈豆抵扣<span class="num rmb">&yen;{{$beansFee}} &nbsp;&nbsp;&nbsp;<span--}}
+                {{--style="color: #00b7ee">[{{$beansFee*100}}迈豆]</span></span></p>--}}
 
-            <p>使用优惠券<span class="num rmb">
+                <p>使用优惠券<span class="num rmb">
                     <input type="hidden" id="coupon" name="coupon" value="0">
                     <button id="coupon_btn" class="btn-link" type="button" data-toggle="modal" data-target="#myModal">选择优惠券</button>
                 </span>
-            </p>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="gridSystemModalLabel">选择优惠券</h4>
-                        </div>
-                        <div class="modal-body">
-                            <ul class="list-unstyled">
-                                @foreach($coupons as $coupon)
-                                    <li>
-                                        <a href="JavaScript:void(0)" style="text-decoration: none!important;"
-                                           onclick="liclick({{$coupon}})">
-                                            <div class="panel panel-info">
-                                                <div class="panel-heading">
-                                                    {{ $coupon->couponType->name }}
+                </p>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">选择优惠券</h4>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="list-unstyled">
+                                    @foreach($coupons as $coupon)
+                                        <li class="coupon-list
+                                        @if( $coupon->couponType->type == "产品券" )
+                                                coupon-style-1
+                                        @elseif( $coupon->couponType->type == "现金券")
+                                                coupon-style-2
+                                        @elseif( $coupon->couponType->type == "满减券")
+                                                coupon-style-3
+                                        @endif
+                                                ">
+                                            <a href="JavaScript:void(0)" style="text-decoration: none!important;"
+                                               onclick="liclick({{$coupon}})">
+                                                <div class="coupon-header">
+                                                    <div class=coupon-name>{{ $coupon->couponType->type }}</div>
+                                                    <div class="coupon-cut"><small>￥</small>{{ round($coupon->couponType->cutPrice) }}</div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
+                                                <div class="coupon-circle-1"></div>
+                                                <div class="coupon-circle-2"></div>
+                                                <div class="coupon-body">
+                                                    <div class="coupon-detail">
+                                                        <p>{{ $coupon->couponType->name }}</p>
+                                                        <p>使用条件请查看商品详情页的满减规则</p>
+                                                        <p>有效期至：{{ $coupon->expireAt }}</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
+                {{--@if($productFee >= 99)--}}
+                {{--<p>实际需付<span class="num rmb" style="color: #f60;font-weight: bold">&yen;{{$productFee}}</span></p>--}}
+                {{--@else--}}
+                {{--<p>实际需付<span class="num rmb" style="color: #f60;font-weight: bold">&yen;{{$productFee + 8}}</span></p>--}}
+                {{--@endif--}}
+                <hr>
+                <p>实际需付<span id="priceall" class="num rmb"
+                             style="color: #f60;font-weight: bold">&yen;{{$productFee+$productTaxFee + 8}}</span>
+                </p>
             </div>
+            <div class="confirm">
+                <input type="hidden" name="address_id" class="selected_address"
+                       value="">
+                <button type="button" class="next" id="pay-weixin">微信支付</button>
+                {{--<button type="submit" class="next">提交</button>--}}
+            </div>
+            <div class="qrcode" style="width: 60%;margin: 0 auto; margin-top: 10px; display: none">
+                <h4 style="width: 100%;text-align: center;margin-bottom: 0.3rem;">微信扫描付款</h4>
 
+                <p style="width: 100%;text-align: center;">长按图片识别二维码支付</p>
 
-            {{--@if($productFee >= 99)--}}
-            {{--<p>实际需付<span class="num rmb" style="color: #f60;font-weight: bold">&yen;{{$productFee}}</span></p>--}}
-            {{--@else--}}
-            {{--<p>实际需付<span class="num rmb" style="color: #f60;font-weight: bold">&yen;{{$productFee + 8}}</span></p>--}}
-            {{--@endif--}}
-            <hr>
-            <p>实际需付<span id="priceall" class="num rmb"
-                         style="color: #f60;font-weight: bold">&yen;{{$productFee+$productTaxFee + 8}}</span>
-            </p>
-        </div>
-        <div class="confirm">
-            <input type="hidden" name="address_id" class="selected_address"
-                   value="">
-            <button type="button" class="next" id="pay-weixin">微信支付</button>
-            {{--<button type="submit" class="next">提交</button>--}}
-        </div>
-        <div class="qrcode" style="width: 60%;margin: 0 auto; margin-top: 10px; display: none">
-            <h4 style="width: 100%;text-align: center;margin-bottom: 0.3rem;">微信扫描付款</h4>
-
-            <p style="width: 100%;text-align: center;">长按图片识别二维码支付</p>
-
-            <p style="width: 100%;text-align: center;margin-top: 0.3rem;"><a href="/shop/order">支付成功点我跳转</a></p>
-        </div>
-    </form>
+                <p style="width: 100%;text-align: center;margin-top: 0.3rem;"><a href="/shop/order">支付成功点我跳转</a></p>
+            </div>
+        </form>
 </main>
 <div class="mask-layer">
 </div>
