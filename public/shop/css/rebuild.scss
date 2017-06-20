@@ -524,7 +524,7 @@ body.pay {
       border-top: 10px solid #aaa;
       .coupon-header {
         padding: 10px 15px 0;
-        border-bottom: 2px dashed #eee;
+        border-bottom: 2px dashed $bgc;
       }
       .coupon-body {
         padding: 5px 15px;
@@ -768,7 +768,7 @@ body.coupon {
     border-top: 10px solid #aaa;
     .coupon-header {
       padding: 10px 15px 0;
-      border-bottom: 2px dashed #aaa;
+      border-bottom: 2px dashed $bgc;
     }
     .coupon-body {
       padding: 5px 15px;
