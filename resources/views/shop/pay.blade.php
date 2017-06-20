@@ -134,7 +134,15 @@
                             <div class="modal-body">
                                 <ul class="list-unstyled">
                                     @foreach($coupons as $coupon)
-                                        <li class="coupon-list @if( $coupon->couponType->type == "产品券" || $coupon->couponType->type == "兑换券" )coupon-style-1@elseif( $coupon->couponType->type == "现金券")coupon-style-2@elseif( $coupon->couponType->type == "满减券")coupon-style-3@endif">
+                                        <li class="coupon-list
+                                            @if( $coupon->couponType->type == "产品券" || $coupon->couponType->type == "兑换券" )
+                                                coupon-style-1
+                                            @elseif( $coupon->couponType->type == "现金券")
+                                                coupon-style-2
+                                            @elseif( $coupon->couponType->type == "满减券")
+                                                coupon-style-3
+                                            @endif
+                                        ">
                                             <a href="JavaScript:void(0)" style="text-decoration: none!important;"
                                                onclick="liclick({{$coupon}})">
                                                 <div class="coupon-header">

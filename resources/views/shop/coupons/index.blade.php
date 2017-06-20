@@ -26,7 +26,14 @@
     <div role="tabpanel" class="tab-pane active" id="coupons1">
         <ul class="list-unstyled">
             @foreach($coupons as $coupon) @if( $coupon->used == "0" )
-            <li class="coupon-list @if( $coupon->couponType->type == "产品券" )coupon-style-1@elseif( $coupon->couponType->type == "现金券")coupon-style-2@elseif( $coupon->couponType->type == "满减券")coupon-style-3@endif">
+            <li class="coupon-list @if( $coupon->couponType->type == "产品券"  || $coupon->couponType->type == "兑换券" )
+                    coupon-style-1
+                                   @elseif( $coupon->couponType->type == "现金券")
+                    coupon-style-2
+                                   @elseif( $coupon->couponType->type == "满减券")
+                    coupon-style-3
+                                   @endif
+            ">
                 <div class="coupon-header">
                     <div class=coupon-name>{{ $coupon->couponType->type }}</div>
                     <div class="coupon-cut"><small>￥</small>{{ round($coupon->couponType->cut_price) }}</div>
