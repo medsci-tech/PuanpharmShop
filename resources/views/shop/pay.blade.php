@@ -134,20 +134,12 @@
                             <div class="modal-body">
                                 <ul class="list-unstyled">
                                     @foreach($coupons as $coupon)
-                                        <li class="coupon-list
-                                        @if( $coupon->couponType->type == "产品券" )
-                                                coupon-style-1
-                                        @elseif( $coupon->couponType->type == "现金券")
-                                                coupon-style-2
-                                        @elseif( $coupon->couponType->type == "满减券")
-                                                coupon-style-3
-                                        @endif
-                                                ">
+                                        <li class="coupon-list @if( $coupon->couponType->type == "产品券" || $coupon->couponType->type == "兑换券" )coupon-style-1@elseif( $coupon->couponType->type == "现金券")coupon-style-2@elseif( $coupon->couponType->type == "满减券")coupon-style-3@endif">
                                             <a href="JavaScript:void(0)" style="text-decoration: none!important;"
                                                onclick="liclick({{$coupon}})">
                                                 <div class="coupon-header">
                                                     <div class=coupon-name>{{ $coupon->couponType->type }}</div>
-                                                    <div class="coupon-cut"><small>￥</small>{{ round($coupon->couponType->cutPrice) }}</div>
+                                                    <div class="coupon-cut"><small>￥</small>{{ round($coupon->couponType->cut_price) }}</div>
                                                 </div>
                                                 <div class="coupon-circle-1"></div>
                                                 <div class="coupon-circle-2"></div>
@@ -155,7 +147,7 @@
                                                     <div class="coupon-detail">
                                                         <p>{{ $coupon->couponType->name }}</p>
                                                         <p>使用条件请查看商品详情页的满减规则</p>
-                                                        <p>有效期至：{{ $coupon->expireAt }}</p>
+                                                        <p>有效期至：{{ $coupon->expire_at }}</p>
                                                     </div>
                                                 </div>
                                             </a>

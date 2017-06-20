@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -25,18 +26,10 @@
     <div role="tabpanel" class="tab-pane active" id="coupons1">
         <ul class="list-unstyled">
             @foreach($coupons as $coupon) @if( $coupon->used == "0" )
-            <li class="coupon-list
-                @if( $coupon->couponType->type == "产品券" )
-                       coupon-style-1
-                @elseif( $coupon->couponType->type == "现金券")
-                       coupon-style-2
-                @elseif( $coupon->couponType->type == "满减券")
-                       coupon-style-3
-                @endif"
-            >
+            <li class="coupon-list @if( $coupon->couponType->type == "产品券" )coupon-style-1@elseif( $coupon->couponType->type == "现金券")coupon-style-2@elseif( $coupon->couponType->type == "满减券")coupon-style-3@endif">
                 <div class="coupon-header">
                     <div class=coupon-name>{{ $coupon->couponType->type }}</div>
-                    <div class="coupon-cut"><small>￥</small>{{ round($coupon->couponType->cutPrice) }}</div>
+                    <div class="coupon-cut"><small>￥</small>{{ round($coupon->couponType->cut_price) }}</div>
                 </div>
                 <div class="coupon-circle-1"></div>
                 <div class="coupon-circle-2"></div>
@@ -44,14 +37,18 @@
                     <div class="coupon-detail">
                         <p>{{ $coupon->couponType->name }}</p>
                         <p>使用条件请查看商品详情页的满减规则</p>
-                        <p>有效期至：{{ $coupon->expireAt }}</p>
+                        <p>有效期至：{{ $coupon->expire_at }}</p>
                     </div>
                     <div class="coupon-link">
-                        <a>去使用></a>
+                        @if($coupon->couponType->product_id_required)
+                            <a href="/shop/detail?id={{$coupon->couponType->product_id_required}}">去使用></a>
+                        @else
+                            <a href="/shop/index">去使用></a>
+                        @endif
                     </div>
                 </div>
             </li>
-            @endif@endforeach
+            @endif @endforeach
         </ul>
     </div>
     <div role="tabpanel" class="tab-pane" id="coupons2"> <ul class="list-unstyled">
@@ -59,7 +56,7 @@
             <li class="coupon-list">
                 <div class="coupon-header">
                     <div class=coupon-name>{{ $coupon->couponType->type }}</div>
-                    <div class="coupon-cut"><small>￥</small>{{ round($coupon->couponType->cutPrice) }}</div>
+                    <div class="coupon-cut"><small>￥</small>{{ round($coupon->couponType->cut_price) }}</div>
                 </div>
                 <div class="coupon-circle-1"></div>
                 <div class="coupon-circle-2"></div>
@@ -67,21 +64,21 @@
                     <div class="coupon-detail">
                         <p>{{ $coupon->couponType->name }}</p>
                         <p>使用条件请查看商品详情页的满减规则</p>
-                        <p>有效期至：{{ $coupon->expireAt }}</p>
+                        <p>有效期至：{{ $coupon->expire_at }}</p>
                     </div>
                     <div class="coupon-link">
                         <a class="coupon-used">已使用</a>
                     </div>
                 </div>
             </li>
-            @endif@endforeach
+            @endif @endforeach
         </ul></div>
     <div role="tabpanel" class="tab-pane" id="coupons3"> <ul class="list-unstyled">
-            @foreach($coupons as $coupon) @if( $coupon->used == "0" && strtotime($coupon->expireAt)<=time())
+            @foreach($coupons as $coupon) @if( $coupon->used == "0" && strtotime($coupon->expire_at)<=time())
             <li class="coupon-list">
                 <div class="coupon-header">
                     <div class=coupon-name>{{ $coupon->couponType->type }}</div>
-                    <div class="coupon-cut"><small>￥</small>{{ round($coupon->couponType->cutPrice) }}</div>
+                    <div class="coupon-cut"><small>￥</small>{{ round($coupon->couponType->cut_price) }}</div>
                 </div>
                 <div class="coupon-circle-1"></div>
                 <div class="coupon-circle-2"></div>
@@ -89,11 +86,11 @@
                     <div class="coupon-detail">
                         <p>{{ $coupon->couponType->name }}</p>
                         <p>使用条件请查看商品详情页的满减规则</p>
-                        <p>有效期至：{{ $coupon->expireAt }}</p>
+                        <p>有效期至：{{ $coupon->expire_at }}</p>
                     </div>
                 </div>
             </li>
-            @endif@endforeach
+            @endif @endforeach
         </ul></div>
 </div>
 
