@@ -23,7 +23,10 @@ class CouponController extends Controller
 
     public function index()
     {
-        return Customer::find($this->customerID)->coupons;
+        $coupons = Customer::find($this->customerID)->coupons;
+        return view('shop.coupons.index', [
+            'coupons' => $coupons
+        ]);
     }
 
     public function applyInCart(Request $request)

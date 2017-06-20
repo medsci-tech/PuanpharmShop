@@ -42,6 +42,7 @@ Route::group(['prefix' => 'shop', 'namespace' => 'Shop', 'middleware' => 'wechat
     Route::any('/order', 'OrderController@index');
     Route::any('/product-list', 'ShopController@productList');
     Route::any('/product-specifications', 'ShopController@productSpecifications');
+    Route::any('/coupons', 'CouponController@index');
 
     Route::group(['prefix' => 'cart'], function () {
         Route::any('add', 'CartController@add');
