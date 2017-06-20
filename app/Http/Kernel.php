@@ -52,5 +52,6 @@ class Kernel extends HttpKernel
         'wechat' => \App\Http\Middleware\WechatMiddleware::class,
         'member' => \App\Http\Middleware\MemberMiddleware::class,
         'wx' => \App\Http\Middleware\WxMiddleware::class,
+        'outer-api-token' => \App\Http\Middleware\OuterApiTokenMiddleware::class,
     ];
 }
