@@ -25,7 +25,7 @@
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="coupons1">
         <ul class="list-unstyled">
-            @foreach($coupons as $coupon) @if( $coupon->used == "0" )
+            @foreach($coupons as $coupon) @if( $coupon->used == "0" && strtotime($coupon->expire_at)>=time())
             <li class="coupon-list @if( $coupon->couponType->type == "产品券"  || $coupon->couponType->type == "兑换券" )
                     coupon-style-1
                                    @elseif( $coupon->couponType->type == "现金券")
@@ -81,7 +81,7 @@
             @endif @endforeach
         </ul></div>
     <div role="tabpanel" class="tab-pane" id="coupons3"> <ul class="list-unstyled">
-            @foreach($coupons as $coupon) @if( $coupon->used == "0" && strtotime($coupon->expire_at)<=time())
+            @foreach($coupons as $coupon) @if( $coupon->used == "0" && strtotime($coupon->expire_at)<time())
             <li class="coupon-list">
                 <div class="coupon-header">
                     <div class=coupon-name>{{ $coupon->couponType->type }}</div>
