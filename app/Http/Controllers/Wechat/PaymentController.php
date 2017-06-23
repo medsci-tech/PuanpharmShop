@@ -22,6 +22,9 @@ class PaymentController extends Controller
             $result = $order_to_pay->update(['payment_status' => 1, 'out_trade_no' => $input['out_trade_no']]);
             $order_to_pay->first()->coupon()->update(['used' => 1]);
             \Log::info('order_result', ['result' => $result]);
+
+            $this->addProductSoldCount($order_to_pay->get());
+
             if ($result) {
                 // 迈豆返现
                 // $beansResult = $customer->consumeBackBeans($input['total_fee'] / 100 * config('bean.bean_consume_rate'));
@@ -81,6 +84,18 @@ class PaymentController extends Controller
             }
         } else {
             return 'FAIL';
+        }
+    }
+
+    public function addProductSoldCount($orders)
+    {
+        /** @var Order $order */
+        foreach ($orders as $order) {
+            foreach ($order->products as $product) {
+                $quantity = $product->pivot->quantity;
+                $product->sold_count += $quantity;
+                $product->save();
+            }
         }
     }
 }
