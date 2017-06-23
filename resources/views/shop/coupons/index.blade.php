@@ -32,6 +32,8 @@
                     coupon-style-2
                                    @elseif( $coupon->couponType->type == "满减券")
                     coupon-style-3
+                                   @else
+                    coupon-style-1
                                    @endif
             ">
                 <div class="coupon-header">

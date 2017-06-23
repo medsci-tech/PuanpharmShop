@@ -141,6 +141,8 @@
                                                 coupon-style-2
                                             @elseif( $coupon->couponType->type == "满减券")
                                                 coupon-style-3
+                                            @else
+                                                coupon-style-1
                                             @endif
                                         ">
                                             <a href="JavaScript:void(0)" style="text-decoration: none!important;"

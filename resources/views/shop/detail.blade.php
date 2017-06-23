@@ -48,14 +48,18 @@
         {{--</div>--}}
         <div class="goods-info">
             @if($product->default_spec)
-                <div class="specifications specifications">
+                <div class="specifications">
                     <span class="info-name">规格:</span>
                     <span class="info">{{$product->default_spec}}</span>
                 </div>
             @endif
-            <div class="specifications" style="border-bottom: 0.03125rem solid #f2f2f2;">
+            <div class="specifications">
                 <span class="info-name">运费:</span>
                 <span class="info">&yen; 8.00</span>
+            </div>
+            <div class="specifications">
+                <span class="info-name">已售出:</span>
+                <span class="info">{{$product->sold_count}}&nbsp;件</span>
             </div>
         </div>
 

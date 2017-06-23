@@ -101,6 +101,7 @@
                 <div class="product-info">
                     <p class="product-price">
                         <span class="price">&yen;{{$product->price}}</span>
+                        <span class="sold-count">已售:{{$product->sold_count}}件</span>
                     </p>
 
                     <p class="product-name">{{$product->name}}</p>
