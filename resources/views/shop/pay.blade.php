@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
-</head>
+<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script><script type="text/javascript" src="/shop/js/libs/flexible.js"></script></head>
 <body class="pay" style="background-color: #F8F8F8;font-size:  0.4375rem">
 <main class="content">
     <div class="express" is_abroad="{{$is_abroad}}">
@@ -201,8 +201,7 @@
     <p class="notify-inner"></p>
 </div>
 
-<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
-<script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
+
 <script type="text/javascript" src="/shop/js/components.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 

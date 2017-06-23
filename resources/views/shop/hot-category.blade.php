@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('/shop/css/swiper.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
-</head>
+<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script><script type="text/javascript" src="/shop/js/libs/flexible.js"></script></head>
 <body class="category">
 <main class="content">
     <div class="categories">
@@ -84,8 +84,7 @@
     </div>
 </nav>
 
-<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
-<script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
+
 <script type="text/javascript" src="/shop/js/libs/swiper.jquery.min.js"></script>
 <script type="text/javascript" src="/shop/js/libs/jquery.pep.js"></script>
 <script type="text/javascript" src="/shop/js/main.js"></script>

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('/personal/css/member.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
-</head>
+<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script><script type="text/javascript" src="/shop/js/libs/flexible.js"></script></head>
 <body class="personal">
 <header>
 
@@ -86,8 +86,7 @@
     </div>
 </nav>
 
-<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
-<script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
+
 <script type="text/javascript" src="/shop/js/main.js"></script>
 </body>
 </html>

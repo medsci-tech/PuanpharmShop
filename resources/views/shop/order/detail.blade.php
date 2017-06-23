@@ -31,7 +31,7 @@
             font-weight: bold;
         }
     </style>
-</head>
+<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script><script type="text/javascript" src="/shop/js/libs/flexible.js"></script></head>
 <body class="pay" style="background-color: #FAFAFA;font-size: 0.375rem;">
 <main class="content">
     <div class="goods-list">
@@ -123,8 +123,7 @@
     @endif
 </main>
 
-<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
-<script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
+
 <script type="text/javascript" src="/shop/js/components.js"></script>
 
 <script type="text/javascript">
