@@ -63,4 +63,27 @@ class OuterApiController extends Controller
             'success' => true
         ]);
     }
+
+    public function countOfAvailableCoupons(Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            'unionid' => 'required|exists:customers'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => 'false'
+            ]);
+        }
+
+        $unionid = $request->input('unionid');
+
+        $customer = Customer::where('unionid', $unionid)->first();
+        $count = $customer->coupons()->where('used', 0)->where('expire_at', '>', Carbon::now())->count();
+
+        return response()->json([
+            'success' => 'true',
+            'count' => $count
+        ]);
+    }
 }

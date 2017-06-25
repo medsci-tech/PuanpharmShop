@@ -248,5 +248,6 @@ Route::any('demo', 'TestController@demo');
 
 Route::group(['prefix' => 'outer-api', 'namespace' => 'Shop', 'middleware' => 'outer-api-token'], function () {
     Route::any('add-coupon', 'OuterApiController@addCoupon');
+    Route::any('count-of-available-coupons', 'OuterApiController@countOfAvailableCoupons');
 });
 
