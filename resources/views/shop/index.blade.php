@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('/shop/css/swiper.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
-</head>
+<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script><script type="text/javascript" src="/shop/js/libs/flexible.js"></script></head>
 <body class="index">
 <!--提示框-->
 @if(!empty($fromUrl) && $fromUrl=='tnb')
@@ -101,6 +101,7 @@
                 <div class="product-info">
                     <p class="product-price">
                         <span class="price">&yen;{{$product->price}}</span>
+                        <span class="sold-count">已售:{{$product->sold_count}}件</span>
                     </p>
 
                     <p class="product-name">{{$product->name}}</p>
@@ -223,8 +224,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
-<script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
+
 <script type="text/javascript" src="/shop/js/libs/swiper.jquery.min.js"></script>
 <script type="text/javascript" src="/shop/js/components.js"></script>
 <script type="text/javascript" src="/shop/js/libs/jquery.pep.js"></script>

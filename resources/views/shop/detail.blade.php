@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('/shop/css/swiper.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
-</head>
+<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script><script type="text/javascript" src="/shop/js/libs/flexible.js"></script></head>
 <body class="detail">
 <!--<header>-->
 <!---->
@@ -48,14 +48,18 @@
         {{--</div>--}}
         <div class="goods-info">
             @if($product->default_spec)
-                <div class="specifications specifications">
+                <div class="specifications">
                     <span class="info-name">规格:</span>
                     <span class="info">{{$product->default_spec}}</span>
                 </div>
             @endif
-            <div class="specifications" style="border-bottom: 0.03125rem solid #f2f2f2;">
+            <div class="specifications">
                 <span class="info-name">运费:</span>
                 <span class="info">&yen; 8.00</span>
+            </div>
+            <div class="specifications">
+                <span class="info-name">已售出:</span>
+                <span class="info">{{$product->sold_count}}&nbsp;件</span>
             </div>
         </div>
 
@@ -368,8 +372,7 @@
         document.getElementById("file-name").value = this.value;
     };
 </script>
-<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
-<script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
+
 <script type="text/javascript" src="/shop/js/libs/swiper.jquery.min.js"></script>
 <script type="text/javascript" src="/shop/js/components.js"></script>
 <script type="text/javascript" src="/shop/js/libs/jquery.pep.js"></script>

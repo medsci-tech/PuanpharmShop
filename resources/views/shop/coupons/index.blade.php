@@ -11,7 +11,7 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/shop/css/font-awesome.min.css">
     <link rel="stylesheet" href="/shop/css/rebuild.css">
-</head>
+<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script><script type="text/javascript" src="/shop/js/libs/flexible.js"></script></head>
 <body class="coupon">
 <!-- Nav tabs -->
 <ul class="nav nav-tabs navbar-fixed-top" role="tablist">
@@ -32,6 +32,8 @@
                     coupon-style-2
                                    @elseif( $coupon->couponType->type == "满减券")
                     coupon-style-3
+                                   @else
+                    coupon-style-1
                                    @endif
             ">
                 <div class="coupon-header">
