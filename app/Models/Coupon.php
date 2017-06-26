@@ -33,8 +33,10 @@ class Coupon extends Model
     protected $dates = [
         'created_at',
         'updated_at',
-        'expire_at'
+        'expire_at',
     ];
+
+    protected $guarded = [];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo | \App\Models\CouponType
