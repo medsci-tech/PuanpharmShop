@@ -18,7 +18,7 @@ class PaymentController extends Controller
             $outTradeNo = $input['out_trade_no'];
             $idArray = explode("-", $outTradeNo);
             array_shift($idArray);
-            $order_to_pay = Order::whereIn('id', $idArray)->where('payment_status', 0);
+            $order_to_pay = Order::whereIn('id', $idArray);
             \Log::info('order_to_pay', ['a' => $order_to_pay->first()]);
             $order_to_pay->first()->coupon()->update(['used' => 1]);
             $result = $order_to_pay->update(['payment_status' => 1, 'out_trade_no' => $input['out_trade_no']]);
