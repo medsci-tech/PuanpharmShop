@@ -187,7 +187,7 @@ class OrderController extends Controller
 
         }
 
-        if($this->customerID == 4) {
+        if($this->customerID == 1028) {
             $paymentConfig = [
                 'body' => '普安易康',
                 'out_trade_no' => $outTradeNo,
