@@ -20,6 +20,7 @@ class PaymentController extends Controller
             array_shift($idArray);
             $order_to_pay = Order::whereIn('id', $idArray)->where('payment_status', 0);
             $result = $order_to_pay->update(['payment_status' => 1, 'out_trade_no' => $input['out_trade_no']]);
+            \Log::info('order_to_pay', ['a' => $order_to_pay]);
             $order_to_pay->first()->coupon()->update(['used' => 1]);
             \Log::info('order_result', ['result' => $result]);
 
