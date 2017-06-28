@@ -105,7 +105,7 @@ class OrderController extends Controller
         $shipping_no = $request->input('shipping_no');
         $order = Order::find($request->input('order_id'));
         $send_message = $request->input('send_message');
-        if ($order->shipping_no && $order->supplier_id == 1) {
+        if ($order->shipping_no) {
             return response()->json([
                 'success' => false,
                 'data' => [

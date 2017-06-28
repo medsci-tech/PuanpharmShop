@@ -109,15 +109,13 @@
                                 <td>
                                     @if($order->shipping_no)
                                         {{'【'.$order->shipping_type.'】'.$order->shipping_no}}
-                                    @elseif($order->supplier_id == 1)
+                                    @else
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
                                                 <a type="button" class="am-btn am-btn-success"
                                                    id="set-num{{ $order->id }}">填写单号</a>
                                             </div>
                                         </div>
-                                    @else
-                                        ERP
                                     @endif
                                 </td>
                             </tr>
