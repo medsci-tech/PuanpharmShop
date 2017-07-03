@@ -38,6 +38,8 @@ class PaymentController extends Controller
                 $customer = Customer::where('openid', $input['openid'])->first();
                 $customer->wxPaymentDetails()->create($input);
 
+                $this->callForOuterConsumeAction($customer, $idArray);
+
                 // 扣除易康迈豆
                 $order = Order::find($idArray[0]);
                 if ($customer->unionid) {
@@ -101,5 +103,59 @@ class PaymentController extends Controller
                 $product->save();
             }
         }
+    }
+
+    /**
+     * @param Customer $customer
+     * @param          $id_array
+     */
+    public function callForOuterConsumeAction($customer, $id_array)
+    {
+        try {
+            \Log::info('outer api log: '. $customer->id . ' ' . implode("-", $id_array));
+            $unionid = $customer->unionid;
+
+            if (Order::where('customer_id', $customer->id)->where('payment_status', 1)->whereNotIn('id', $id_array)->count() == 0) {
+                $this->callOrderFirstApi($unionid);
+            }
+
+            $money = Order::whereIn('id', $id_array)->get()->sum('pay_fee');
+
+            $this->callOrderBuyApi($unionid, $money);
+        } catch (\Exception $exception) {
+            \Log::error('call outer api exception: '. $exception->getMessage());
+        }
+    }
+
+    /**
+     * @param $unionid
+     * @return \Curl\Curl
+     */
+    public static function callOrderFirstApi($unionid)
+    {
+        $curl = new Curl();
+        $time = time();
+        $a = env('OUTER_API_PHASE_A');
+        $b = env('OUTER_API_PHASE_B');
+        $token = sha1($a.$unionid.$time.$b);
+
+        return $curl->get('http://www.ohmate.cn/index.php?g=api&m=puan&a=order_first&un=' . $unionid . '&time=' . $time . '&token=' . $token);
+    }
+
+
+    /**
+     * @param $unionid
+     * @param $money
+     * @return \Curl\Curl
+     */
+    public static function callOrderBuyApi($unionid, $money)
+    {
+        $curl = new Curl();
+        $time = time();
+        $a = env('OUTER_API_PHASE_A');
+        $b = env('OUTER_API_PHASE_B');
+        $token = sha1($a.$unionid.$money.$time.$b);
+
+        return $curl->get('http://www.ohmate.cn/index.php?g=api&m=puan&a=order_buy&un=' . $unionid . '&money=' . $money . '&time=' . $time . '&token=' . $token);
     }
 }
