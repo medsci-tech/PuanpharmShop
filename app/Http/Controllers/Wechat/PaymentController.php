@@ -116,6 +116,7 @@ class PaymentController extends Controller
             $unionid = $customer->unionid;
 
             if (Order::where('customer_id', $customer->id)->where('payment_status', 1)->whereNotIn('id', $id_array)->count() == 0) {
+                \Log::info('first order!');
                 $this->callOrderFirstApi($unionid);
             }
 
