@@ -51,7 +51,7 @@ class OrderController extends Controller
     public function index()
     {
         $customer = Customer::find($this->customerID);
-        $orders = $customer->ordersWithProducts()->get();
+        $orders = $customer->ordersWithProducts()->orderBy('created_at', 'desc')->get();
         return view('shop.order.index', [
             'orders' => $orders
         ]);
