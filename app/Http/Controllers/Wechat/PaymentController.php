@@ -117,12 +117,18 @@ class PaymentController extends Controller
 
             if (Order::where('customer_id', $customer->id)->where('payment_status', 1)->whereNotIn('id', $id_array)->count() == 0) {
                 \Log::info('first order!');
-                $this->callOrderFirstApi($unionid);
+                $result = $this->callOrderFirstApi($unionid);
+
+                \Log::info('first order result: '.$result->response);
+
             }
 
             $money = Order::whereIn('id', $id_array)->get()->sum('pay_fee');
+            \Log::info('call outer api');
 
-            $this->callOrderBuyApi($unionid, $money);
+            $result = $this->callOrderBuyApi($unionid, $money);
+            \Log::info('first order result: '.$result->response);
+
         } catch (\Exception $exception) {
             \Log::error('call outer api exception: '. $exception->getMessage());
         }
