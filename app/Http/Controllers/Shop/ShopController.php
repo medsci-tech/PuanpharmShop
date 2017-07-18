@@ -46,7 +46,7 @@ class ShopController extends Controller
         $fromUrl = Input::get('fromUrl');
         $categories = array_chunk(Category::where('is_banner', 1)->get()->toArray(), 8);
         return view('shop.index', [
-            'products' => Product::where('supplier_id', 1)->orderBy('weight', 'desc')->get(),
+            'products' => Product::where('supplier_id', 1)->whereIn('display_setting', ['普安商城', '普安商城和奶粉商城'])->orderBy('weight', 'desc')->get(),
             'catArrays' => $categories,
             'activities' => Activity::all(),
             'cartCount' => sizeof(\Redis::command('HKEYS', ['user_id:' . $this->customerID])),
@@ -55,6 +55,22 @@ class ShopController extends Controller
             'fromUrl' => $fromUrl
         ]);
     }
+
+    public function babyIndex()
+    {
+        $fromUrl = Input::get('fromUrl');
+        \Session::put('baby', 1);
+        $categories = array_chunk(Category::where('is_banner', 1)->get()->toArray(), 8);
+        return view('shop.index', [
+            'products' => Product::where('supplier_id', 1)->whereIn('display_setting', ['奶粉商城', '普安商城和奶粉商城'])->orderBy('weight', 'desc')->get(),
+            'catArrays' => $categories,
+            'activities' => Activity::all(),
+            'cartCount' => sizeof(\Redis::command('HKEYS', ['user_id:' . $this->customerID])),
+            'banners' => Banner::where('baby', 1)->orderBy('weight', 'desc')->get(),
+            'fromUrl' => $fromUrl
+        ]);
+    }
+
 
     /**
      * @param Request $request

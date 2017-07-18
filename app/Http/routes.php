@@ -31,6 +31,7 @@ Route::group(['prefix' => 'shop', 'namespace' => 'Shop', 'middleware' => 'wechat
     Route::any('/test', 'ShopController@test');
     Route::any('/get_code_url', 'ShopController@getCodeUrl');
     Route::any('/index', 'ShopController@index');
+    Route::any('/baby-index', 'ShopController@babyIndex');
     Route::any('/search', 'ShopController@search');
     Route::any('/category', 'ShopController@category');
     Route::any('/activity', 'ShopController@activity');
