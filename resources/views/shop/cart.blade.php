@@ -124,7 +124,11 @@
             </div>
             <!-- 自定义html，和上面的可以并存 -->
             <div class="empty-list-content">
-                <a href="/shop/index" class="empty-btn">去逛逛</a>
+                @if(!Session::get('baby'))
+                    <a href="/shop/index" class="empty-btn">去逛逛</a>
+                @else
+                    <a href="/shop/baby-index" class="empty-btn">去逛逛</a>
+                @endif
             </div>
         </div>
     </main>

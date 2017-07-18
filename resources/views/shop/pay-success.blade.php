@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="{{ asset('/shop/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
-<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script><script type="text/javascript" src="/shop/js/libs/flexible.js"></script></head>
+    <script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
+</head>
 
 <body class="empty">
 <main class="content">
@@ -22,7 +24,11 @@
             <p>您现在可以</p>
         </div>
         <div class="empty-list-content">
-            <a href="/shop/index" class="empty-btn">回到首页</a>
+            @if(!Session::get('baby'))
+                <a href="/shop/index" class="empty-btn">回到首页</a>
+            @else
+                <a href="/shop/baby-index" class="empty-btn">回到首页</a>
+            @endif
             <a href="/shop/order" class="empty-btn">查看订单</a>
         </div>
     </div>

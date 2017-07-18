@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="{{ asset('/shop/css/swiper.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
-<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script><script type="text/javascript" src="/shop/js/libs/flexible.js"></script></head>
+    <script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
+</head>
 <body class="index">
 <!--提示框-->
 @if(!empty($fromUrl) && $fromUrl=='tnb')
@@ -122,19 +124,15 @@
     </div>
 </main>
 
-<nav class="footer">
-    <div class="menus">
-        <div class="menu">
-            @if(!Session::get('baby'))
+@if(!Session::get('baby'))
+    <nav class="footer">
+        <div class="menus">
+            <div class="menu">
                 <a href="/shop/index">
-            @else
-                <a href="/shop/baby-index">
-            @end
                     <i class="fa fa-home"></i>
-                <p>首页</p>
-            </a>
-        </div>
-        @if(!Session::get('baby'))
+                    <p>首页</p>
+                </a>
+            </div>
             <div class="menu">
                 <a href="/shop/hot-category">
                     <i class="fa fa-list-ul"></i>
@@ -161,24 +159,50 @@
                     </ul>
                 </div>
             </div>
-        @endif
-        <div class="menu">
-            <a href="/shop/cart">
-                @if($cartCount)
-                    <span class="title-num">{{$cartCount}}</span>
-                @endif
-                <i class="fa fa-shopping-cart"></i>
-                <p>购物车</p>
-            </a>
+            <div class="menu">
+                <a href="/shop/cart">
+                    @if($cartCount)
+                        <span class="title-num">{{$cartCount}}</span>
+                    @endif
+                    <i class="fa fa-shopping-cart"></i>
+                    <p>购物车</p>
+                </a>
+            </div>
+            <div class="menu">
+                <a href="http://www.ohmate.cn/index.php?g=user&m=center&a=index">
+                    <i class="fa fa-user"></i>
+                    <p>个人中心</p>
+                </a>
+            </div>
         </div>
-        <div class="menu">
-            <a href="http://www.ohmate.cn/index.php?g=user&m=center&a=index">
-                <i class="fa fa-user"></i>
-                <p>个人中心</p>
-            </a>
+    </nav>
+@else
+    <nav class="footer">
+        <div class="menus">
+            <div class="menu" style="width: 33.3%">
+                <a href="/shop/baby-index">
+                    <i class="fa fa-home"></i>
+                    <p>首页</p>
+                </a>
+            </div>
+            <div class="menu" style="width: 33.3%">
+                <a href="/shop/cart">
+                    @if($cartCount)
+                        <span class="title-num">{{$cartCount}}</span>
+                    @endif
+                    <i class="fa fa-shopping-cart"></i>
+                    <p>购物车</p>
+                </a>
+            </div>
+            <div class="menu" style="width: 33.3%">
+                <a href="/order">
+                    <i class="fa fa-list"></i>
+                    <p>订单管理</p>
+                </a>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+@endif
 
 <div class="mask-layer">
 
@@ -268,20 +292,20 @@
         });
         $('.footer').find('.menu a[href="' + window.location.pathname + '"]').parent().addClass('active');
     });
-//    wx.onMenuShareAppMessage({
-//        title: '易康伴侣', // 分享标题
-//        desc: '商城', // 分享描述
-//        link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-//        imgUrl: '/shop/images/logo.jpg', // 分享图标
-//        type: '', // 分享类型,music、video或link，不填默认为link
-//        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-//        success: function () {
-//            // 用户确认分享后执行的回调函数
-//        },
-//        cancel: function () {
-//            // 用户取消分享后执行的回调函数
-//        }
-//    });
+    //    wx.onMenuShareAppMessage({
+    //        title: '易康伴侣', // 分享标题
+    //        desc: '商城', // 分享描述
+    //        link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+    //        imgUrl: '/shop/images/logo.jpg', // 分享图标
+    //        type: '', // 分享类型,music、video或link，不填默认为link
+    //        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+    //        success: function () {
+    //            // 用户确认分享后执行的回调函数
+    //        },
+    //        cancel: function () {
+    //            // 用户取消分享后执行的回调函数
+    //        }
+    //    });
 </script>
 </body>
 </html>

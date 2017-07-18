@@ -9,3 +9,4 @@ Homestead.json
 /public/upload
 composer.lock
 .phpstorm.meta.php
+/resources/views/test/

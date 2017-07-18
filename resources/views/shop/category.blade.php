@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="{{ asset('/shop/css/style.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/shop/css/rebuild.css') }}"/>
 
-<script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script><script type="text/javascript" src="/shop/js/libs/flexible.js"></script></head>
+    <script type="text/javascript" src="/shop/js/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
+</head>
 <body class="index">
 <main class="content">
     <div class="block-title" style="margin-top: 12px;"><h2><em>热门</em>分类</h2>
@@ -36,61 +38,85 @@
     </div>
 </main>
 
-<nav class="footer">
-    <div class="menus">
-        <div class="menu">
-            @if(!Session::get('baby'))
+@if(!Session::get('baby'))
+    <nav class="footer">
+        <div class="menus">
+            <div class="menu">
                 <a href="/shop/index">
-            @else
-                <a href="/shop/baby-index">
-            @end
-                <i class="fa fa-home"></i>
-                <p>首页</p>
-            </a>
-        </div>
-        <div class="menu">
-            <a href="/shop/hot-category">
-                <i class="fa fa-list-ul"></i>
-                <p>商品分类</p>
-            </a>
-        </div>
-        <div class="menu">
-            <a href="/shop/activity"></a>
-            <span>
-                <i class="fa fa-shopping-bag"></i>
-                <p>特惠专区</p>
-            </span>
-            <div class="sub-menu">
-                <ul>
-                    <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=1">母婴专区</a>
-                    </li>
-                    <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=2">甜蜜家园</a>
-                    </li>
-                    <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=3">海外直邮</a>
-                    </li>
-                </ul>
+                    <i class="fa fa-home"></i>
+                    <p>首页</p>
+                </a>
+            </div>
+            <div class="menu">
+                <a href="/shop/hot-category">
+                    <i class="fa fa-list-ul"></i>
+                    <p>商品分类</p>
+                </a>
+            </div>
+            <div class="menu">
+                <a href="/shop/activity"></a>
+                <span>
+                    <i class="fa fa-shopping-bag"></i>
+                    <p>特惠专区</p>
+                </span>
+                <div class="sub-menu">
+                    <ul>
+                        <li class="sub-menu-item">
+                            <a href="/shop/activity?activity_id=1">母婴专区</a>
+                        </li>
+                        <li class="sub-menu-item">
+                            <a href="/shop/activity?activity_id=2">甜蜜家园</a>
+                        </li>
+                        <li class="sub-menu-item">
+                            <a href="/shop/activity?activity_id=3">海外直邮</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="menu">
+                <a href="/shop/cart">
+                    @if($cartCount)
+                        <span class="title-num">{{$cartCount}}</span>
+                    @endif
+                    <i class="fa fa-shopping-cart"></i>
+                    <p>购物车</p>
+                </a>
+            </div>
+            <div class="menu">
+                <a href="http://www.ohmate.cn/index.php?g=user&m=center&a=index">
+                    <i class="fa fa-user"></i>
+                    <p>个人中心</p>
+                </a>
             </div>
         </div>
-        <div class="menu">
-            <a href="/shop/cart">
-                @if($cartCount)
-                    <span class="title-num">{{$cartCount}}</span>
-                @endif
-                <i class="fa fa-shopping-cart"></i>
-                <p>购物车</p>
-            </a>
+    </nav>
+@else
+    <nav class="footer">
+        <div class="menus">
+            <div class="menu" style="width: 33.3%">
+                <a href="/shop/baby-index">
+                    <i class="fa fa-home"></i>
+                    <p>首页</p>
+                </a>
+            </div>
+            <div class="menu" style="width: 33.3%">
+                <a href="/shop/cart">
+                    @if($cartCount)
+                        <span class="title-num">{{$cartCount}}</span>
+                    @endif
+                    <i class="fa fa-shopping-cart"></i>
+                    <p>购物车</p>
+                </a>
+            </div>
+            <div class="menu" style="width: 33.3%">
+                <a href="/order">
+                    <i class="fa fa-list"></i>
+                    <p>订单管理</p>
+                </a>
+            </div>
         </div>
-        <div class="menu">
-            <a href="http://www.ohmate.cn/index.php?g=user&m=center&a=index">
-                <i class="fa fa-user"></i>
-                <p>个人中心</p>
-            </a>
-        </div>
-    </div>
-</nav>
+    </nav>
+@endif
 
 <div class="mask-layer">
 
