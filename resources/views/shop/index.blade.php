@@ -128,6 +128,7 @@
                 <p>首页</p>
             </a>
         </div>
+        @if(Session::get('baby') == 0)
         <div class="menu">
             <a href="/shop/hot-category">
                 <i class="fa fa-list-ul"></i>
@@ -154,6 +155,7 @@
                 </ul>
             </div>
         </div>
+        @endif
         <div class="menu">
             <a href="/shop/cart">
                 @if($cartCount)
