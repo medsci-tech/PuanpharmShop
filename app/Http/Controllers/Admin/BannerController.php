@@ -19,6 +19,7 @@ class BannerController extends Controller
         $data = [
             'weight' => $request->input('weight'),
             'href_url' => $request->input('href_url'),
+            'baby' => $request->input('baby')
         ];
 
         $bannerUrl = $this->uploadBanners($request);

@@ -40,5 +40,6 @@ class Banner extends Model
         'image_url',
         'weight',
         'href_url',
+        'baby'
     ];
 }

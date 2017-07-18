@@ -38,6 +38,7 @@ class ProductController extends Controller
             'tags' => $request->input('tags'),
             'is_on_sale' => $request->input('is_on_sale'),
             'is_abroad' => $request->input('is_abroad'), // 是否海淘
+            'display_setting' => $request->input('display_setting'), // 是否海淘
             'price_tax' => $request->input('price_tax'), //海淘税
             'default_spec' => $request->input('default_spec'),
             'weight' => $request->input('weight'),
@@ -80,6 +81,7 @@ class ProductController extends Controller
             'tags' => $request->input('tags'),
             'is_on_sale' => $request->input('is_on_sale'),
             'is_abroad' => $request->input('is_abroad'), // 是否海淘
+            'display_setting' => $request->input('display_setting'), // 是否海淘
             'price_tax' => $request->input('price_tax'), //海淘税
             'default_spec' => $request->input('default_spec'),
             'weight' => $request->input('weight'),

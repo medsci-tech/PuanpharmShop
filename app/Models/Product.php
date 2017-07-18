@@ -103,6 +103,7 @@ class Product extends Model
         'weight',
         'is_abroad',
         'price_tax',
+        'display_setting'
     ];
 
     public function category()

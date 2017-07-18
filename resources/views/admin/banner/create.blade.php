@@ -27,6 +27,14 @@
                     </div>
 
                     <div class="am-form-group">
+                        <label for="baby" class="am-u-sm-3 am-form-label">是否是奶粉banner</label>
+
+                        <div class="am-u-sm-9">
+                            <input id="baby" type="checkbox" name="baby">
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
                         <label for="user-name" class="am-u-sm-3 am-form-label">banner 链接</label>
 
                         <div class="am-u-sm-9">

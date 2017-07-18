@@ -102,6 +102,17 @@
                             <span class="am-form-caret"> </span>
                         </div>
                     </div>
+                    <div class="am-form-group am-form-select">
+                        <label for="doc-select-1" class="am-u-sm-3 am-form-label">显示选项</label>
+                        <div class="am-u-sm-9">
+                            <select id="display_setting" name="display_setting" required>
+                                <option value="普安商城">普安商城</option>
+                                <option value="奶粉商城">奶粉商城</option>
+                                <option value="普安商城和奶粉商城">普安商城和奶粉商城</option>
+                            </select>
+                            <span class="am-form-caret"> </span>
+                        </div>
+                    </div>
                     <div class="am-form-group" id="pricetax">
                         <label for="price" class="am-u-sm-3 am-form-label">海淘税收</label>
                         <div class="am-u-sm-9">

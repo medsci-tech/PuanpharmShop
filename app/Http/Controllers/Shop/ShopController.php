@@ -50,7 +50,8 @@ class ShopController extends Controller
             'catArrays' => $categories,
             'activities' => Activity::all(),
             'cartCount' => sizeof(\Redis::command('HKEYS', ['user_id:' . $this->customerID])),
-            'banners' => Banner::orderBy('weight', 'desc')->get(),
+            'banners' => Banner::where('baby', 0)->orderBy('weight', 'desc')->get(),
+            'baby_banners' => Banner::where('baby', 1)->orderBy('weight', 'desc')->get(),
             'fromUrl' => $fromUrl
         ]);
     }

@@ -38,6 +38,18 @@
                     </div>
 
                     <div class="am-form-group">
+                        <label for="baby" class="am-u-sm-3 am-form-label">是否是奶粉banner</label>
+
+                        <div class="am-u-sm-9">
+                            @if($banner->baby)
+                                <input id="baby" type="checkbox" name="baby" checked>
+                            @else
+                                <input id="baby" type="checkbox" name="baby">
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
                         <label for="user-name" class="am-u-sm-3 am-form-label">banner链接</label>
 
                         <div class="am-u-sm-9">
