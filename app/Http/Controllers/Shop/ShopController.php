@@ -63,7 +63,7 @@ class ShopController extends Controller
         \Session::put('baby', 1);
         $categories = array_chunk(Category::where('is_baby_banner', 1)->get()->toArray(), 8);
         return view('shop.index', [
-            'products' => Product::where('supplier_id', 1)->whereIn('display_setting', ['奶粉商城', '普安商城和奶粉商城'])->orderBy('weight', 'desc')->get(),
+            'products' => Product::whereIn('display_setting', ['奶粉商城', '普安商城和奶粉商城'])->orderBy('weight', 'desc')->get(),
             'catArrays' => $categories,
             'activities' => Activity::all(),
             'cartCount' => sizeof(\Redis::command('HKEYS', ['user_id:' . $this->customerID])),
