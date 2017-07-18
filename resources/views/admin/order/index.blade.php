@@ -140,6 +140,7 @@
                 <select name="shipping_type" id="shipping_type">
                     <option value="圆通">圆通</option>
                     <option value="顺丰">顺丰</option>
+                    <option value="顺丰">中通</option>
                 </select>
                 <input type="text" id="shipping_no" placeholder="在此填写单号"><br>
                 <input type="checkbox" id="send_message">
