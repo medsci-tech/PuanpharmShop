@@ -39,7 +39,11 @@
 <nav class="footer">
     <div class="menus">
         <div class="menu">
-            <a href="/shop/index">
+            @if(!Session::get('baby'))
+                <a href="/shop/index">
+            @else
+                <a href="/shop/baby-index">
+            @end
                 <i class="fa fa-home"></i>
                 <p>首页</p>
             </a>
