@@ -70,23 +70,25 @@
         </div>
     </div>
 
-    <div class="block-title"><h2><em>特惠</em>专区</h2>
-        <small>D I S C O U N T</small>
-    </div>
+    @if(!Session::get('baby'))
+        <div class="block-title"><h2><em>特惠</em>专区</h2>
+            <small>D I S C O U N T</small>
+        </div>
 
-    <div class="ad-box">
-        <dl>
-            <dt><a href="/shop/activity?activity_id=2"><img
-                            src="http://o93nlp231.bkt.clouddn.com/%E7%94%9C%E8%9C%9C%E5%AE%B6%E5%9B%AD1.jpg"
-                            alt=""/></a></dt>
-            <dd><a href="/shop/activity?activity_id=3"><img
-                            src="http://o93nlp231.bkt.clouddn.com/%E6%B5%B7%E5%A4%96%E7%9B%B4%E9%82%AE1.jpg"
-                            alt=""/></a></dd>
-            <dd style="margin-top: 0.02rem;"><a href="/shop/activity?activity_id=1"><img
-                            src="http://o93nlp231.bkt.clouddn.com/%E6%AF%8D%E5%A9%B4%E4%B8%93%E5%8C%BA1.jpg"
-                            alt=""/></a></dd>
-        </dl>
-    </div>
+        <div class="ad-box">
+            <dl>
+                <dt><a href="/shop/activity?activity_id=2"><img
+                                src="http://o93nlp231.bkt.clouddn.com/%E7%94%9C%E8%9C%9C%E5%AE%B6%E5%9B%AD1.jpg"
+                                alt=""/></a></dt>
+                <dd><a href="/shop/activity?activity_id=3"><img
+                                src="http://o93nlp231.bkt.clouddn.com/%E6%B5%B7%E5%A4%96%E7%9B%B4%E9%82%AE1.jpg"
+                                alt=""/></a></dd>
+                <dd style="margin-top: 0.02rem;"><a href="/shop/activity?activity_id=1"><img
+                                src="http://o93nlp231.bkt.clouddn.com/%E6%AF%8D%E5%A9%B4%E4%B8%93%E5%8C%BA1.jpg"
+                                alt=""/></a></dd>
+            </dl>
+        </div>
+    @endif
 
     <div class="block-title"><h2><em style="color: #da8f11;">热销</em>商品</h2>
         <small style="color: #da8f11;">P O P U L A R</small>
@@ -128,33 +130,33 @@
                 <p>首页</p>
             </a>
         </div>
-        @if(Session::get('baby') == 0)
-        <div class="menu">
-            <a href="/shop/hot-category">
-                <i class="fa fa-list-ul"></i>
-                <p>商品分类</p>
-            </a>
-        </div>
-        <div class="menu">
-            <a href="/shop/activity"></a>
-            <span>
-                <i class="fa fa-shopping-bag"></i>
-                <p>特惠专区</p>
-            </span>
-            <div class="sub-menu">
-                <ul>
-                    <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=1">母婴专区</a>
-                    </li>
-                    <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=2">甜蜜家园</a>
-                    </li>
-                    <li class="sub-menu-item">
-                        <a href="/shop/activity?activity_id=3">海外直邮</a>
-                    </li>
-                </ul>
+        @if(!Session::get('baby'))
+            <div class="menu">
+                <a href="/shop/hot-category">
+                    <i class="fa fa-list-ul"></i>
+                    <p>商品分类</p>
+                </a>
             </div>
-        </div>
+            <div class="menu">
+                <a href="/shop/activity"></a>
+                <span>
+                    <i class="fa fa-shopping-bag"></i>
+                    <p>特惠专区</p>
+                </span>
+                <div class="sub-menu">
+                    <ul>
+                        <li class="sub-menu-item">
+                            <a href="/shop/activity?activity_id=1">母婴专区</a>
+                        </li>
+                        <li class="sub-menu-item">
+                            <a href="/shop/activity?activity_id=2">甜蜜家园</a>
+                        </li>
+                        <li class="sub-menu-item">
+                            <a href="/shop/activity?activity_id=3">海外直邮</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         @endif
         <div class="menu">
             <a href="/shop/cart">
