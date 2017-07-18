@@ -107,7 +107,7 @@
                 </a>
             </div>
             <div class="menu" style="width: 33.3%">
-                <a href="/order">
+                <a href="/shop/order">
                     <i class="fa fa-list"></i>
                     <p>订单管理</p>
                 </a>
