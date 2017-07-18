@@ -42,9 +42,9 @@
 
                         <div class="am-u-sm-9">
                             @if($banner->baby)
-                                <input id="baby" type="checkbox" name="baby" checked>
+                                <input id="baby" type="checkbox" name="baby" value="1" checked>
                             @else
-                                <input id="baby" type="checkbox" name="baby">
+                                <input id="baby" type="checkbox" value="1" name="baby">
                             @endif
                         </div>
                     </div>

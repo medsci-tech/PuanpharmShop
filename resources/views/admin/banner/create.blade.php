@@ -30,7 +30,7 @@
                         <label for="baby" class="am-u-sm-3 am-form-label">是否是奶粉banner</label>
 
                         <div class="am-u-sm-9">
-                            <input id="baby" type="checkbox" name="baby">
+                            <input id="baby" type="checkbox" value="1" name="baby">
                         </div>
                     </div>
 
