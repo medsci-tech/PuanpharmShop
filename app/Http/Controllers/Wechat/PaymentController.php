@@ -126,7 +126,9 @@ class PaymentController extends Controller
             $money = Order::whereIn('id', $id_array)->get()->sum('pay_fee');
             \Log::info('call outer api');
 
-            $result = $this->callOrderBuyApi($unionid, $money);
+            $ordersn = $id_array[0];
+
+            $result = $this->callOrderBuyApi($unionid, $money, $ordersn);
             \Log::info('first order result: '.$result->response);
 
         } catch (\Exception $exception) {
@@ -155,7 +157,7 @@ class PaymentController extends Controller
      * @param $money
      * @return \Curl\Curl
      */
-    public static function callOrderBuyApi($unionid, $money)
+    public static function callOrderBuyApi($unionid, $money, $ordersn)
     {
         $curl = new Curl();
         $time = time();
@@ -163,6 +165,6 @@ class PaymentController extends Controller
         $b = env('OUTER_API_PHASE_B');
         $token = sha1($a.$unionid.$money.$time.$b);
 
-        return $curl->get('http://www.ohmate.cn/index.php?g=api&m=puan&a=order_buy&un=' . $unionid . '&money=' . $money . '&time=' . $time . '&token=' . $token);
+        return $curl->get('http://www.ohmate.cn/index.php?g=api&m=puan&a=order_buy&un=' . $unionid . '&money=' . $money . '&time=' . $time . '&token=' . $token . '&orderno=' . $ordersn);
     }
 }
