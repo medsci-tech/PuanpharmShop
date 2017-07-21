@@ -31,47 +31,11 @@ class PaymentController extends Controller
                 $this->addProductSoldCount($order_to_pay->get());
 
                 if ($result) {
-                    // 迈豆返现
-                    // $beansResult = $customer->consumeBackBeans($input['total_fee'] / 100 * config('bean.bean_consume_rate'));
-                    // \Log::debug('consume_back_beans', ['result' => $beansResult]);
-
                     // 支付回调
                     $customer = Customer::where('openid', $input['openid'])->first();
                     $customer->wxPaymentDetails()->create($input);
 
                     $this->callForOuterConsumeAction($customer, $idArray);
-
-                    // 扣除易康迈豆
-                    $order = Order::find($idArray[0]);
-                    if ($customer->unionid) {
-                        \Helper::updateBeansByUnionid($customer->unionid, $order->beans_fee * 100);
-                    }
-                    /* 同步用户通行证验证 */
-                    $count = Order::where(['customer_id'=>$customer->id,'payment_status'=>1])->count(); // 统计
-                    $is_first_cash_consume = $count==1 ? 1 : 0; // 是否首单消费
-                    if(!$customer->phone) // 获取手机号
-                    {
-                        $curl = new Curl();
-                        $curl->get('http://www.ohmate.cn/puan/phone-by-union-id?unionid='.$customer->unionid);
-                        $data = json_decode($curl->response,true);
-                        if($data['phone'])
-                        {
-                            $customer->phone=$data['phone'];
-                            $customer->save();
-                        }
-                        $phone = $data['phone'];
-                    }
-                    else
-                        $phone = $customer->phone;
-
-                    $cash_paid = $order->total_fee-$order->beans_fee; // 实际支付
-                    $post_data = array("cash_paid_by_beans" => $order->beans_fee, "phone" => $phone,'cash_paid'=> $cash_paid,'is_first_cash_consume'=>$is_first_cash_consume);
-                    /* 同步查询用户通行证验证 */
-                    $res = \Helper::tocurl(env('API_URL'). '/query-user-information?phone='.$phone, $post=array(),0);
-                    $beans_total  = isset($res['phone']) ? 0 : $res['result']['bean']['number']; //购买前剩余迈豆
-                    $res2 = \Helper::tocurl(env('API_URL'). '/consume', $post_data,1); // 同步消费扣积分
-                    $bean_rest = isset($res2['bean_rest']) ? $res2['bean_rest'] : null; //买后剩余积分
-                    \Log::info('post_data', ['post_data' => $post_data,'response'=> $res2,'bean'=>array('bean_before'=>$beans_total,'beans_after'=>$bean_rest)]); // 文件日志记录
 
                     // 短信提醒
                     $orders = Order::whereIn('id', $idArray)->get();
@@ -133,7 +97,7 @@ class PaymentController extends Controller
             $ordersn = $id_array[0];
 
             $result = $this->callOrderBuyApi($unionid, $money, $ordersn);
-            \Log::info('first order result: '.$result->response);
+            \Log::info('order buy result: '.$result->response);
 
         } catch (\Exception $exception) {
             \Log::error('call outer api exception: '. $exception->getMessage());
