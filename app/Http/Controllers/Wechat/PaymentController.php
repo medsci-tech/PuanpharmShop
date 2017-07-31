@@ -19,16 +19,16 @@ class PaymentController extends Controller
             $idArray = explode("-", $outTradeNo);
             array_shift($idArray);
             if (Order::find($idArray[0])->payment_status == 0) {
-                $order_to_pay = Order::whereIn('id', $idArray);
-                \Log::info('order_to_pay', ['a' => $order_to_pay->first()]);
-                if ($order_to_pay->first()->coupon_id) {
-                    $order_to_pay->first()->coupon()->update(['used' => 1]);
+                $order_first = Order::whereIn('id', $idArray)->first();
+                \Log::info('order_to_pay', ['a' => $order_first]);
+                if ($order_first->coupon_id) {
+                    $order_first->coupon()->update(['used' => 1]);
                 }
-                $result = $order_to_pay->update(['payment_status' => 1, 'out_trade_no' => $input['out_trade_no']]);
-                \Log::info('order_to_pay2', ['a' => $order_to_pay->first()]);
+                $result = Order::whereIn('id', $idArray)->update(['payment_status' => 1, 'out_trade_no' => $input['out_trade_no']]);
+                \Log::info('order_to_pay2', ['a' => $order_first]);
                 \Log::info('order_result', ['result' => $result]);
 
-                $this->addProductSoldCount($order_to_pay->get());
+                $this->addProductSoldCount(Order::whereIn('id', $idArray)->get());
 
                 if ($result) {
                     // 支付回调
