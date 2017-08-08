@@ -113,7 +113,7 @@
             @endif @endforeach
         </ul>
     </div>
-    <div role="tabpanel" class="tab-pane" id="coupons3">
+    <div role="tabpanel" class="tab-pane" id="coupons4">
         <p class="strong">1. 什么是易康优惠券？</p>
         <p>易康优惠券是为易康商城发行和认可的购物券，可在易康商城Web版和易康伴侣、普安易康微信公众号，商城频道中下单时使用，可抵扣相应的金额。</p>
         <br>
