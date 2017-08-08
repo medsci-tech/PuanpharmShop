@@ -860,12 +860,15 @@ body.coupon {
     box-shadow: 2px 0 2px #aaa;
     border: none;
     li {
-      width: 33%;
+      width: 30%;
       text-align: center;
       a {
         border: none;
         color: #555;
       }
+    }
+    &:last-child {
+      width: 10%;
     }
     .active>a{
       border: none;

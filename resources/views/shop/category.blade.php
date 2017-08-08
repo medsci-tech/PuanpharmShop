@@ -47,32 +47,7 @@
                     <p>首页</p>
                 </a>
             </div>
-            <div class="menu">
-                <a href="/shop/hot-category">
-                    <i class="fa fa-list-ul"></i>
-                    <p>商品分类</p>
-                </a>
-            </div>
-            <div class="menu">
-                <a href="/shop/activity"></a>
-                <span>
-                    <i class="fa fa-shopping-bag"></i>
-                    <p>特惠专区</p>
-                </span>
-                <div class="sub-menu">
-                    <ul>
-                        <li class="sub-menu-item">
-                            <a href="/shop/activity?activity_id=1">母婴专区</a>
-                        </li>
-                        <li class="sub-menu-item">
-                            <a href="/shop/activity?activity_id=2">甜蜜家园</a>
-                        </li>
-                        <li class="sub-menu-item">
-                            <a href="/shop/activity?activity_id=3">海外直邮</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+           <div class="menu">                <a href="/shop/order">                    <i class="fa fa-list-alt"></i>                    <p>我的订单</p>                </a>            </div>            <div class="menu">                <a href="/shop/coupons">                    <i class="fa fa-ticket"></i>                    <p>我的优惠券</p>                </a>            </div>
             <div class="menu">
                 <a href="/shop/cart">
                     @if($cartCount)
