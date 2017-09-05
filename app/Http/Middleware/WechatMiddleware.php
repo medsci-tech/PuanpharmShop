@@ -33,6 +33,9 @@ class WechatMiddleware
             if ($request->has('utm_source')) {
                 $customer->source = $request->input('utm_source');
             }
+            if ($request->has('cooperator_id')) {
+                $customer->cooperator_id = $request->input('cooperator_id');
+            }
 
             $customer->save();
 

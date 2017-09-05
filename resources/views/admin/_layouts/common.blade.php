@@ -60,6 +60,7 @@
                 <li><a href="/admin/user"><span class="am-icon-users"></span>用户管理</a></li>
                 <li><a href="/admin/order"><span class="am-icon-file"></span> 订单管理</a></li>
                 <li><a href="/admin/banner"><span class="am-icon-th"></span> 首页Banner</a></li>
+                <li><a href="/admin/cooperator"><span class="am-icon-th"></span> 接入管理</a></li>
                 <li class="admin-parent">
                     <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span
                                 class="am-icon-product-hun"></span>

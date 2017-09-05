@@ -110,6 +110,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/order/ems-print', 'OrderController@printEMSOrder');
         Route::get('/order/print-data', 'OrderController@printData');
         Route::resource('order', 'OrderController');
+        
+        Route::resource('cooperator', 'CooperatorController');
 
         Route::get('/', function () {
             return view('admin.index');
