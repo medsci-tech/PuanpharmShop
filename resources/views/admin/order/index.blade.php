@@ -50,6 +50,7 @@
                         <thead>
                         <tr>
                             <th>ID</th>
+                            <th>用户来源</th>
                             <th>微信订单号</th>
                             <th class="table-title">供应商</th>
                             <th>商品</th>
@@ -70,6 +71,7 @@
                         @foreach($orders as $order)
                             <tr>
                                 <td>{{$order->id}}</td>
+                                <td>{{($cooperator = $order->customer->cooperator) ? $cooperator->name : ''}}</td>
                                 <td><a href="#">{{$order->out_trade_no}}</a></td>
                                 <td>{{$order->supplier->supplier_name}}</td>
                                 <td>

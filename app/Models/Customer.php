@@ -174,4 +174,9 @@ class Customer extends Model
             }
         }
     }
+
+    public function cooperator()
+    {
+        return $this->belongsTo(Cooperator::class);
+    }
 }
