@@ -105,6 +105,9 @@
                 <div class="product-info">
                     <p class="product-price">
                         <span class="price">&yen;{{$product->price}}</span>
+                        @if($product->on_sale)
+                            <span class="sale" style="font-size:50%;color: #ff0000;">特价</span>
+                        @endif
                         <span class="sold-count">已售:{{$product->sold_count}}件</span>
                     </p>
 

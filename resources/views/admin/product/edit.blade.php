@@ -98,6 +98,19 @@
                             </select>
                             <span class="am-form-caret"> </span>
                         </div>
+
+                    </div>
+                    <div class="am-form-group am-form-select">
+                        <label for="doc-select-1" class="am-u-sm-3 am-form-label">是否特价</label>
+
+                        <div class="am-u-sm-9">
+                            <select id="on_sale" name="on_sale" required>
+                                <option value="0">不特价</option>
+                                <option value="1">特价</option>
+                            </select>
+                            <span class="am-form-caret"> </span>
+                        </div>
+
                     </div>
                     <div class="am-form-group am-form-select">
                         <label for="doc-select-1" class="am-u-sm-3 am-form-label">是否海淘</label>

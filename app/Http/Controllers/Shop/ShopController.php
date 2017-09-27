@@ -27,8 +27,6 @@ class ShopController extends Controller
      */
     public function __construct()
     {
-        $this->customerID = \Session::get(\Config::get('constants.SESSION_USER_KEY'))->id;
-        $this->openID = \Session::get(\Config::get('constants.SESSION_USER_KEY'))->openid;
     }
 
     /**
@@ -214,6 +212,7 @@ class ShopController extends Controller
 
         $products = [];
         $productFee = 0;
+        $product_fee_without_sale = 0;
         foreach ($productID as $id => $quantity) {
             $array = explode('-', $id);
             $product = Product::find($array[0]);
@@ -221,8 +220,14 @@ class ShopController extends Controller
             if (sizeof($array) > 1) {
                 $product->specification = ProductSpecification::find($array[1]);
                 $productFee += $product->specification->specification_price * $product->quantity;
+                if ($product->on_sale == 0) {
+                    $product_fee_without_sale += $product->specification->specification_price * $product->quantity;
+                }
             } else {
                 $productFee += $product->price * $product->quantity;
+                if ($product->on_sale == 0) {
+                    $product_fee_without_sale += $product->price * $product->quantity;
+                }
             }
             if($product->is_abroad==1) //  海淘商品
             {
@@ -251,7 +256,7 @@ class ShopController extends Controller
         $coupon_list = [];
 
         foreach ($customer->coupons()->where('used', 0)->where('expire_at', '>', Carbon::now())->get() as $coupon) {
-            if ($productFee < $coupon->couponType->price_required) {
+            if ($product_fee_without_sale < $coupon->couponType->price_required) {
                 continue;
             }
 
@@ -269,6 +274,7 @@ class ShopController extends Controller
             'products' => $products,
             'address' => $address,
             'productFee' => $productFee,
+            'product_fee_without_sale' => $product_fee_without_sale,
             'beansFee' => $beansFee,
             'is_abroad' => $abroad,
             'coupons' => $coupon_list,

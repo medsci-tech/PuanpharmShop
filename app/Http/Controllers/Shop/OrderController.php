@@ -68,6 +68,7 @@ class OrderController extends Controller
         $orderProducts = [];
         $productTaxFee = 0.0; //进口税商品总价
         $productsFee = 0.0; //支付商品总价
+        $product_fee_without_sale = 0.0;
         foreach ($productArray as $id => $quantity) {
             // products
             $array = explode('-', $id);
@@ -82,9 +83,15 @@ class OrderController extends Controller
                 $productDetail['specification'] = $specification;
                 //$productDetail['product_price'] = $specification->specification_price;
                 $productsFee += $specification->specification_price * $quantity;
+                if ($product->on_sale == 0) {
+                    $product_fee_without_sale += $specification->specification_price * $quantity;
+                }
             } else {
                 //$productDetail['product_price'] = $product->price;;
                 $productsFee += $product->price * $quantity;
+                if ($product->on_sale == 0) {
+                    $product_fee_without_sale += $product->price * $quantity;
+                }
             }
             if($product->is_abroad==1) // 海淘商品
             {
@@ -124,7 +131,7 @@ class OrderController extends Controller
                 return response('Wrong coupon!', 500);
             }
 
-            if ($productsFee < $coupon->couponType->price_required) {
+            if ($product_fee_without_sale < $coupon->couponType->price_required) {
                 return response('Not enough price to use this coupon!', 500);
             }
 
@@ -137,7 +144,7 @@ class OrderController extends Controller
             if (($coupon_cut_price = $coupon->couponType->cut_price) > 0) {
                 $cut_fee = $coupon_cut_price;
             } elseif ((($cut_percentage = $coupon->couponType->cut_percentage) > 0)  && ($cut_percentage < 1)) {
-                $cut_fee = $productsFee * $cut_percentage;
+                $cut_fee = $product_fee_without_sale * $cut_percentage;
             }
 
             if ($payFee >= $cut_fee) {

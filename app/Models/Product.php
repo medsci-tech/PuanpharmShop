@@ -91,6 +91,7 @@ class Product extends Model
         'activity_id',
         'puan_id',
         'is_on_sale',
+        'on_sale',
         'is_show',
         'name',
         'description',

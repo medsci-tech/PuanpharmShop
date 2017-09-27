@@ -209,6 +209,8 @@
 <script>
     var productFee = {{$productFee}};
     var productTaxFee = {{$productTaxFee}};
+    var productFeeWithoutSale = {{$product_fee_without_sale}};
+    var productFeeOnSale = productFee - productFeeWithoutSale;
 
     function liclick(e) {
         $('#coupon').attr('value', e.id);
@@ -218,7 +220,7 @@
             $('#priceall').text('￥' + fee);
         }
         if (e.coupon_type.cut_percentage != '0.00') {
-            var fee = (productFee * (1 - e.coupon_type.cut_percentage) + productTaxFee + 8).toFixed(2);
+            var fee = (productFeeWithoutSale * (1 - e.coupon_type.cut_percentage) + productFeeOnSale + productTaxFee + 8).toFixed(2);
             $('#priceall').text('￥' + fee);
         }
         $('#myModal').modal('hide');

@@ -41,6 +41,9 @@
         <div class="goods-price">
             <span>&yen;</span>
             <span class="current">{{$product->price}}</span>
+            @if($product->on_sale)
+                <span class="sale" style="font-size:50%;color: #ff0000;">特价</span>
+            @endif
         </div>
         {{--<div class="trade-reward">--}}
         {{--<span class="trade-reward-tag">优惠</span>--}}
