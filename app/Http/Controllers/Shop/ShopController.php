@@ -276,7 +276,7 @@ class ShopController extends Controller
             'products' => $products,
             'address' => $address,
             'productFee' => $productFee,
-            'product_fee_without_sale' => $product_fee_without_sale
+            'product_fee_without_sale' => $product_fee_without_sale,
             'beansFee' => $beansFee,
             'is_abroad' => $abroad,
             'coupons' => $coupon_list,
