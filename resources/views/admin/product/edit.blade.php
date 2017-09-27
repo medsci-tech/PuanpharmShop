@@ -300,6 +300,7 @@
         $("#supplier_id").val("{{$product->supplier_id}}");
         $("#activity_id").val("{{$product->activity_id}}");
         $("#is_on_sale").val("{{$product->is_on_sale}}");
+        $("#on_sale").val("{{$product->on_sale}}");
         $("#is_abroad").val("{{$product->is_abroad}}");
 
         $('#add-spec').click(function () {
