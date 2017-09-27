@@ -27,6 +27,8 @@ class ShopController extends Controller
      */
     public function __construct()
     {
+        $this->customerID = \Session::get(\Config::get('constants.SESSION_USER_KEY'))->id;
+        $this->openID = \Session::get(\Config::get('constants.SESSION_USER_KEY'))->openid;
     }
 
     /**
@@ -274,7 +276,7 @@ class ShopController extends Controller
             'products' => $products,
             'address' => $address,
             'productFee' => $productFee,
-            'product_fee_without_sale' => $product_fee_without_sale,
+            'product_fee_without_sale' => $product_fee_without_sale
             'beansFee' => $beansFee,
             'is_abroad' => $abroad,
             'coupons' => $coupon_list,

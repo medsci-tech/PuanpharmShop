@@ -27,7 +27,7 @@ Route::group(['prefix' => 'web', 'namespace' => 'Shop'], function () {
     Route::any('/detail', 'WebController@detail');
 });
 // shop
-Route::group(['prefix' => 'shop', 'namespace' => 'Shop'], function () {
+Route::group(['prefix' => 'shop', 'namespace' => 'Shop', 'middleware' => 'wechat'], function () {
     Route::any('/test', 'ShopController@test');
     Route::any('/get_code_url', 'ShopController@getCodeUrl');
     Route::any('/index', 'ShopController@index');
