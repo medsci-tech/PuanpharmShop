@@ -164,6 +164,7 @@
                                         </li>
                                     @endforeach
                                 </ul>
+                                <hr><h4 class="text-center" style="color: #bbb;">不可用</h4><hr>
                                 <ul class="list-unstyled">
                                     @foreach($unusable_coupons as $coupon)
                                         <li class="coupon-list">
