@@ -164,6 +164,27 @@
                                         </li>
                                     @endforeach
                                 </ul>
+                                <ul class="list-unstyled">
+                                    @foreach($unusable_coupons as $coupon)
+                                        <li class="coupon-list">
+                                            <a href="JavaScript:void(0)" style="text-decoration: none!important;">
+                                                <div class="coupon-header">
+                                                    <div class=coupon-name>{{ $coupon->couponType->type }}</div>
+                                                    <div class="coupon-cut"><small>￥</small>{{ round($coupon->couponType->cut_price) }}</div>
+                                                </div>
+                                                <div class="coupon-circle-1"></div>
+                                                <div class="coupon-circle-2"></div>
+                                                <div class="coupon-body">
+                                                    <div class="coupon-detail">
+                                                        <p>{{ $coupon->couponType->name }}</p>
+                                                        <p>使用条件请查看商品详情页的满减规则</p>
+                                                        <p>有效期至：{{ $coupon->expire_at }}</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                     </div>

@@ -256,14 +256,17 @@ class ShopController extends Controller
         }
 
         $coupon_list = [];
+        $unusable_coupon_list = [];
 
         foreach ($customer->coupons()->where('used', 0)->where('expire_at', '>', Carbon::now())->get() as $coupon) {
             if ($product_fee_without_sale < $coupon->couponType->price_required) {
+                $unusable_coupon_list []= $coupon;
                 continue;
             }
 
             if ($product_id_required = $coupon->couponType->product_id_required) {
                 if (!$this->productsArrayContainsProduct($productID, $product_id_required)) {
+                    $unusable_coupon_list []= $coupon;
                     continue;
                 }
             }
@@ -280,6 +283,7 @@ class ShopController extends Controller
             'beansFee' => $beansFee,
             'is_abroad' => $abroad,
             'coupons' => $coupon_list,
+            'unusable_coupons' => $unusable_coupon_list,
             'productTaxFee' => $productTaxFee,
         ]);
     }
