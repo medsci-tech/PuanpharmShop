@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Models\Product;
 use App\Models\Address;
+use Overtrue\Wechat\Js;
 
 /**
  * Class ShopController
@@ -45,6 +46,8 @@ class ShopController extends Controller
     {
         $fromUrl = Input::get('fromUrl');
         \Session::put('baby', 0);
+        \Session::put('baby_shop', 0);
+
         $categories = array_chunk(Category::where('is_banner', 1)->get()->toArray(), 8);
         return view('shop.index', [
             'products' => Product::where('supplier_id', 1)->whereIn('display_setting', ['普安商城', '普安商城和奶粉商城'])->orderBy('weight', 'desc')->get(),
@@ -61,6 +64,18 @@ class ShopController extends Controller
     {
         $fromUrl = Input::get('fromUrl');
         \Session::put('baby', 1);
+        $baby_shop = Input::get('baby-shop', 0);
+        if ($baby_shop == 1) {
+            \Session::put('baby_shop', 1);
+        } elseif ($baby_shop == 2) {
+            \Session::put('baby_shop', 2);
+        } else {
+            \Session::put('baby_shop', 0);
+        }
+
+        $js = new Js(env('WX_APPID'), env('WX_SECRET'));
+
+
         $categories = array_chunk(Category::where('is_baby_banner', 1)->get()->toArray(), 8);
         return view('shop.index', [
             'products' => Product::whereIn('display_setting', ['奶粉商城', '普安商城和奶粉商城'])->orderBy('weight', 'desc')->get(),
@@ -68,7 +83,8 @@ class ShopController extends Controller
             'activities' => Activity::all(),
             'cartCount' => sizeof(\Redis::command('HKEYS', ['user_id:' . $this->customerID])),
             'banners' => Banner::where('baby', 1)->orderBy('weight', 'desc')->get(),
-            'fromUrl' => $fromUrl
+            'fromUrl' => $fromUrl,
+            'js' => $js
         ]);
     }
 
@@ -177,9 +193,12 @@ class ShopController extends Controller
      */
     public function detail(Request $request)
     {
+        $js = new Js(env('WX_APPID'), env('WX_SECRET'));
+
         return view('shop.detail', [
             'product' => Product::find($request->input('id')),
-            'cartCount' => sizeof(\Redis::command('HKEYS', ['user_id:' . $this->customerID]))
+            'cartCount' => sizeof(\Redis::command('HKEYS', ['user_id:' . $this->customerID])),
+            'js' => $js
         ]);
     }
 

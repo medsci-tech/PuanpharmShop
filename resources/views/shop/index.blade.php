@@ -2,7 +2,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>商城</title>
+    <title>
+        @if(Session::get('baby_shop') == 1)
+            凯特斯国际儿童生活馆
+        @elseif(Session::get('baby_shop' == 2))
+            普安大药房
+        @else
+            易康商城
+        @endif
+    </title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport"
@@ -270,6 +278,9 @@
         });
         $('.footer').find('.menu a[href="' + window.location.pathname + '"]').parent().addClass('active');
     });
+
+
+    wx.config(<?php echo $js->config(array('onMenuShareQQ', 'onMenuShareWeibo'), true, true) ?>);
     //    wx.onMenuShareAppMessage({
     //        title: '易康伴侣', // 分享标题
     //        desc: '商城', // 分享描述

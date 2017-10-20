@@ -380,6 +380,10 @@
 <script type="text/javascript" src="/shop/js/components.js"></script>
 <script type="text/javascript" src="/shop/js/libs/jquery.pep.js"></script>
 <script type="text/javascript" src="/shop/js/main.js"></script>
+
+
+wx.config(<?php echo $js->config(array('onMenuShareQQ', 'onMenuShareWeibo'), true, true) ?>);
+
 {{--<script>--}}
     {{--wx.onMenuShareAppMessage({--}}
     {{--title: '{{$product->name}}', // 分享标题--}}
