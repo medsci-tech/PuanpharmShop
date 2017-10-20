@@ -304,7 +304,7 @@
     wx.ready(function () {
       wx.onMenuShareAppMessage({
         title: document.title,
-        desc: '欢迎来到'+a_title, // 分享描述
+        desc: '欢迎来到'+document.title, // 分享描述
 //        link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
         imgUrl: a_logo, // 分享图标
         success: function () {
