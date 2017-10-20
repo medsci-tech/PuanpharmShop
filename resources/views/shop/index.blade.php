@@ -1,6 +1,17 @@
 <!doctype html>
 <html>
 <head>
+    <div style="display: none">
+        <img src="
+    @if(Session::get('baby_shop', 0) == 1)
+            '/shop/images/logo/kaisite.jpg'
+    @elseif(Session::get('baby_shop', 0) == 2)
+            '/shop/images/logo/puan.jpg'
+    @else
+            '/shop/images/logo/yikang.jpg'
+    @endif
+        " alt="">
+    </div>
     <meta charset="UTF-8">
     <title>
         @if(Session::get('baby_shop', 0) == 1)
@@ -289,12 +300,12 @@
     @else
             a_logo = '/shop/images/logo/yikang.jpg';
     @endif
-    wx.config(<?php echo $js->config(array('onMenuShareAppMessage','onMenuShareTimeline'), true, true) ?>);
+    wx.config(<?php echo $js->config(array('onMenuShareAppMessage','onMenuShareTimeline')) ?>);
     wx.ready(function () {
       wx.onMenuShareAppMessage({
         title: document.title,
         desc: '欢迎来到'+a_title, // 分享描述
-        link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+//        link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
         imgUrl: a_logo, // 分享图标
         success: function () {
           // 用户确认分享后执行的回调函数

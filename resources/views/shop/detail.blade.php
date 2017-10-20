@@ -395,7 +395,7 @@
             {{--a_title = '易康商城';--}}
             {{--a_logo = '/shop/images/logo/yikang.jpg';--}}
     {{--@endif--}}
-    wx.config(<?php echo $js->config(array('onMenuShareAppMessage','onMenuShareTimeline'), true, true) ?>);
+    wx.config(<?php echo $js->config(array('onMenuShareAppMessage','onMenuShareTimeline')) ?>);
     wx.ready(function () {
       wx.onMenuShareAppMessage({
         title: '{{$product->name}}', // 分享标题
