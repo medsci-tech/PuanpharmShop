@@ -2,15 +2,15 @@
 <html>
 <head>
     <div style="display: none">
-        <img src="
+
     @if(Session::get('baby_shop', 0) == 1)
-            /shop/images/logo/kaisite.jpg
+            <img src="{{ asset('/shop/images/logo/kaisite.jpg')}}" alt="">
     @elseif(Session::get('baby_shop', 0) == 2)
-            /shop/images/logo/puan.jpg
+            <img src="{{ asset('/shop/images/logo/puan.jpg')}}" alt="">
     @else
-            /shop/images/logo/yikang.jpg
+            <img src="{{ asset('/shop/images/logo/yikang.jpg')}}" alt="">
     @endif
-        " alt="">
+
     </div>
     <meta charset="UTF-8">
     <title>
