@@ -25,11 +25,11 @@
 <body class="index">
 <div style="display: none">
     @if(Session::get('baby_shop', 0) == 1)
-            <img src="{{ asset('/shop/images/logo/kaisite.jpg')}}" alt="">
+            <img src="{{ asset('/shop/images/logo/kaisite.jpg')}}" alt="123">
     @elseif(Session::get('baby_shop', 0) == 2)
-            <img src="{{ asset('/shop/images/logo/puan.jpg')}}" alt="">
+            <img src="{{ asset('/shop/images/logo/puan.jpg')}}" alt="123">
     @else
-            <img src="{{ asset('/shop/images/logo/yikang.jpg')}}" alt="">
+            <img src="{{ asset('/shop/images/logo/yikang.jpg')}}" alt="123">
     @endif
 </div>
 <!--提示框-->
@@ -290,13 +290,13 @@
     });
 
 
-    var a_logo = '';
+    var a_logo = 'http://'+document.domain;
     @if(Session::get('baby_shop', 0) == 1)
-            a_logo = '/shop/images/logo/kaisite.jpg';
+            a_logo += '/shop/images/logo/kaisite.jpg';
     @elseif(Session::get('baby_shop', 0) == 2)
-            a_logo = '/shop/images/logo/puan.jpg';
+            a_logo += '/shop/images/logo/puan.jpg';
     @else
-            a_logo = '/shop/images/logo/yikang.jpg';
+            a_logo += '/shop/images/logo/yikang.jpg';
     @endif
     wx.config(<?php echo $js->config(array('onMenuShareAppMessage','onMenuShareTimeline')) ?>);
     wx.ready(function () {
@@ -304,7 +304,7 @@
         title: document.title,
         desc: '欢迎来到'+document.title, // 分享描述
 //        link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: '', // 分享图标
+        imgUrl: a_logo, // 分享图标
         success: function () {
           // 用户确认分享后执行的回调函数
         },
@@ -315,7 +315,7 @@
       wx.onMenuShareTimeline({
         title: document.title, // 分享标题
 //        link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: '', // 分享图标
+        imgUrl: a_logo, // 分享图标
         success: function () {
           // 用户确认分享后执行的回调函数
         },
