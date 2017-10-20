@@ -60,7 +60,7 @@ class ShopController extends Controller
             'banners' => Banner::where('baby', 0)->orderBy('weight', 'desc')->get(),
             'baby_banners' => Banner::where('baby', 1)->orderBy('weight', 'desc')->get(),
             'fromUrl' => $fromUrl,
-            'js' => $jsg
+            'js' => $js
         ]);
     }
 
