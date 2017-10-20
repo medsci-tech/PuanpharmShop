@@ -4,11 +4,11 @@
     <div style="display: none">
         <img src="
     @if(Session::get('baby_shop', 0) == 1)
-            '/shop/images/logo/kaisite.jpg'
+            /shop/images/logo/kaisite.jpg
     @elseif(Session::get('baby_shop', 0) == 2)
-            '/shop/images/logo/puan.jpg'
+            /shop/images/logo/puan.jpg
     @else
-            '/shop/images/logo/yikang.jpg'
+            /shop/images/logo/yikang.jpg
     @endif
         " alt="">
     </div>
