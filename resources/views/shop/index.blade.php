@@ -1,17 +1,6 @@
 <!doctype html>
 <html>
 <head>
-    <div style="display: none">
-
-    @if(Session::get('baby_shop', 0) == 1)
-            <img src="{{ asset('/shop/images/logo/kaisite.jpg')}}" alt="">
-    @elseif(Session::get('baby_shop', 0) == 2)
-            <img src="{{ asset('/shop/images/logo/puan.jpg')}}" alt="">
-    @else
-            <img src="{{ asset('/shop/images/logo/yikang.jpg')}}" alt="">
-    @endif
-
-    </div>
     <meta charset="UTF-8">
     <title>
         @if(Session::get('baby_shop', 0) == 1)
@@ -34,6 +23,15 @@
     <script type="text/javascript" src="/shop/js/libs/flexible.js"></script>
 </head>
 <body class="index">
+<div style="display: none">
+    @if(Session::get('baby_shop', 0) == 1)
+            <img src="{{ asset('/shop/images/logo/kaisite.jpg')}}" alt="">
+    @elseif(Session::get('baby_shop', 0) == 2)
+            <img src="{{ asset('/shop/images/logo/puan.jpg')}}" alt="">
+    @else
+            <img src="{{ asset('/shop/images/logo/yikang.jpg')}}" alt="">
+    @endif
+</div>
 <!--提示框-->
 @if(!empty($fromUrl) && $fromUrl=='tnb')
     <div class="noticeBox">
