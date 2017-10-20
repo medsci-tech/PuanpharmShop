@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>
         @if(Session::get('baby_shop', 0) == 1)
-            凯特斯国际儿童生活馆
+            凯特斯国际儿童生活馆门店
         @elseif(Session::get('baby_shop', 0) == 2)
-            普安大药房
+            普安大药房门店
         @else
             易康商城
         @endif
@@ -246,6 +246,7 @@
 <script type="text/javascript" src="/shop/js/libs/swiper.jquery.min.js"></script>
 <script type="text/javascript" src="/shop/js/components.js"></script>
 <script type="text/javascript" src="/shop/js/libs/jquery.pep.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 {{--<script type="text/javascript" src="/shop/js/main.js"></script>--}}
 <script>
     $(function () {
@@ -280,21 +281,40 @@
     });
 
 
-    {{--wx.config(<?php echo $js->config(array('onMenuShareQQ', 'onMenuShareWeibo'), true, true) ?>);--}}
-    //    wx.onMenuShareAppMessage({
-    //        title: '易康伴侣', // 分享标题
-    //        desc: '商城', // 分享描述
-    //        link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-    //        imgUrl: '/shop/images/logo.jpg', // 分享图标
-    //        type: '', // 分享类型,music、video或link，不填默认为link
-    //        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-    //        success: function () {
-    //            // 用户确认分享后执行的回调函数
-    //        },
-    //        cancel: function () {
-    //            // 用户取消分享后执行的回调函数
-    //        }
-    //    });
+    var a_logo = '';
+    @if(Session::get('baby_shop', 0) == 1)
+            a_logo = '/shop/images/logo/kaisite.jpg';
+    @elseif(Session::get('baby_shop', 0) == 2)
+            a_logo = '/shop/images/logo/puan.jpg';
+    @else
+            a_logo = '/shop/images/logo/yikang.jpg';
+    @endif
+    wx.config(<?php echo $js->config(array('onMenuShareAppMessage','onMenuShareTimeline'), true, true) ?>);
+    wx.ready(function () {
+      wx.onMenuShareAppMessage({
+        title: document.title,
+        desc: '欢迎来到'+a_title, // 分享描述
+        link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl: a_logo, // 分享图标
+        success: function () {
+          // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+          // 用户取消分享后执行的回调函数
+        }
+      });
+      wx.onMenuShareTimeline({
+        title: document.title, // 分享标题
+        link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl: a_logo, // 分享图标
+        success: function () {
+          // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+          // 用户取消分享后执行的回调函数
+        }
+      });
+    });
 </script>
 </body>
 </html>
