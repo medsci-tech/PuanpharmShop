@@ -73,7 +73,7 @@ class ShopController extends Controller
             \Session::put('baby_shop', 0);
         }
 
-//        $js = new Js(env('WX_APPID'), env('WX_SECRET'));
+        $js = new Js(env('WX_APPID'), env('WX_SECRET'));
 
 
         $categories = array_chunk(Category::where('is_baby_banner', 1)->get()->toArray(), 8);
@@ -84,7 +84,7 @@ class ShopController extends Controller
             'cartCount' => sizeof(\Redis::command('HKEYS', ['user_id:' . $this->customerID])),
             'banners' => Banner::where('baby', 1)->orderBy('weight', 'desc')->get(),
             'fromUrl' => $fromUrl,
-//            'js' => $js
+            'js' => $js
         ]);
     }
 

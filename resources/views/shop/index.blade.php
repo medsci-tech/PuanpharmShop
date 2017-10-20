@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>
-        @if(Session::get('baby_shop') == 1)
+        @if(Session::get('baby_shop', 0) == 1)
             凯特斯国际儿童生活馆
-        @elseif(Session::get('baby_shop' == 2))
+        @elseif(Session::get('baby_shop', 0) == 2)
             普安大药房
         @else
             易康商城
