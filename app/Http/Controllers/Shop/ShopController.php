@@ -48,6 +48,9 @@ class ShopController extends Controller
         \Session::put('baby', 0);
         \Session::put('baby_shop', 0);
 
+        $js = new Js(env('WX_APPID'), env('WX_SECRET'));
+
+
         $categories = array_chunk(Category::where('is_banner', 1)->get()->toArray(), 8);
         return view('shop.index', [
             'products' => Product::where('supplier_id', 1)->whereIn('display_setting', ['普安商城', '普安商城和奶粉商城'])->orderBy('weight', 'desc')->get(),
@@ -56,7 +59,8 @@ class ShopController extends Controller
             'cartCount' => sizeof(\Redis::command('HKEYS', ['user_id:' . $this->customerID])),
             'banners' => Banner::where('baby', 0)->orderBy('weight', 'desc')->get(),
             'baby_banners' => Banner::where('baby', 1)->orderBy('weight', 'desc')->get(),
-            'fromUrl' => $fromUrl
+            'fromUrl' => $fromUrl,
+            'js' => $jsg
         ]);
     }
 
