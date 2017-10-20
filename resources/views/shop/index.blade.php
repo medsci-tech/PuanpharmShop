@@ -280,7 +280,7 @@
     });
 
 
-    wx.config(<?php echo $js->config(array('onMenuShareQQ', 'onMenuShareWeibo'), true, true) ?>);
+    {{--wx.config(<?php echo $js->config(array('onMenuShareQQ', 'onMenuShareWeibo'), true, true) ?>);--}}
     //    wx.onMenuShareAppMessage({
     //        title: '易康伴侣', // 分享标题
     //        desc: '商城', // 分享描述
