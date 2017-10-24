@@ -239,11 +239,11 @@
         $('#coupon').attr('value', e.id);
         $('#coupon_btn').text(e.coupon_type.name);
         if (e.coupon_type.cut_price != '0.00') {
-            var fee = (productFee + productTaxFee - e.coupon_type.cut_price + 8).toFixed(2);
+            var fee = (productFee + productTaxFee - e.coupon_type.cut_price + shippingFee).toFixed(2);
             $('#priceall').text('￥' + fee);
         }
         if (e.coupon_type.cut_percentage != '0.00') {
-            var fee = (productFeeWithoutSale * (1 - e.coupon_type.cut_percentage) + productFeeOnSale + productTaxFee + 8).toFixed(2);
+            var fee = (productFeeWithoutSale * (1 - e.coupon_type.cut_percentage) + productFeeOnSale + productTaxFee + shippingFee).toFixed(2);
             $('#priceall').text('￥' + fee);
         }
         $('#myModal').modal('hide');
