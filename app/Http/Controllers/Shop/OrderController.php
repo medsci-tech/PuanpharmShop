@@ -106,6 +106,9 @@ class OrderController extends Controller
 
         // 计算价格
         $shippingFee = 8.0;
+        if (\Session::get('baby_shop', 0) != 0) {
+            $shippingFee = 0.0;
+        }
         $beansFee = 0.0;
 
         $customer = Customer::find($this->customerID);

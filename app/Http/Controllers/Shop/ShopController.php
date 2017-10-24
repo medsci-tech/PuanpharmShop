@@ -297,6 +297,10 @@ class ShopController extends Controller
             $coupon_list []= $coupon;
         }
 
+        $shipping_fee = 8.0;
+        if (\Session::get('baby_shop', 0) != 0) {
+            $shipping_fee = 0.0;
+        }
 
         return view('shop.pay', [
             'products' => $products,
@@ -308,6 +312,7 @@ class ShopController extends Controller
             'coupons' => $coupon_list,
             'unusable_coupons' => $unusable_coupon_list,
             'productTaxFee' => $productTaxFee,
+            'shipping_fee' => $shipping_fee
         ]);
     }
 

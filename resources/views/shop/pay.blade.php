@@ -233,6 +233,7 @@
     var productTaxFee = {{$productTaxFee}};
     var productFeeWithoutSale = {{$product_fee_without_sale}};
     var productFeeOnSale = productFee - productFeeWithoutSale;
+    var shippingFee = {{$shipping_fee}};
 
     function liclick(e) {
         $('#coupon').attr('value', e.id);
