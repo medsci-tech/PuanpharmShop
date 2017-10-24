@@ -38,15 +38,15 @@ class PaymentController extends Controller
                     $this->callForOuterConsumeAction($customer, $idArray);
 
                     // 短信提醒
-                    $orders = Order::whereIn('id', $idArray)->get();
-                    foreach($orders as $order) {
-                        if($order->supplier_id == 2) {
-                            \Message::createMessage($order->address_phone, '尊敬的顾客您好！您在易康商城购买的货品订单号为['.$order->order_sn.'-'.$order->id.']，将由普安药房尽快为您安排发货，如有任何问题您可以拨打客服电话：4001199802进行咨询，感谢您的惠顾！');
-                        } else {
-                            // 海外直邮
-                            \Message::createMessage($order->address_phone, '尊敬的顾客您好！您在易康商城购买的货品订单号为['.$order->order_sn.'-'.$order->id.']，我们将尽快为您安排发货，如有任何问题您可以拨打客服电话：4001199802进行咨询，感谢您的惠顾！');
-                        }
-                    }
+//                    $orders = Order::whereIn('id', $idArray)->get();
+//                    foreach($orders as $order) {
+//                        if($order->supplier_id == 2) {
+//                            \Message::createMessage($order->address_phone, '尊敬的顾客您好！您在易康商城购买的货品订单号为['.$order->order_sn.'-'.$order->id.']，将由普安药房尽快为您安排发货，如有任何问题您可以拨打客服电话：4001199802进行咨询，感谢您的惠顾！');
+//                        } else {
+//                            // 海外直邮
+//                            \Message::createMessage($order->address_phone, '尊敬的顾客您好！您在易康商城购买的货品订单号为['.$order->order_sn.'-'.$order->id.']，我们将尽快为您安排发货，如有任何问题您可以拨打客服电话：4001199802进行咨询，感谢您的惠顾！');
+//                        }
+//                    }
                     $result = \Wechat::paymentNotify();
 
                     return $result;
