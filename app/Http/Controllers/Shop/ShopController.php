@@ -208,13 +208,19 @@ class ShopController extends Controller
         }
         if ($baby_shop == 1) {
             \Session::put('baby_shop', 1);
-            $share_link = $request->fullUrl(). '&baby=1&baby-shop=1';
         } elseif ($baby_shop == 2) {
             \Session::put('baby_shop', 2);
-            $share_link = $request->fullUrl(). '&baby=1&baby-shop=2';
         } else {
-            $share_link = $request->fullUrl();
 //            \Session::put('baby_shop', 0);
+        }
+
+        $share_link = $request->fullUrl();
+        if (\Session::get('baby', 0) == 1) {
+            if (\Session::get('baby_shop', 0) == 1) {
+                $share_link = $request->fullUrl(). '&baby=1&baby-shop=1';
+            } elseif (\Session::get('baby_shop', 0) == 2) {
+                $share_link = $request->fullUrl(). '&baby=1&baby-shop=2';
+            }
         }
 
         return view('shop.detail', [
