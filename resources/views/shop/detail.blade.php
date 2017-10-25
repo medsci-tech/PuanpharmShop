@@ -123,7 +123,17 @@
 <nav class="footer">
     <div class="menus">
         <div class="menu">
-            @if(!Session::get('baby'))<a href="/shop/index">@else<a href="/shop/baby-index">@endif
+            @if(!Session::get('baby'))
+                <a href="/shop/index">
+            @else
+                @if(!Session::get('baby_shop'))
+                    <a href="/shop/baby-index">
+                @elseif(Session::get('baby_shop') == 1)
+                    <a href="/shop/baby-index?baby_shop=1">
+                @elseif(Session::get('baby_shop') == 2)
+                    <a href="/shop/baby-index?baby_shop=2">
+                @endif
+            @endif
                 <i class="fa fa-home"></i>
                 <p>首页</p>
             </a>
@@ -400,12 +410,12 @@
       wx.onMenuShareAppMessage({
         title: '{{$product->name}}', // 分享标题
         desc: '￥{{$product->price}}', // 分享描述
-//        link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        link: '{!! $share_link !!}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
         imgUrl: '{{$product->logo}}' // 分享图标
       });
       wx.onMenuShareTimeline({
         title: '{{$product->name}}', // 分享标题
-//        link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        link: '{!! $share_link !!}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
         imgUrl: '{{$product->logo}}' // 分享图标
       });
     });

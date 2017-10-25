@@ -199,10 +199,29 @@ class ShopController extends Controller
     {
         $js = new Js(env('WX_APPID'), env('WX_SECRET'));
 
+        $baby = Input::get('baby', 0);
+        $baby_shop = Input::get('baby-shop', 0);
+        if ($baby == 1) {
+            \Session::put('baby', 1);
+        } else {
+//            \Session::put('baby', 0);
+        }
+        if ($baby_shop == 1) {
+            \Session::put('baby_shop', 1);
+            $share_link = $request->fullUrl(). '&baby=1&baby-shop=1';
+        } elseif ($baby_shop == 2) {
+            \Session::put('baby_shop', 2);
+            $share_link = $request->fullUrl(). '&baby=1&baby-shop=2';
+        } else {
+            $share_link = $request->fullUrl();
+//            \Session::put('baby_shop', 0);
+        }
+
         return view('shop.detail', [
             'product' => Product::find($request->input('id')),
             'cartCount' => sizeof(\Redis::command('HKEYS', ['user_id:' . $this->customerID])),
-            'js' => $js
+            'js' => $js,
+            'share_link' => $share_link
         ]);
     }
 
