@@ -73,6 +73,8 @@ class ShopController extends Controller
             \Session::put('baby_shop', 1);
         } elseif ($baby_shop == 2) {
             \Session::put('baby_shop', 2);
+        } elseif ($baby_shop == 3) {
+            \Session::put('baby_shop', 3);
         } else {
             \Session::put('baby_shop', 0);
         }
@@ -210,6 +212,8 @@ class ShopController extends Controller
             \Session::put('baby_shop', 1);
         } elseif ($baby_shop == 2) {
             \Session::put('baby_shop', 2);
+        } elseif ($baby_shop == 3) {
+            \Session::put('baby_shop', 3);
         } else {
 //            \Session::put('baby_shop', 0);
         }
@@ -220,6 +224,8 @@ class ShopController extends Controller
                 $share_link = $request->fullUrl(). '&baby=1&baby-shop=1';
             } elseif (\Session::get('baby_shop', 0) == 2) {
                 $share_link = $request->fullUrl(). '&baby=1&baby-shop=2';
+            } elseif (\Session::get('baby_shop', 0) == 3) {
+                $share_link = $request->fullUrl(). '&baby=1&baby-shop=3';
             }
         }
 

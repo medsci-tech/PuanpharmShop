@@ -132,6 +132,8 @@
                     <a href="/shop/baby-index?baby-shop=1">
                 @elseif(Session::get('baby_shop') == 2)
                     <a href="/shop/baby-index?baby-shop=2">
+                @elseif(Session::get('baby_shop') == 3)
+                    <a href="/shop/baby-index?baby-shop=3">
                 @endif
             @endif
                 <i class="fa fa-home"></i>
