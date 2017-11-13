@@ -299,6 +299,8 @@
             a_logo += '/shop/images/logo/kaisite.jpg';
     @elseif(Session::get('baby_shop', 0) == 2)
             a_logo += '/shop/images/logo/puan.jpg';
+    @elseif(Session::get('baby_shop', 0) == 3)
+            a_logo += '/shop/images/logo/ayd.jpg';
     @else
             a_logo += '/shop/images/logo/yikang.jpg';
     @endif
