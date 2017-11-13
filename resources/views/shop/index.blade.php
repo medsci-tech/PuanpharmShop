@@ -7,6 +7,8 @@
             凯特斯国际儿童生活馆门店
         @elseif(Session::get('baby_shop', 0) == 2)
             普安大药房门店
+        @elseif(Session::get('baby_shop', 0) == 3)
+            爱婴岛门店
         @else
             易康商城
         @endif
@@ -28,8 +30,10 @@
             <img src="{{ asset('/shop/images/logo/kaisite.jpg')}}" alt="123">
     @elseif(Session::get('baby_shop', 0) == 2)
             <img src="{{ asset('/shop/images/logo/puan.jpg')}}" alt="123">
+    @elseif(Session::get('baby_shop', 0) == 3)
+        <img src="{{ asset('/shop/images/logo/ayd.jpg')}}" alt="123">
     @else
-            <img src="{{ asset('/shop/images/logo/yikang.jpg')}}" alt="123">
+            <img src="{{ asset('/shop/images/logo/yikang.jpeg')}}" alt="123">
     @endif
 </div>
 <!--提示框-->
