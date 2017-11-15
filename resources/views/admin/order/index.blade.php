@@ -77,7 +77,7 @@
                                 <td>
                                     @foreach($order->products as $product)
                                         @if($product->pivot->specification_id)
-                                            【{{$product->name.'('.\App\Models\ProductSpecification::find($product->pivot->specification_id)->specification_name.')x'.$product->pivot->quantity}}
+                                            【{{$product->name.'('.\App\Models\ProductSpecification::withTrashed()->find($product->pivot->specification_id)->specification_name.')x'.$product->pivot->quantity}}
                                             】
                                         @else
                                             【{{$product->name.'('.$product->default_spec.')x'.$product->pivot->quantity}}

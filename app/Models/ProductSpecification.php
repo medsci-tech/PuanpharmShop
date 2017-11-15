@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class ProductSpecification
@@ -25,6 +26,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ProductSpecification extends Model
 {
+    use SoftDeletes;
+
     /**
      * The database table used by the model.
      *
