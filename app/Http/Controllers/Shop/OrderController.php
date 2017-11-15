@@ -87,6 +87,7 @@ class OrderController extends Controller
                     $product_fee_without_sale += $specification->specification_price * $quantity;
                 }
             } else {
+                unset($productDetail['specification']);
                 //$productDetail['product_price'] = $product->price;;
                 $productsFee += $product->price * $quantity;
                 if ($product->on_sale == 0) {
