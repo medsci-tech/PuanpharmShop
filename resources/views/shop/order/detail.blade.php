@@ -117,7 +117,7 @@
                 <span class="shop">快递单号<p style="float: right">{{$order->shipping_type}}:{{$order->shipping_no}}</p></span>
             </div>
             <div class="confirm" style="padding-bottom: 8px;" >
-                <a class="next" href="http://m.kuaidi100.com/index_all.html?type={{$order->shipping_type}}&postid={{$order->shipping_no}}&callbackurl=http://puanpharm.ohmate.cn/shop/order">【查看物流】</a>
+                <a class="next" href="http://m.kuaidi100.com/index_all.html?postid={{$order->shipping_no}}&callbackurl=http://puanpharm.ohmate.cn/shop/order">【查看物流】</a>
             </div>
         </div>
     @endif
